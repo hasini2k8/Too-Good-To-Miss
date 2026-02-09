@@ -162,5 +162,3 @@ This project demonstrates advanced mobile development skills including interacti
 
 ---
 
-
-was built as a demonstration of advanced Flutter development skills including Google Maps integration, OOP architecture, data persistence, and clean UI/UX design.*
