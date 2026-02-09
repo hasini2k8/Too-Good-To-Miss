@@ -75,6 +75,10 @@ This project demonstrates advanced mobile development skills including interacti
 - **geocoding (^2.1.1)** - Address conversion and location services
 - **Haversine Formula** - Distance calculations between coordinates
 
+### **AI model**
+- **Gemini 2.5 api model**
+- **Interactions api**
+
 ### **Data Storage & Persistence**
 - **shared_preferences (^2.2.2)** - Local key-value storage for user data
 - **JSON** - Data serialization and storage
