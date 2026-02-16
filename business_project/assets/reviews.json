@@ -1,0 +1,319 @@
+{
+  "reviews": [
+    {
+      "id": "r001",
+      "startupId": "s001",
+      "startup_name": "Golden Scoop",
+      "reviewer_name": "Sarah M.",
+      "rating": 5,
+      "comment": "Amazing flavors! The lavender honey is to die for. Staff are super friendly too.",
+      "date": "2024-01-15"
+    },
+    {
+      "id": "r002",
+      "startupId": "s001",
+      "startup_name": "Golden Scoop",
+      "reviewer_name": "Mike T.",
+      "rating": 4,
+      "comment": "Great ice cream, but the lines can get pretty long on weekends.",
+      "date": "2024-01-20"
+    },
+    {
+      "id": "r003",
+      "startupId": "s002",
+      "startup_name": "Urban Greens",
+      "reviewer_name": "Emily R.",
+      "rating": 4,
+      "comment": "Love the organic selection, but prices are quite high.",
+      "date": "2024-01-12"
+    },
+    {
+      "id": "r004",
+      "startupId": "s002",
+      "startup_name": "Urban Greens",
+      "reviewer_name": "David K.",
+      "rating": 2,
+      "comment": "Overpriced and limited selection. The produce wasn't as fresh as expected.",
+      "date": "2024-01-18"
+    },
+    {
+      "id": "r005",
+      "startupId": "s003",
+      "startup_name": "Tech Hub Cafe",
+      "reviewer_name": "Jessica L.",
+      "rating": 5,
+      "comment": "Perfect spot for remote work! Fast WiFi, great coffee, and plenty of outlets.",
+      "date": "2024-01-22"
+    },
+    {
+      "id": "r006",
+      "startupId": "s003",
+      "startup_name": "Tech Hub Cafe",
+      "reviewer_name": "Alex P.",
+      "rating": 5,
+      "comment": "Excellent atmosphere for working. Coffee is top-notch. Gets a bit noisy during lunch.",
+      "date": "2024-01-25"
+    },
+    {
+      "id": "r007",
+      "startupId": "s003",
+      "startup_name": "Tech Hub Cafe",
+      "reviewer_name": "Chris W.",
+      "rating": 5,
+      "comment": "My go-to cafe for client meetings. Professional vibe and excellent service.",
+      "date": "2024-01-28"
+    },
+    {
+      "id": "r008",
+      "startupId": "s004",
+      "startup_name": "FitWear Studio",
+      "reviewer_name": "Rachel B.",
+      "rating": 3,
+      "comment": "Nice concept but very limited sizes available. Staff could be more helpful.",
+      "date": "2024-01-10"
+    },
+    {
+      "id": "r009",
+      "startupId": "s004",
+      "startup_name": "FitWear Studio",
+      "reviewer_name": "Tom H.",
+      "rating": 2,
+      "comment": "Disappointing quality for the price. Leggings started pilling after first wash.",
+      "date": "2024-01-14"
+    },
+    {
+      "id": "r010",
+      "startupId": "s004",
+      "startup_name": "FitWear Studio",
+      "reviewer_name": "Lisa C.",
+      "rating": 2,
+      "comment": "Expected better from a sustainable brand. Return policy is terrible.",
+      "date": "2024-01-19"
+    },
+    {
+      "id": "r011",
+      "startupId": "s005",
+      "startup_name": "Maple Bites",
+      "reviewer_name": "James D.",
+      "rating": 5,
+      "comment": "Best poutine I've ever had! The maple bacon burger is incredible too.",
+      "date": "2024-01-16"
+    },
+    {
+      "id": "r012",
+      "startupId": "s005",
+      "startup_name": "Maple Bites",
+      "reviewer_name": "Amanda S.",
+      "rating": 5,
+      "comment": "Absolutely perfect! Creative menu and everything tastes amazing. A must-visit!",
+      "date": "2024-01-21"
+    },
+    {
+      "id": "r013",
+      "startupId": "s006",
+      "startup_name": "BookNook",
+      "reviewer_name": "Patricia G.",
+      "rating": 5,
+      "comment": "Wonderful independent bookstore! Great selection and the staff really know their books.",
+      "date": "2024-01-11"
+    },
+    {
+      "id": "r014",
+      "startupId": "s006",
+      "startup_name": "BookNook",
+      "reviewer_name": "Robert F.",
+      "rating": 5,
+      "comment": "Cozy atmosphere, excellent curation. Love their monthly book club events!",
+      "date": "2024-01-23"
+    },
+    {
+      "id": "r015",
+      "startupId": "s007",
+      "startup_name": "GreenTech Solutions",
+      "reviewer_name": "Maria N.",
+      "rating": 5,
+      "comment": "Great selection of eco-friendly electronics. Staff are knowledgeable about products.",
+      "date": "2024-01-17"
+    },
+    {
+      "id": "r016",
+      "startupId": "s007",
+      "startup_name": "GreenTech Solutions",
+      "reviewer_name": "Kevin J.",
+      "rating": 4,
+      "comment": "Good concept and helpful staff, though prices are a bit steep.",
+      "date": "2024-01-24"
+    },
+    {
+      "id": "r017",
+      "startupId": "s008",
+      "startup_name": "Wellness Haven",
+      "reviewer_name": "Nicole V.",
+      "rating": 1,
+      "comment": "Very disappointing. Booked a massage and the therapist was 30 minutes late. No apology.",
+      "date": "2024-01-13"
+    },
+    {
+      "id": "r018",
+      "startupId": "s008",
+      "startup_name": "Wellness Haven",
+      "reviewer_name": "Brandon M.",
+      "rating": 2,
+      "comment": "Overpriced and underwhelming. The facility needs updating and staff seem disorganized.",
+      "date": "2024-01-26"
+    },
+    {
+      "id": "r019",
+      "startupId": "s009",
+      "startup_name": "Pasta Paradise",
+      "reviewer_name": "Sophia L.",
+      "rating": 4,
+      "comment": "Authentic Italian food! The carbonara is excellent. Service can be slow when busy.",
+      "date": "2024-01-09"
+    },
+    {
+      "id": "r020",
+      "startupId": "s009",
+      "startup_name": "Pasta Paradise",
+      "reviewer_name": "Marco R.",
+      "rating": 4,
+      "comment": "Good pasta, reminds me of home. Portions could be bigger for the price though.",
+      "date": "2024-01-27"
+    },
+    {
+      "id": "r021",
+      "startupId": "s010",
+      "startup_name": "Pet Paradise",
+      "reviewer_name": "Jennifer K.",
+      "rating": 5,
+      "comment": "Amazing store! They have everything my dog needs and the grooming service is fantastic.",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "r022",
+      "startupId": "s010",
+      "startup_name": "Pet Paradise",
+      "reviewer_name": "Daniel O.",
+      "rating": 4,
+      "comment": "Great selection of premium pet foods. Staff are very knowledgeable about animal nutrition.",
+      "date": "2024-01-29"
+    },
+    {
+      "id": "r023",
+      "startupId": "s011",
+      "startup_name": "Brew & Bean",
+      "reviewer_name": "Melissa A.",
+      "rating": 5,
+      "comment": "Best coffee in the neighborhood! The croissants are fresh and flaky. Highly recommend.",
+      "date": "2024-01-07"
+    },
+    {
+      "id": "r024",
+      "startupId": "s011",
+      "startup_name": "Brew & Bean",
+      "reviewer_name": "Ryan S.",
+      "rating": 4,
+      "comment": "Great coffee and friendly baristas. Limited seating though.",
+      "date": "2024-01-30"
+    },
+    {
+      "id": "r025",
+      "startupId": "s012",
+      "startup_name": "Style Box",
+      "reviewer_name": "Olivia T.",
+      "rating": 5,
+      "comment": "Found the perfect dress here! Love supporting local designers. Will definitely be back.",
+      "date": "2024-01-06"
+    },
+    {
+      "id": "r026",
+      "startupId": "s012",
+      "startup_name": "Style Box",
+      "reviewer_name": "Hannah E.",
+      "rating": 4,
+      "comment": "Unique pieces you won't find anywhere else. A bit pricey but worth it for quality.",
+      "date": "2024-01-31"
+    },
+    {
+      "id": "r027",
+      "startupId": "s013",
+      "startup_name": "Fresh Fusion",
+      "reviewer_name": "Matthew W.",
+      "rating": 3,
+      "comment": "Creative menu but execution is hit or miss. Some rolls were great, others were bland.",
+      "date": "2024-01-05"
+    },
+    {
+      "id": "r028",
+      "startupId": "s013",
+      "startup_name": "Fresh Fusion",
+      "reviewer_name": "Laura B.",
+      "rating": 2,
+      "comment": "Expected better based on reviews. Sushi wasn't very fresh and service was slow.",
+      "date": "2024-01-12"
+    },
+    {
+      "id": "r029",
+      "startupId": "s014",
+      "startup_name": "Code Academy TO",
+      "reviewer_name": "Steven P.",
+      "rating": 4,
+      "comment": "Great learning environment. Instructors are experienced and curriculum is up-to-date.",
+      "date": "2024-01-04"
+    },
+    {
+      "id": "r030",
+      "startupId": "s014",
+      "startup_name": "Code Academy TO",
+      "reviewer_name": "Emma D.",
+      "rating": 4,
+      "comment": "Good bootcamp but very intensive. Be prepared to dedicate a lot of time.",
+      "date": "2024-01-15"
+    },
+    {
+      "id": "r031",
+      "startupId": "s015",
+      "startup_name": "Zen Spa & Salon",
+      "reviewer_name": "Catherine H.",
+      "rating": 5,
+      "comment": "Relaxing experience! The massage was incredible and the atmosphere is so calming.",
+      "date": "2024-01-03"
+    },
+    {
+      "id": "r032",
+      "startupId": "s015",
+      "startup_name": "Zen Spa & Salon",
+      "reviewer_name": "Andrew L.",
+      "rating": 4,
+      "comment": "Great spa treatments. A bit expensive but you get what you pay for.",
+      "date": "2024-01-18"
+    },
+    {
+      "id": "r033",
+      "startupId": "s016",
+      "startup_name": "Distant Diner",
+      "reviewer_name": "William C.",
+      "rating": 4,
+      "comment": "Worth the drive! Great burgers and friendly service.",
+      "date": "2024-01-02"
+    },
+    {
+      "id": "r034",
+      "startupId": "s005",
+      "startup_name": "Maple Bites",
+      "reviewer_name": "Grace Y.",
+      "rating": 5,
+      "comment": "Everything on the menu is fantastic! Can't wait to come back and try more dishes.",
+      "date": "2024-02-01"
+    },
+    {
+      "id": "r035",
+      "startupId": "s006",
+      "startup_name": "BookNook",
+      "reviewer_name": "Lucas M.",
+      "rating": 5,
+      "comment": "My favorite bookstore in Toronto! Always discover new authors here.",
+      "date": "2024-02-02"
+    }
+  ]
+}

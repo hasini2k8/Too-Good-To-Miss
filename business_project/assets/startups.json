@@ -1,0 +1,747 @@
+{
+  "user_location": {
+    "latitude": 43.6532,
+    "longitude": -79.3832,
+    "city": "Toronto",
+    "province": "ON"
+  },
+  "search_radius_km": 50,
+  "startups": [
+    {
+      "id": "s001",
+      "name": "Golden Scoop",
+      "category": "Food",
+      "description": "Artisanal ice cream shop with unique flavors made from local ingredients",
+      "location": "123 Queen St W, Toronto, ON",
+      "latitude": 43.6426,
+      "longitude": -79.3871,
+      "rating": 4.5,
+      "reviewCount": 2,
+      "icon": "🍦",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m001",
+          "name": "Maple Walnut",
+          "description": "Classic Canadian flavor with real maple syrup",
+          "price": 6.50,
+          "category": "Ice Cream",
+          "points": 65
+        },
+        {
+          "id": "m002",
+          "name": "Lavender Honey",
+          "description": "Floral and sweet with local honey",
+          "price": 7.00,
+          "category": "Ice Cream",
+          "points": 70
+        },
+        {
+          "id": "m003",
+          "name": "Dark Chocolate Sea Salt",
+          "description": "Rich chocolate with a hint of sea salt",
+          "price": 6.50,
+          "category": "Ice Cream",
+          "points": 65
+        },
+        {
+          "id": "m004",
+          "name": "Strawberry Basil",
+          "description": "Fresh strawberries with garden basil",
+          "price": 7.50,
+          "category": "Ice Cream",
+          "points": 75
+        }
+      ]
+    },
+    {
+      "id": "s002",
+      "name": "Urban Greens",
+      "category": "Retail",
+      "description": "Organic grocery store specializing in farm-to-table produce",
+      "location": "456 Bloor St, Toronto, ON",
+      "latitude": 43.6629,
+      "longitude": -79.3957,
+      "rating": 3.2,
+      "reviewCount": 2,
+      "icon": "🥬",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m005",
+          "name": "Organic Kale Bundle",
+          "description": "Fresh organic kale from local farms",
+          "price": 4.99,
+          "category": "Vegetables",
+          "points": 50
+        },
+        {
+          "id": "m006",
+          "name": "Heirloom Tomatoes",
+          "description": "Colorful assorted heirloom tomatoes",
+          "price": 6.99,
+          "category": "Vegetables",
+          "points": 70
+        },
+        {
+          "id": "m007",
+          "name": "Farm Fresh Eggs",
+          "description": "Free-range eggs from Ontario farms",
+          "price": 7.50,
+          "category": "Dairy",
+          "points": 75
+        },
+        {
+          "id": "m008",
+          "name": "Organic Bread Loaf",
+          "description": "Whole grain sourdough bread",
+          "price": 8.00,
+          "category": "Bakery",
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "s003",
+      "name": "Tech Hub Cafe",
+      "category": "Food",
+      "description": "Co-working cafe with high-speed internet and artisan coffee",
+      "location": "789 King St E, Toronto, ON",
+      "latitude": 43.6510,
+      "longitude": -79.3470,
+      "rating": 4.7,
+      "reviewCount": 3,
+      "icon": "☕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m009",
+          "name": "Espresso",
+          "description": "Single shot of premium espresso",
+          "price": 3.50,
+          "category": "Coffee",
+          "points": 35
+        },
+        {
+          "id": "m010",
+          "name": "Cappuccino",
+          "description": "Espresso with steamed milk foam",
+          "price": 5.00,
+          "category": "Coffee",
+          "points": 50
+        },
+        {
+          "id": "m011",
+          "name": "Avocado Toast",
+          "description": "Smashed avocado on sourdough",
+          "price": 12.00,
+          "category": "Food",
+          "points": 120
+        },
+        {
+          "id": "m012",
+          "name": "Croissant",
+          "description": "Buttery French croissant",
+          "price": 4.50,
+          "category": "Pastries",
+          "points": 45
+        }
+      ]
+    },
+    {
+      "id": "s004",
+      "name": "FitWear Studio",
+      "category": "Retail",
+      "description": "Athletic apparel boutique featuring sustainable activewear",
+      "location": "321 Dundas St W, Toronto, ON",
+      "latitude": 43.6708,
+      "longitude": -79.3899,
+      "rating": 2.3,
+      "reviewCount": 3,
+      "icon": "👟",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m013",
+          "name": "Eco Yoga Pants",
+          "description": "Sustainable bamboo fabric yoga pants",
+          "price": 89.99,
+          "category": "Bottoms",
+          "points": 900
+        },
+        {
+          "id": "m014",
+          "name": "Running Shoes",
+          "description": "Lightweight cushioned running shoes",
+          "price": 129.99,
+          "category": "Footwear",
+          "points": 1300
+        },
+        {
+          "id": "m015",
+          "name": "Sports Bra",
+          "description": "High-support athletic sports bra",
+          "price": 54.99,
+          "category": "Tops",
+          "points": 550
+        },
+        {
+          "id": "m016",
+          "name": "Gym Bag",
+          "description": "Recycled material gym duffel bag",
+          "price": 45.00,
+          "category": "Accessories",
+          "points": 450
+        }
+      ]
+    },
+    {
+      "id": "s005",
+      "name": "Maple Bites",
+      "category": "Food",
+      "description": "Canadian comfort food restaurant with modern twists",
+      "location": "654 Yonge St, Toronto, ON",
+      "latitude": 43.6555,
+      "longitude": -79.3801,
+      "rating": 5.0,
+      "reviewCount": 3,
+      "icon": "🍁",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m017",
+          "name": "Poutine Deluxe",
+          "description": "Crispy fries with gravy and cheese curds",
+          "price": 14.99,
+          "category": "Mains",
+          "points": 150
+        },
+        {
+          "id": "m018",
+          "name": "Maple Glazed Salmon",
+          "description": "Atlantic salmon with maple glaze",
+          "price": 24.99,
+          "category": "Mains",
+          "points": 250
+        },
+        {
+          "id": "m019",
+          "name": "Butter Tart",
+          "description": "Classic Canadian butter tart",
+          "price": 5.50,
+          "category": "Desserts",
+          "points": 55
+        },
+        {
+          "id": "m020",
+          "name": "Caesar Cocktail",
+          "description": "Canada's signature cocktail",
+          "price": 9.00,
+          "category": "Drinks",
+          "points": 90
+        }
+      ]
+    },
+    {
+      "id": "s006",
+      "name": "BookNook",
+      "category": "Retail",
+      "description": "Independent bookstore with curated collections and reading events",
+      "location": "987 College St, Toronto, ON",
+      "latitude": 43.6445,
+      "longitude": -79.4005,
+      "rating": 4.8,
+      "reviewCount": 2,
+      "icon": "📚",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m021",
+          "name": "Fiction Bestseller",
+          "description": "Latest bestselling fiction novels",
+          "price": 29.99,
+          "category": "Books",
+          "points": 300
+        },
+        {
+          "id": "m022",
+          "name": "Local Authors Collection",
+          "description": "Books by Toronto-based authors",
+          "price": 24.99,
+          "category": "Books",
+          "points": 250
+        },
+        {
+          "id": "m023",
+          "name": "BookNook Tote Bag",
+          "description": "Canvas tote with bookstore logo",
+          "price": 15.00,
+          "category": "Merchandise",
+          "points": 150
+        },
+        {
+          "id": "m024",
+          "name": "Book Light",
+          "description": "Rechargeable LED reading light",
+          "price": 19.99,
+          "category": "Accessories",
+          "points": 200
+        }
+      ]
+    },
+    {
+      "id": "s007",
+      "name": "GreenTech Solutions",
+      "category": "Technology",
+      "description": "Electronics store specializing in eco-friendly tech products",
+      "location": "147 Spadina Ave, Toronto, ON",
+      "latitude": 43.6600,
+      "longitude": -79.3700,
+      "rating": 4.4,
+      "reviewCount": 2,
+      "icon": "💻",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m025",
+          "name": "Solar Power Bank",
+          "description": "20,000mAh solar-powered charger",
+          "price": 59.99,
+          "category": "Accessories",
+          "points": 600
+        },
+        {
+          "id": "m026",
+          "name": "Eco Laptop Stand",
+          "description": "Bamboo adjustable laptop stand",
+          "price": 45.00,
+          "category": "Accessories",
+          "points": 450
+        },
+        {
+          "id": "m027",
+          "name": "Wireless Mouse",
+          "description": "Recycled plastic wireless mouse",
+          "price": 34.99,
+          "category": "Peripherals",
+          "points": 350
+        },
+        {
+          "id": "m028",
+          "name": "LED Desk Lamp",
+          "description": "Energy-efficient USB desk lamp",
+          "price": 39.99,
+          "category": "Lighting",
+          "points": 400
+        }
+      ]
+    },
+    {
+      "id": "s008",
+      "name": "Wellness Haven",
+      "category": "Services",
+      "description": "Holistic health center offering yoga, meditation, and spa services",
+      "location": "258 Harbord St, Toronto, ON",
+      "latitude": 43.6480,
+      "longitude": -79.3950,
+      "rating": 1.5,
+      "reviewCount": 2,
+      "icon": "🧘",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m029",
+          "name": "Hot Yoga Class",
+          "description": "60-minute heated yoga session",
+          "price": 25.00,
+          "category": "Classes",
+          "points": 250
+        },
+        {
+          "id": "m030",
+          "name": "Deep Tissue Massage",
+          "description": "90-minute therapeutic massage",
+          "price": 120.00,
+          "category": "Spa",
+          "points": 1200
+        },
+        {
+          "id": "m031",
+          "name": "Meditation Workshop",
+          "description": "2-hour guided meditation workshop",
+          "price": 45.00,
+          "category": "Classes",
+          "points": 450
+        },
+        {
+          "id": "m032",
+          "name": "Aromatherapy Facial",
+          "description": "Relaxing facial with essential oils",
+          "price": 85.00,
+          "category": "Spa",
+          "points": 850
+        }
+      ]
+    },
+    {
+      "id": "s009",
+      "name": "Pasta Paradise",
+      "category": "Food",
+      "description": "Family-owned Italian restaurant with homemade pasta",
+      "location": "369 Bay St, Toronto, ON",
+      "latitude": 43.6590,
+      "longitude": -79.3780,
+      "rating": 3.7,
+      "reviewCount": 2,
+      "icon": "🍝",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m033",
+          "name": "Spaghetti Carbonara",
+          "description": "Classic Roman pasta with egg and pancetta",
+          "price": 18.99,
+          "category": "Pasta",
+          "points": 190
+        },
+        {
+          "id": "m034",
+          "name": "Lasagna al Forno",
+          "description": "Layered pasta with meat sauce and béchamel",
+          "price": 22.99,
+          "category": "Pasta",
+          "points": 230
+        },
+        {
+          "id": "m035",
+          "name": "Margherita Pizza",
+          "description": "Traditional pizza with tomato and mozzarella",
+          "price": 16.99,
+          "category": "Pizza",
+          "points": 170
+        },
+        {
+          "id": "m036",
+          "name": "Tiramisu",
+          "description": "Classic Italian coffee-flavored dessert",
+          "price": 8.99,
+          "category": "Desserts",
+          "points": 90
+        }
+      ]
+    },
+    {
+      "id": "s010",
+      "name": "Pet Paradise",
+      "category": "Retail",
+      "description": "Premium pet supply store with grooming services",
+      "location": "741 Adelaide St, Toronto, ON",
+      "latitude": 43.6520,
+      "longitude": -79.3920,
+      "rating": 4.6,
+      "reviewCount": 2,
+      "icon": "🐾",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m037",
+          "name": "Premium Dog Food (5kg)",
+          "description": "Grain-free organic dog food",
+          "price": 45.99,
+          "category": "Food",
+          "points": 460
+        },
+        {
+          "id": "m038",
+          "name": "Cat Scratching Post",
+          "description": "Multi-level sisal scratching tower",
+          "price": 69.99,
+          "category": "Toys",
+          "points": 700
+        },
+        {
+          "id": "m039",
+          "name": "Dog Grooming Session",
+          "description": "Full bath, trim, and nail clipping",
+          "price": 65.00,
+          "category": "Services",
+          "points": 650
+        },
+        {
+          "id": "m040",
+          "name": "Interactive Pet Toy",
+          "description": "Puzzle toy for mental stimulation",
+          "price": 24.99,
+          "category": "Toys",
+          "points": 250
+        }
+      ]
+    },
+    {
+      "id": "s011",
+      "name": "Brew & Bean",
+      "category": "Food",
+      "description": "Specialty coffee roastery with fresh pastries and sandwiches",
+      "location": "852 Queen St E, Toronto, ON",
+      "latitude": 43.6580,
+      "longitude": -79.3650,
+      "rating": 4.4,
+      "reviewCount": 2,
+      "icon": "☕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m041",
+          "name": "Pour Over Coffee",
+          "description": "Single-origin pour over coffee",
+          "price": 5.50,
+          "category": "Coffee",
+          "points": 55
+        },
+        {
+          "id": "m042",
+          "name": "Cold Brew",
+          "description": "Smooth 24-hour cold brew",
+          "price": 6.00,
+          "category": "Coffee",
+          "points": 60
+        },
+        {
+          "id": "m043",
+          "name": "Turkey Club Sandwich",
+          "description": "Triple-decker with bacon and avocado",
+          "price": 13.99,
+          "category": "Food",
+          "points": 140
+        },
+        {
+          "id": "m044",
+          "name": "Blueberry Muffin",
+          "description": "Fresh-baked with wild blueberries",
+          "price": 4.50,
+          "category": "Pastries",
+          "points": 45
+        }
+      ]
+    },
+    {
+      "id": "s012",
+      "name": "Style Box",
+      "category": "Retail",
+      "description": "Curated fashion boutique with emerging designer collections",
+      "location": "963 Ossington Ave, Toronto, ON",
+      "latitude": 43.6495,
+      "longitude": -79.4180,
+      "rating": 4.5,
+      "reviewCount": 2,
+      "icon": "👗",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m045",
+          "name": "Designer Dress",
+          "description": "Limited edition midi dress",
+          "price": 159.99,
+          "category": "Clothing",
+          "points": 1600
+        },
+        {
+          "id": "m046",
+          "name": "Leather Handbag",
+          "description": "Handcrafted genuine leather bag",
+          "price": 189.99,
+          "category": "Accessories",
+          "points": 1900
+        },
+        {
+          "id": "m047",
+          "name": "Statement Earrings",
+          "description": "Bold contemporary earrings",
+          "price": 45.00,
+          "category": "Jewelry",
+          "points": 450
+        },
+        {
+          "id": "m048",
+          "name": "Silk Scarf",
+          "description": "Hand-printed silk scarf",
+          "price": 75.00,
+          "category": "Accessories",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s013",
+      "name": "Fresh Fusion",
+      "category": "Food",
+      "description": "Asian fusion restaurant featuring creative sushi rolls",
+      "location": "147 Baldwin St, Toronto, ON",
+      "latitude": 43.6540,
+      "longitude": -79.3990,
+      "rating": 2.6,
+      "reviewCount": 2,
+      "icon": "🍱",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m049",
+          "name": "Dragon Roll",
+          "description": "Eel, cucumber, and avocado roll",
+          "price": 16.99,
+          "category": "Sushi",
+          "points": 170
+        },
+        {
+          "id": "m050",
+          "name": "Spicy Tuna Roll",
+          "description": "Fresh tuna with spicy mayo",
+          "price": 14.99,
+          "category": "Sushi",
+          "points": 150
+        },
+        {
+          "id": "m051",
+          "name": "Ramen Bowl",
+          "description": "Pork broth with handmade noodles",
+          "price": 15.99,
+          "category": "Mains",
+          "points": 160
+        },
+        {
+          "id": "m052",
+          "name": "Mochi Ice Cream",
+          "description": "Assorted flavors of mochi",
+          "price": 7.99,
+          "category": "Desserts",
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "s014",
+      "name": "Code Academy TO",
+      "category": "Technology",
+      "description": "Programming bootcamp and tech education center",
+      "location": "258 Richmond St W, Toronto, ON",
+      "latitude": 43.6505,
+      "longitude": -79.3900,
+      "rating": 3.7,
+      "reviewCount": 2,
+      "icon": "💡",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m053",
+          "name": "Web Development Course",
+          "description": "12-week intensive bootcamp",
+          "price": 8999.00,
+          "category": "Courses",
+          "points": 89990
+        },
+        {
+          "id": "m054",
+          "name": "Python Workshop",
+          "description": "Weekend crash course",
+          "price": 299.00,
+          "category": "Workshops",
+          "points": 2990
+        },
+        {
+          "id": "m055",
+          "name": "1-on-1 Mentorship",
+          "description": "Personal coding mentor session",
+          "price": 75.00,
+          "category": "Services",
+          "points": 750
+        },
+        {
+          "id": "m056",
+          "name": "Study Materials Kit",
+          "description": "Books and resources bundle",
+          "price": 150.00,
+          "category": "Materials",
+          "points": 1500
+        }
+      ]
+    },
+    {
+      "id": "s015",
+      "name": "Zen Spa & Salon",
+      "category": "Services",
+      "description": "Full-service spa offering massages, facials, and beauty treatments",
+      "location": "741 Danforth Ave, Toronto, ON",
+      "latitude": 43.6780,
+      "longitude": -79.3500,
+      "rating": 4.3,
+      "reviewCount": 2,
+      "icon": "💆",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m057",
+          "name": "Swedish Massage",
+          "description": "60-minute relaxation massage",
+          "price": 95.00,
+          "category": "Massage",
+          "points": 950
+        },
+        {
+          "id": "m058",
+          "name": "Hydrating Facial",
+          "description": "Deep cleansing and moisturizing",
+          "price": 110.00,
+          "category": "Facial",
+          "points": 1100
+        },
+        {
+          "id": "m059",
+          "name": "Manicure & Pedicure",
+          "description": "Complete nail care package",
+          "price": 65.00,
+          "category": "Nails",
+          "points": 650
+        },
+        {
+          "id": "m060",
+          "name": "Hair Styling",
+          "description": "Cut, wash, and style",
+          "price": 75.00,
+          "category": "Hair",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s016",
+      "name": "Distant Diner",
+      "category": "Food",
+      "description": "Restaurant too far away from user location",
+      "location": "Barrie, ON",
+      "latitude": 44.2312,
+      "longitude": -79.4656,
+      "rating": 4.0,
+      "reviewCount": 1,
+      "icon": "🍔",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m061",
+          "name": "Classic Burger",
+          "description": "Beef patty with all the fixings",
+          "price": 12.99,
+          "category": "Burgers",
+          "points": 130
+        },
+        {
+          "id": "m062",
+          "name": "Chicken Wings",
+          "description": "Spicy buffalo wings",
+          "price": 11.99,
+          "category": "Appetizers",
+          "points": 120
+        }
+      ]
+    }
+  ]
+}
