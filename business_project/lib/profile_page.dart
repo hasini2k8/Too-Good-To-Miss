@@ -7,6 +7,7 @@ import 'settings/privacy_security_page.dart';
 import 'settings/help_support_page.dart';
 import 'settings/about_page.dart';
 import 'bottom_nav_bar.dart';
+import 'pixel_pet_widget.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,7 +19,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
-  
+
   // User data - will be loaded from auth service
   String userName = 'Loading...';
   String userEmail = 'Loading...';
@@ -36,9 +37,11 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
       vsync: this,
       duration: const Duration(milliseconds: 800),
     );
+
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
+
     _animationController.forward();
     _loadUserData();
   }
@@ -60,25 +63,25 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         reviewsPosted = user['reviewsPosted'] ?? 0;
         placesVisited = user['placesVisited'] ?? 0;
         favorites = user['favorites'] ?? 0;
-        
+
         // Format member since date
         try {
           final dateTime = DateTime.parse(user['memberSince']);
           final months = ['January', 'February', 'March', 'April', 'May', 'June',
-                         'July', 'August', 'September', 'October', 'November', 'December'];
+            'July', 'August', 'September', 'October', 'November', 'December'];
           memberSince = '${months[dateTime.month - 1]} ${dateTime.year}';
         } catch (e) {
           memberSince = 'Recently';
         }
-        
+
         _isLoading = false;
       });
-      
+
       print('🔄 Profile data loaded:');
-      print('  Points: $points');
-      print('  Reviews: $reviewsPosted');
-      print('  Places Visited: $placesVisited');
-      print('  Favorites: $favorites');
+      print('   Points: $points');
+      print('   Reviews: $reviewsPosted');
+      print('   Places Visited: $placesVisited');
+      print('   Favorites: $favorites');
     }
   }
 
@@ -86,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
     // Refresh stats from AuthService
     final stats = await AuthService.getUserStats();
     final user = await AuthService.getCurrentUser();
-    
+
     if (user != null && mounted) {
       setState(() {
         userName = user['username'] ?? 'User';
@@ -95,23 +98,23 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         reviewsPosted = stats['reviewsPosted'] ?? 0;
         placesVisited = stats['placesVisited'] ?? 0;
         favorites = stats['favorites'] ?? 0;
-        
+
         // Format member since date
         try {
           final dateTime = DateTime.parse(user['memberSince']);
           final months = ['January', 'February', 'March', 'April', 'May', 'June',
-                         'July', 'August', 'September', 'October', 'November', 'December'];
+            'July', 'August', 'September', 'October', 'November', 'December'];
           memberSince = '${months[dateTime.month - 1]} ${dateTime.year}';
         } catch (e) {
           memberSince = 'Recently';
         }
       });
-      
+
       print('🔄 Profile stats refreshed:');
-      print('  Points: $points');
-      print('  Reviews: $reviewsPosted');
-      print('  Places Visited: $placesVisited');
-      print('  Favorites: $favorites');
+      print('   Points: $points');
+      print('   Reviews: $reviewsPosted');
+      print('   Places Visited: $placesVisited');
+      print('   Favorites: $favorites');
     }
   }
 
@@ -129,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         body: Center(child: CircularProgressIndicator()),
       );
     }
-    
+
     return Scaffold(
       backgroundColor: const Color(0xFFE8F4F8),
       body: RefreshIndicator(
@@ -161,6 +164,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                     child: Column(
                       children: [
                         const SizedBox(height: 20),
+
                         // Refresh button
                         Align(
                           alignment: Alignment.topRight,
@@ -173,88 +177,12 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                             ),
                           ),
                         ),
-                        // Profile Picture with glow effect
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white.withOpacity(0.3),
-                                blurRadius: 20,
-                                spreadRadius: 5,
-                              ),
-                            ],
-                          ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              // Outer glow ring
-                              Container(
-                                width: 140,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.white.withOpacity(0.3),
-                                    width: 3,
-                                  ),
-                                ),
-                              ),
-                              // Profile circle
-                              Container(
-                                width: 120,
-                                height: 120,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Colors.purple[200]!,
-                                      Colors.purple[400]!,
-                                    ],
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.purple.withOpacity(0.5),
-                                      blurRadius: 15,
-                                      offset: const Offset(0, 5),
-                                    ),
-                                  ],
-                                ),
-                                child: const Icon(
-                                  Icons.person,
-                                  size: 60,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              // Edit badge
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        blurRadius: 5,
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Icon(
-                                    Icons.edit,
-                                    size: 16,
-                                    color: Color(0xFF1565C0),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+
+                        // Profile Picture
+                        _buildProfilePicture(),
+
                         const SizedBox(height: 16),
+
                         // Name
                         Text(
                           userName,
@@ -264,7 +192,9 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                             color: Colors.white,
                           ),
                         ),
+
                         const SizedBox(height: 4),
+
                         // Email
                         Text(
                           userEmail,
@@ -273,7 +203,9 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                             color: Colors.white.withOpacity(0.8),
                           ),
                         ),
+
                         const SizedBox(height: 8),
+
                         // Member since
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -303,90 +235,29 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                             ],
                           ),
                         ),
+
                         const SizedBox(height: 30),
                       ],
                     ),
                   ),
+
                   const SizedBox(height: 20),
+
                   // Points Card
+                  _buildPointsCard(),
+
+                  const SizedBox(height: 20),
+
+                  // Pixel Pet Widget
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFFFFD700),
-                            Color(0xFFFFA500),
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.orange.withOpacity(0.3),
-                            blurRadius: 15,
-                            offset: const Offset(0, 8),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.stars,
-                                size: 32,
-                                color: Colors.white.withOpacity(0.9),
-                              ),
-                              const SizedBox(width: 12),
-                              const Text(
-                                'Total Points',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            points.toString(),
-                            style: const TextStyle(
-                              fontSize: 56,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              height: 1,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: const Text(
-                              '🔥 Keep exploring!',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    child: PixelPetWidget(
+                      onPointsChanged: _refreshUserData,
                     ),
                   ),
+
                   const SizedBox(height: 20),
+
                   // Stats Grid
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -412,7 +283,9 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                       ],
                     ),
                   ),
+
                   const SizedBox(height: 12),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: _buildStatCard(
@@ -423,174 +296,22 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                       isWide: true,
                     ),
                   ),
+
                   const SizedBox(height: 20),
+
                   // Points Breakdown
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Points Breakdown',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1565C0),
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          _buildPointsRow('📌 Bookmarks', favorites, 5),
-                          const SizedBox(height: 8),
-                          _buildPointsRow('✍️ Reviews', reviewsPosted, 10),
-                          const SizedBox(height: 8),
-                          _buildPointsRow('📍 Places Visited', placesVisited, 2),
-                          const Divider(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Total Points',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                points.toString(),
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFFD700),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  _buildPointsBreakdown(),
+
                   const SizedBox(height: 20),
+
                   // Achievements Section
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Achievements',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF1565C0),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            _buildAchievementBadge('🏆', 'Explorer', placesVisited >= 5),
-                            _buildAchievementBadge('⭐', 'Reviewer', reviewsPosted >= 3),
-                            _buildAchievementBadge('💎', 'VIP', points >= 100),
-                            _buildAchievementBadge('🎯', 'Elite', points >= 500),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  _buildAchievements(),
+
                   const SizedBox(height: 20),
+
                   // Settings Options
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        _buildSettingsOption(
-                          Icons.person_outline,
-                          'Edit Profile',
-                          () async {
-                            final result = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const EditProfilePage(),
-                              ),
-                            );
-                            if (result == true) {
-                              _refreshUserData();
-                            }
-                          },
-                        ),
-                        _buildSettingsOption(
-                          Icons.notifications_outlined,
-                          'Notifications',
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const NotificationsPage(),
-                              ),
-                            );
-                          },
-                        ),
-                        _buildSettingsOption(
-                          Icons.security_outlined,
-                          'Privacy & Security',
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const PrivacySecurityPage(),
-                              ),
-                            );
-                          },
-                        ),
-                        _buildSettingsOption(
-                          Icons.help_outline,
-                          'Help & Support',
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HelpSupportPage(),
-                              ),
-                            );
-                          },
-                        ),
-                        _buildSettingsOption(
-                          Icons.info_outline,
-                          'About',
-                          () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const AboutPage(),
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 8),
-                        _buildSettingsOption(
-                          Icons.logout,
-                          'Logout',
-                          () {
-                            _showLogoutDialog(context);
-                          },
-                          isDestructive: true,
-                        ),
-                      ],
-                    ),
-                  ),
+                  _buildSettingsOptions(),
+
                   const SizedBox(height: 100), // Extra padding for bottom nav
                 ],
               ),
@@ -599,6 +320,340 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         ),
       ),
       bottomNavigationBar: const BottomNavBar(selectedIndex: 3),
+    );
+  }
+
+  Widget _buildProfilePicture() {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white.withOpacity(0.3),
+            blurRadius: 20,
+            spreadRadius: 5,
+          ),
+        ],
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Outer glow ring
+          Container(
+            width: 140,
+            height: 140,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white.withOpacity(0.3),
+                width: 3,
+              ),
+            ),
+          ),
+          // Profile circle
+          Container(
+            width: 120,
+            height: 120,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.purple[200]!,
+                  Colors.purple[400]!,
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.purple.withOpacity(0.5),
+                  blurRadius: 15,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: const Icon(
+              Icons.person,
+              size: 60,
+              color: Colors.white,
+            ),
+          ),
+          // Edit badge
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 5,
+                  ),
+                ],
+              ),
+              child: const Icon(
+                Icons.edit,
+                size: 16,
+                color: Color(0xFF1565C0),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPointsCard() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFFFD700),
+              Color(0xFFFFA500),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.orange.withOpacity(0.3),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.stars,
+                  size: 32,
+                  color: Colors.white.withOpacity(0.9),
+                ),
+                const SizedBox(width: 12),
+                const Text(
+                  'Total Points',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              points.toString(),
+              style: const TextStyle(
+                fontSize: 56,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                height: 1,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 6,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Text(
+                '🔥 Keep exploring!',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPointsBreakdown() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Points Breakdown',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF1565C0),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _buildPointsRow('📌 Bookmarks', favorites, 5),
+            const SizedBox(height: 8),
+            _buildPointsRow('✍️ Reviews', reviewsPosted, 10),
+            const SizedBox(height: 8),
+            _buildPointsRow('📍 Places Visited', placesVisited, 2),
+            const Divider(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Total Points',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  points.toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFFFD700),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAchievements() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Achievements',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1565C0),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildAchievementBadge('🏆', 'Explorer', placesVisited >= 5),
+              _buildAchievementBadge('⭐', 'Reviewer', reviewsPosted >= 3),
+              _buildAchievementBadge('💎', 'VIP', points >= 100),
+              _buildAchievementBadge('🎯', 'Elite', points >= 500),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSettingsOptions() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          _buildSettingsOption(
+            Icons.person_outline,
+            'Edit Profile',
+            () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EditProfilePage(),
+                ),
+              );
+              if (result == true) {
+                _refreshUserData();
+              }
+            },
+          ),
+          _buildSettingsOption(
+            Icons.notifications_outlined,
+            'Notifications',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationsPage(),
+                ),
+              );
+            },
+          ),
+          _buildSettingsOption(
+            Icons.security_outlined,
+            'Privacy & Security',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PrivacySecurityPage(),
+                ),
+              );
+            },
+          ),
+          _buildSettingsOption(
+            Icons.help_outline,
+            'Help & Support',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HelpSupportPage(),
+                ),
+              );
+            },
+          ),
+          _buildSettingsOption(
+            Icons.info_outline,
+            'About',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AboutPage(),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          _buildSettingsOption(
+            Icons.logout,
+            'Logout',
+            () {
+              _showLogoutDialog(context);
+            },
+            isDestructive: true,
+          ),
+        ],
+      ),
     );
   }
 

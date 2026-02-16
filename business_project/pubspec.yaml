@@ -26,6 +26,7 @@ dependencies:
   speech_to_text: ^6.6.2
   pocketbase: ^0.18.0
   qr_flutter: ^4.1.0
+  webview_flutter: ^4.4.2
 
   
 
