@@ -1,0 +1,310 @@
+classDiagram
+    %% ========================================
+    %% MODELS (Data Layer)
+    %% ========================================
+    
+    class UserModel {
+        -String id
+        -String username
+        -String email
+        -String password
+        -String userType
+        -int points
+        -int reviewsPosted
+        -int placesVisited
+        -int favorites
+        -String memberSince
+        -List~String~ bookmarkedStartups
+        -List~String~ visitedStartups
+        -List~String~ achievements
+        -List~String~ visitedPlaces
+        +fromJson(Map~String,dynamic~) UserModel
+        +toJson() Map~String,dynamic~
+    }
+    
+    class Startup {
+        -String id
+        -String name
+        -String description
+        -String location
+        -double latitude
+        -double longitude
+        -String category
+        -double rating
+        -int reviewCount
+        -String icon
+        -List~Deal~ deals
+        -List~MenuItem~ menu
+        +fromJson(Map~String,dynamic~) Startup
+        +toJson() Map~String,dynamic~
+        +getValidDeals() List~Deal~
+        +hasActiveDeals() bool
+        +getFullStars() int
+        +hasHalfStar() bool
+        +getFormattedRating() String
+        +calculateDistance(double lat, double lon) double
+        +hasMenu() bool
+        +getMenuCategories() List~String~
+        +getMenuByCategory(String category) List~MenuItem~
+        +getGroupedMenu() Map~String,List~MenuItem~~
+    }
+    
+    class MenuItem {
+        -String id
+        -String name
+        -String description
+        -double price
+        -String category
+        -int points
+        +fromJson(Map~String,dynamic~) MenuItem
+        +toJson() Map~String,dynamic~
+    }
+    
+    class Deal {
+        -String id
+        -String startupId
+        -String startupName
+        -String title
+        -String description
+        -String code
+        -int discountPercentage
+        -String validFrom
+        -String validUntil
+        -String terms
+        +fromJson(Map~String,dynamic~) Deal
+        +toJson() Map~String,dynamic~
+        +isValid() bool
+        +getFormattedValidUntil() String
+        +getDaysRemaining() int
+        +getDiscountBadge() String
+        +isExpiringSoon(int daysThreshold) bool
+        -_parseDiscount(dynamic discount)$ int
+    }
+    
+    class Review {
+        -String id
+        -String startupId
+        -String username
+        -int rating
+        -String comment
+        -String date
+        +fromJson(Map~String,dynamic~) Review
+        +toJson() Map~String,dynamic~
+        +getFormattedDate() String
+        +copyWith(...) Review
+        +toString() String
+        +operator ==(Object other) bool
+        +hashCode() int
+    }
+    
+    %% ========================================
+    %% EXTENSIONS
+    %% ========================================
+    
+    class StartupSorting {
+        <<extension>>
+        +sortByRating(bool descending) List~Startup~
+        +sortByReviewCount(bool descending) List~Startup~
+        +sortByName(bool ascending) List~Startup~
+        +filterByCategory(String category) List~Startup~
+        +filterByMinRating(double minRating) List~Startup~
+        +withActiveDeals() List~Startup~
+        +withMenu() List~Startup~
+    }
+    
+    %% ========================================
+    %% SERVICES (Business Logic Layer)
+    %% ========================================
+    
+    class AuthService {
+        <<singleton>>
+        -String _usersBoxName$
+        -String _currentUserKey$
+        -String _sessionBoxName$
+        -String _authTokenKey$
+        -PocketBase pb$
+        -String _usersCollection$
+        -String _baseUrl$
+        +initialize()$ Future~void~
+        -_restoreAuthFromToken()$ Future~void~
+        -_syncUsersFromPocketBase()$ Future~void~
+        -_loadUsersFromJson()$ Future~void~
+        +registerUser(...)$ Future~bool~
+        +loginUser(...)$ Future~Map~String,dynamic~~
+        +getCurrentUser()$ Future~Map~String,dynamic~~
+        +updateUser(Map~String,dynamic~ updatedUser)$ Future~bool~
+        +incrementFavorites(String startupId)$ Future~bool~
+        +decrementFavorites(String startupId)$ Future~bool~
+        +isStartupBookmarked(String startupId)$ Future~bool~
+        +getBookmarkedStartups()$ Future~List~String~~
+        +incrementReviewsPosted()$ Future~bool~
+        +recordPlaceVisit(String startupId)$ Future~bool~
+        +hasVisitedPlace(String startupId)$ Future~bool~
+        +getUserStats()$ Future~Map~String,int~~
+        +logout()$ Future~void~
+        +isLoggedIn()$ Future~bool~
+        +getAllUsers()$ Future~List~Map~String,dynamic~~~
+        +syncWithPocketBase()$ Future~void~
+    }
+    
+    class BookmarkService {
+        <<singleton>>
+        -String _bookmarksKey$
+        -BookmarkService _instance$
+        -Set~String~ _bookmarkedIds
+        -bool _isInitialized
+        +initialize() Future~void~
+        +syncWithAuth() Future~void~
+        +isBookmarked(String startupId) Future~bool~
+        +toggleBookmark(String startupId) Future~bool~
+        +addBookmark(String startupId) Future~bool~
+        +removeBookmark(String startupId) Future~bool~
+        +getBookmarkedIds() Future~List~String~~
+        +getBookmarkCount() Future~int~
+        +clearAllBookmarks() Future~bool~
+        -_saveBookmarks() Future~void~
+        +exportBookmarks() Future~String~
+        +importBookmarks(String bookmarksJson) Future~bool~
+        +refreshFromPocketBase() Future~void~
+        +getUnsyncedBookmarks() Future~List~String~~
+    }
+    
+    class ReviewService {
+        <<singleton>>
+        -String _reviewsKey$
+        -ReviewService _instance$
+        -List~Review~ _cachedReviews
+        -bool _isInitialized
+        +initialize() Future~void~
+        +getAllReviews() Future~List~Review~~
+        +getReviewsForStartup(String startupId) Future~List~Review~~
+        +addReview(Review review) Future~bool~
+        +getAverageRating(String startupId) Future~double~
+        +getReviewCount(String startupId) Future~int~
+        +getUserReviews() Future~List~Review~~
+        -_saveUserReviews() Future~void~
+        +generateReviewId() Future~String~
+        +deleteReview(String reviewId) Future~bool~
+        +getReviewsSortedByDate(String startupId) Future~List~Review~~
+        +getReviewsSortedByRating(String startupId) Future~List~Review~~
+    }
+    
+    class DealService {
+        <<singleton>>
+        -DealService _instance$
+        -List~Deal~ _allDeals
+        -bool _isInitialized
+        +initialize() Future~void~
+        +getAllDeals() List~Deal~
+        +getDealsForStartup(String startupId) List~Deal~
+        +getValidDealsForStartup(String startupId) List~Deal~
+        +getAllValidDeals() List~Deal~
+        +getExpiringDeals(int daysThreshold) List~Deal~
+        +getBestDeals(int limit) List~Deal~
+        +searchDeals(String keyword) List~Deal~
+        +getDealCount(String startupId) int
+        +getValidDealCount(String startupId) int
+    }
+    
+    %% ========================================
+    %% EXTERNAL DEPENDENCIES
+    %% ========================================
+    
+    class PocketBase {
+        <<external>>
+        +authStore AuthStore
+        +collection(String name) RecordService
+    }
+    
+    class Hive {
+        <<external>>
+        +openBox(String name) Future~Box~
+        +box(String name) Box
+    }
+    
+    class SharedPreferences {
+        <<external>>
+        +getInstance() Future~SharedPreferences~
+        +getString(String key) String?
+        +setString(String key, String value) Future~bool~
+    }
+    
+    %% ========================================
+    %% RELATIONSHIPS - Composition
+    %% ========================================
+    
+    Startup "1" *-- "0..*" Deal : contains
+    Startup "1" *-- "0..*" MenuItem : contains
+    UserModel "1" -- "0..*" Review : authors
+    
+    %% ========================================
+    %% RELATIONSHIPS - Associations
+    %% ========================================
+    
+    Review "0..*" -- "1" Startup : reviews
+    Deal "0..*" -- "1" Startup : belongs to
+    
+    %% ========================================
+    %% RELATIONSHIPS - Dependencies (Services to Models)
+    %% ========================================
+    
+    AuthService ..> UserModel : manages
+    ReviewService ..> Review : manages
+    DealService ..> Deal : manages
+    BookmarkService ..> Startup : tracks
+    
+    %% ========================================
+    %% RELATIONSHIPS - Service Dependencies
+    %% ========================================
+    
+    BookmarkService ..> AuthService : uses
+    ReviewService ..> AuthService : uses
+    
+    %% ========================================
+    %% RELATIONSHIPS - External Dependencies
+    %% ========================================
+    
+    AuthService ..> PocketBase : uses
+    AuthService ..> Hive : persists to
+    BookmarkService ..> SharedPreferences : persists to
+    ReviewService ..> SharedPreferences : persists to
+    
+    %% ========================================
+    %% RELATIONSHIPS - Extensions
+    %% ========================================
+    
+    StartupSorting ..> Startup : extends List
+    
+    %% ========================================
+    %% NOTES
+    %% ========================================
+    
+    note for AuthService "Singleton pattern
+    Manages authentication with PocketBase
+    Handles user registration, login, logout
+    Tracks user statistics (points, favorites, etc.)
+    Syncs with local Hive cache"
+    
+    note for BookmarkService "Singleton pattern
+    Manages startup bookmarks
+    Syncs with AuthService for user stats
+    Persists to SharedPreferences"
+    
+    note for ReviewService "Singleton pattern
+    Manages user reviews
+    Loads from assets and local storage
+    Updates user statistics via AuthService"
+    
+    note for DealService "Singleton pattern
+    Manages promotional deals
+    Loads from JSON assets
+    Provides filtering and search"
+    
+    note for UserModel "HiveObject for local persistence
+    Contains user profile and statistics
+    Tracks bookmarks, visits, achievements"
+    
+    note for Startup "Main business entity
+    Contains deals and menu items
+    Supports distance calculation
+    Provides aggregated data methods"
