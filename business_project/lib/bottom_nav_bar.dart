@@ -29,7 +29,7 @@ class BottomNavBar extends StatelessWidget {
           children: [
             _buildNavIcon(context, Icons.home, 0, 'Home'),
             _buildNavIcon(context, Icons.location_on, 1, 'Map'),
-            _buildNavIcon(context, Icons.camera_alt, 2, 'AI Chat'),
+            _buildNavIcon(context, Icons.android, 2, 'AI Chat'),
             _buildNavIcon(context, Icons.settings, 3, 'Profile'),
           ],
         ),
