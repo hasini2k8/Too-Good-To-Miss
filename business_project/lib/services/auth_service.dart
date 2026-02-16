@@ -171,10 +171,18 @@ class AuthService {
   static Future<Map<String, dynamic>?> loginUser({
     required String usernameOrEmail,
     required String password,
+    String? recaptchaToken, // reCAPTCHA token for verification
   }) async {
     try {
       print('=== LOGIN ATTEMPT ===');
       print('Input: $usernameOrEmail');
+      
+      // TODO: If you want backend verification, send recaptchaToken to your backend here
+      // For now, we'll just log it
+      if (recaptchaToken != null) {
+        print('reCAPTCHA token received: ${recaptchaToken.substring(0, 20)}...');
+        // In production, verify this token on your backend before proceeding
+      }
       
       String emailToUse = usernameOrEmail;
       String? username;

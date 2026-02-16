@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:convert';
 import 'signup_page.dart';
 import 'services/auth_service.dart';
 import 'customer_home_page.dart';
@@ -17,8 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false;
-  bool _isRecaptchaVerified = false;
-  String? _recaptchaToken;
 
   @override
   void initState() {
@@ -63,27 +59,6 @@ class _LoginPageState extends State<LoginPage> {
     };
   }
 
-  Future<void> _showRecaptchaDialog() async {
-    final token = await showDialog<String>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const RecaptchaDialog(),
-    );
-
-    if (token != null && token.isNotEmpty) {
-      setState(() {
-        _isRecaptchaVerified = true;
-        _recaptchaToken = token;
-      });
-      // Proceed with login after successful reCAPTCHA
-      _handleLogin();
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('reCAPTCHA verification failed')),
-      );
-    }
-  }
-
   Future<void> _handleLogin() async {
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -92,27 +67,17 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    if (!_isRecaptchaVerified) {
-      // Show reCAPTCHA dialog
-      await _showRecaptchaDialog();
-      return;
-    }
-
     setState(() {
       _isLoading = true;
     });
 
-    // TODO: Send _recaptchaToken to your backend for verification
     final user = await AuthService.loginUser(
       usernameOrEmail: _usernameController.text,
       password: _passwordController.text,
-      recaptchaToken: _recaptchaToken, // Pass token to backend
     );
 
     setState(() {
       _isLoading = false;
-      _isRecaptchaVerified = false; // Reset for next login attempt
-      _recaptchaToken = null;
     });
 
     if (user != null && mounted) {
@@ -289,145 +254,6 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class RecaptchaDialog extends StatefulWidget {
-  const RecaptchaDialog({super.key});
-
-  @override
-  State<RecaptchaDialog> createState() => _RecaptchaDialogState();
-}
-
-class _RecaptchaDialogState extends State<RecaptchaDialog> {
-  late WebViewController _webViewController;
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeWebView();
-  }
-
-  void _initializeWebView() {
-    _webViewController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageFinished: (String url) {
-            // Page loaded
-          },
-        ),
-      )
-      ..addJavaScriptChannel(
-        'RecaptchaChannel',
-        onMessageReceived: (JavaScriptMessage message) {
-          // Received reCAPTCHA token
-          Navigator.of(context).pop(message.message);
-        },
-      )
-      ..loadHtmlString(_getRecaptchaHtml());
-  }
-
-  String _getRecaptchaHtml() {
-    // DEVELOPMENT TEST KEYS - These work on localhost!
-    // ⚠️ Replace with your production keys before deploying!
-    // Site key: Register your domain at https://www.google.com/recaptcha/admin
-    const siteKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'; // Test key
-    
-    // For production, use your real site key:
-    // const siteKey = 'YOUR_PRODUCTION_SITE_KEY';
-    
-    return '''
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #1565C0;
-            margin-bottom: 20px;
-        }
-        #recaptcha-container {
-            display: inline-block;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Verify you're human</h2>
-        <div id="recaptcha-container">
-            <div class="g-recaptcha" 
-                 data-sitekey="$siteKey" 
-                 data-callback="onRecaptchaSuccess">
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        function onRecaptchaSuccess(token) {
-            // Send token back to Flutter
-            if (window.RecaptchaChannel) {
-                window.RecaptchaChannel.postMessage(token);
-            }
-        }
-    </script>
-</body>
-</html>
-    ''';
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Container(
-        height: 400,
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Security Check',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: WebViewWidget(controller: _webViewController),
-            ),
-          ],
         ),
       ),
     );
