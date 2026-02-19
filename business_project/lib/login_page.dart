@@ -3,6 +3,7 @@ import 'signup_page.dart';
 import 'services/auth_service.dart';
 import 'customer_home_page.dart';
 import 'business_dashboard_page.dart';
+import 'widgets/puzzle_captcha_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _isCaptchaVerified = false;
+  bool _showCaptcha = false;
 
   @override
   void initState() {
@@ -59,6 +62,17 @@ class _LoginPageState extends State<LoginPage> {
     };
   }
 
+  void _onCaptchaVerified(bool isVerified) {
+    setState(() {
+      _isCaptchaVerified = isVerified;
+    });
+
+    if (isVerified) {
+      // Proceed with login after successful captcha
+      _performLogin();
+    }
+  }
+
   Future<void> _handleLogin() async {
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -67,6 +81,14 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
+    // Show captcha before allowing login
+    setState(() {
+      _showCaptcha = true;
+      _isCaptchaVerified = false;
+    });
+  }
+
+  Future<void> _performLogin() async {
     setState(() {
       _isLoading = true;
     });
@@ -78,6 +100,8 @@ class _LoginPageState extends State<LoginPage> {
 
     setState(() {
       _isLoading = false;
+      _showCaptcha = false;
+      _isCaptchaVerified = false;
     });
 
     if (user != null && mounted) {
@@ -190,6 +214,20 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 24),
+                
+                // Show captcha if login button was pressed
+                if (_showCaptcha && !_isCaptchaVerified)
+                  Column(
+                    children: [
+                      PuzzleCaptchaWidget(
+                        onVerified: _onCaptchaVerified,
+                        width: MediaQuery.of(context).size.width - 48,
+                        height: 150,
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                
                 SizedBox(
                   width: double.infinity,
                   height: 50,

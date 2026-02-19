@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart'; // ADD to pubspec.yaml: url_launcher: ^6.2.0
 import 'dart:ui' as ui;
 import 'dart:convert';
 import '../models/startup.dart';
@@ -58,44 +59,29 @@ class _MapPageState extends State<MapPage> {
     await _loadStartupsData();
   }
 
-  /// Get the user's current location using Geolocator
   Future<void> _getCurrentLocation() async {
     try {
-      // Check if location services are enabled
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        setState(() {
-          _locationStatus = 'Location services disabled';
-        });
-        print('⚠️ Location services are disabled');
+        setState(() { _locationStatus = 'Location services disabled'; });
         return;
       }
 
-      // Check location permission
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          setState(() {
-            _locationStatus = 'Location permission denied';
-          });
-          print('⚠️ Location permissions are denied');
+          setState(() { _locationStatus = 'Location permission denied'; });
           return;
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
-        setState(() {
-          _locationStatus = 'Location permission denied forever';
-        });
-        print('⚠️ Location permissions are permanently denied');
+        setState(() { _locationStatus = 'Location permission denied forever'; });
         return;
       }
 
-      // Get current position
-      setState(() {
-        _locationStatus = 'Getting your location...';
-      });
+      setState(() { _locationStatus = 'Getting your location...'; });
 
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
@@ -108,12 +94,8 @@ class _MapPageState extends State<MapPage> {
         _locationStatus = 'Location found';
       });
 
-      print('📍 User location: $_userLat, $_userLon');
-
-      // Create user location marker
       await _createUserLocationMarker();
 
-      // Move camera to user location if map is already created
       if (_mapController != null) {
         _mapController!.animateCamera(
           CameraUpdate.newLatLng(LatLng(_userLat, _userLon)),
@@ -121,10 +103,7 @@ class _MapPageState extends State<MapPage> {
       }
     } catch (e) {
       print('❌ Error getting location: $e');
-      setState(() {
-        _locationStatus = 'Error getting location';
-      });
-      // Keep default Toronto location as fallback
+      setState(() { _locationStatus = 'Error getting location'; });
     }
   }
 
@@ -133,12 +112,10 @@ class _MapPageState extends State<MapPage> {
       final String jsonString = await rootBundle.loadString('assets/startups.json');
       final Map<String, dynamic> jsonData = json.decode(jsonString);
 
-      // Only use JSON location as fallback if geolocation failed
       if (!_locationPermissionGranted) {
         final userLocation = jsonData['user_location'];
         _userLat = userLocation['latitude'].toDouble();
         _userLon = userLocation['longitude'].toDouble();
-        print('📍 Using fallback location from JSON: $_userLat, $_userLon');
       }
 
       final List<dynamic> startupsJson = jsonData['startups'];
@@ -147,49 +124,36 @@ class _MapPageState extends State<MapPage> {
       _applyFiltersAndSort();
       await _createMarkers();
 
-      setState(() {
-        _isLoading = false;
-      });
+      setState(() { _isLoading = false; });
     } catch (e) {
       print('Error loading startups data: $e');
-      setState(() {
-        _isLoading = false;
-      });
+      setState(() { _isLoading = false; });
     }
   }
 
   void _applyFiltersAndSort() {
-    // Filter by category
     _filteredStartups = _allStartups.filterByCategory(_selectedCategory);
 
-    // Filter by rating
     if (_selectedRating != 'All') {
-      double minRating;
       switch (_selectedRating) {
         case '5★':
-          minRating = 5.0;
           _filteredStartups = _filteredStartups.where((s) => s.rating == 5.0).toList();
           break;
         case '4★+':
-          minRating = 4.0;
           _filteredStartups = _filteredStartups.where((s) => s.rating >= 4.0).toList();
           break;
         case '3★+':
-          minRating = 3.0;
           _filteredStartups = _filteredStartups.where((s) => s.rating >= 3.0).toList();
           break;
         case '2★+':
-          minRating = 2.0;
           _filteredStartups = _filteredStartups.where((s) => s.rating >= 2.0).toList();
           break;
         case '1★+':
-          minRating = 1.0;
           _filteredStartups = _filteredStartups.where((s) => s.rating >= 1.0).toList();
           break;
       }
     }
 
-    // Sort
     switch (_sortBy) {
       case 'Rating':
         _filteredStartups = _filteredStartups.sortByRating();
@@ -209,16 +173,9 @@ class _MapPageState extends State<MapPage> {
 
     for (final startup in _filteredStartups) {
       final isBookmarked = await _bookmarkService.isBookmarked(startup.id);
-
-      // Get marker color based on category and bookmark status
       Color markerColor = _getMarkerColorForCategory(startup.category);
+      if (isBookmarked) markerColor = Colors.pink;
 
-      // If bookmarked, use rose/pink color regardless of category
-      if (isBookmarked) {
-        markerColor = Colors.pink;
-      }
-
-      // Create custom dot marker
       final BitmapDescriptor markerIcon = await _createDotMarker(markerColor);
 
       markers.add(
@@ -226,7 +183,7 @@ class _MapPageState extends State<MapPage> {
           markerId: MarkerId(startup.id),
           position: LatLng(startup.latitude, startup.longitude),
           icon: markerIcon,
-          anchor: const Offset(0.5, 0.5), // Center the dot on the position
+          anchor: const Offset(0.5, 0.5),
           onTap: () => _showStartupDetails(startup),
           infoWindow: InfoWindow(
             title: startup.name,
@@ -236,12 +193,9 @@ class _MapPageState extends State<MapPage> {
       );
     }
 
-    setState(() {
-      _markers = markers;
-    });
+    setState(() { _markers = markers; });
   }
 
-  /// Create a circular dot marker with the specified color
   Future<BitmapDescriptor> _createDotMarker(Color color) async {
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
@@ -254,62 +208,44 @@ class _MapPageState extends State<MapPage> {
     const size = 24.0;
     const radius = size / 2;
 
-    // Draw white border
     canvas.drawCircle(const Offset(radius, radius), radius, strokePaint);
-
-    // Draw filled circle
     canvas.drawCircle(const Offset(radius, radius), radius - 1.5, paint);
 
     final picture = recorder.endRecording();
     final image = await picture.toImage(size.toInt(), size.toInt());
     final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-
     return BitmapDescriptor.fromBytes(bytes!.buffer.asUint8List());
   }
 
-  /// Create user location marker with emoji symbol
   Future<void> _createUserLocationMarker() async {
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
-    
+
     const size = 80.0;
     const emojiSize = 50.0;
 
-    // Draw outer glow/pulse circle
     final glowPaint = Paint()
       ..color = const Color(0xFF1565C0).withOpacity(0.3)
       ..style = PaintingStyle.fill;
     canvas.drawCircle(const Offset(size / 2, size / 2), size / 2, glowPaint);
 
-    // Draw white circle background
     final bgPaint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.fill;
     canvas.drawCircle(const Offset(size / 2, size / 2), emojiSize / 2 + 3, bgPaint);
 
-    // Draw border
     final borderPaint = Paint()
       ..color = const Color(0xFF1565C0)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3;
     canvas.drawCircle(const Offset(size / 2, size / 2), emojiSize / 2 + 3, borderPaint);
 
-    // Draw emoji
     final textPainter = TextPainter(
-      text: const TextSpan(
-        text: '📍', // Pin emoji - you can change this to any emoji like 🧑, 👤, 🎯, etc.
-        style: TextStyle(fontSize: 40),
-      ),
+      text: const TextSpan(text: '📍', style: TextStyle(fontSize: 40)),
       textDirection: TextDirection.ltr,
     );
     textPainter.layout();
-    textPainter.paint(
-      canvas,
-      Offset(
-        (size - textPainter.width) / 2,
-        (size - textPainter.height) / 2,
-      ),
-    );
+    textPainter.paint(canvas, Offset((size - textPainter.width) / 2, (size - textPainter.height) / 2));
 
     final picture = recorder.endRecording();
     final image = await picture.toImage(size.toInt(), size.toInt());
@@ -322,46 +258,30 @@ class _MapPageState extends State<MapPage> {
         position: LatLng(_userLat, _userLon),
         icon: icon,
         anchor: const Offset(0.5, 0.5),
-        infoWindow: const InfoWindow(
-          title: 'You are here',
-          snippet: 'Your current location',
-        ),
-        zIndex: 999, // Make sure it appears above other markers
+        infoWindow: const InfoWindow(title: 'You are here', snippet: 'Your current location'),
+        zIndex: 999,
       );
     });
   }
 
-  /// Get marker color based on startup category
   Color _getMarkerColorForCategory(String category) {
     switch (category.toLowerCase()) {
-      case 'food':
-        return Colors.orange;
-      case 'retail':
-        return Colors.blue;
-      case 'technology':
-        return Colors.purple;
-      case 'services':
-        return Colors.green;
-      default:
-        return Colors.lightBlue;
+      case 'food': return Colors.orange;
+      case 'retail': return Colors.blue;
+      case 'technology': return Colors.purple;
+      case 'services': return Colors.green;
+      default: return Colors.lightBlue;
     }
   }
 
-  /// Recenter map to user's current location
   void _recenterToUserLocation() async {
-    setState(() {
-      _locationStatus = 'Getting your location...';
-    });
-
+    setState(() { _locationStatus = 'Getting your location...'; });
     await _getCurrentLocation();
 
     if (_mapController != null) {
       _mapController!.animateCamera(
         CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(_userLat, _userLon),
-            zoom: 14,
-          ),
+          CameraPosition(target: LatLng(_userLat, _userLon), zoom: 14),
         ),
       );
     }
@@ -379,10 +299,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _showStartupDetails(Startup startup) async {
-    // Record place visit and update user stats
     await AuthService.recordPlaceVisit(startup.id);
-    print('📍 Recorded visit to: ${startup.name}');
-
     if (!mounted) return;
 
     showModalBottomSheet(
@@ -394,9 +311,9 @@ class _MapPageState extends State<MapPage> {
         reviewService: _reviewService,
         dealService: _dealService,
         bookmarkService: _bookmarkService,
-        onBookmarkChanged: () {
-          _createMarkers(); // Refresh markers to update colors
-        },
+        userLat: _userLat,
+        userLon: _userLon,
+        onBookmarkChanged: () => _createMarkers(),
       ),
     );
   }
@@ -412,10 +329,7 @@ class _MapPageState extends State<MapPage> {
             children: [
               const CircularProgressIndicator(),
               const SizedBox(height: 16),
-              Text(
-                _locationStatus,
-                style: TextStyle(color: Colors.grey[600]),
-              ),
+              Text(_locationStatus, style: TextStyle(color: Colors.grey[600])),
             ],
           ),
         ),
@@ -430,23 +344,19 @@ class _MapPageState extends State<MapPage> {
               target: LatLng(_userLat, _userLon),
               zoom: 12,
             ),
-            onMapCreated: (controller) {
-              _mapController = controller;
-            },
+            onMapCreated: (controller) { _mapController = controller; },
             markers: {
               ..._markers,
               if (_userLocationMarker != null) _userLocationMarker!,
             },
-            myLocationEnabled: false, // Disabled since we have custom marker
-            myLocationButtonEnabled: false, // We use custom button
+            myLocationEnabled: false,
+            myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
           ),
 
           // Top bar with filters
           Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
+            top: 0, left: 0, right: 0,
             child: SafeArea(
               child: Container(
                 margin: const EdgeInsets.all(16),
@@ -454,13 +364,7 @@ class _MapPageState extends State<MapPage> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 2))],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -471,36 +375,18 @@ class _MapPageState extends State<MapPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '${_filteredStartups.length} Startups',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Color(0xFF1565C0),
-                                ),
-                              ),
+                              Text('${_filteredStartups.length} Startups',
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF1565C0))),
                               const SizedBox(height: 4),
                               Row(
                                 children: [
-                                  Icon(
-                                    _locationPermissionGranted
-                                        ? Icons.location_on
-                                        : Icons.location_off,
-                                    size: 14,
-                                    color: _locationPermissionGranted
-                                        ? Colors.green
-                                        : Colors.orange,
-                                  ),
+                                  Icon(_locationPermissionGranted ? Icons.location_on : Icons.location_off,
+                                    size: 14, color: _locationPermissionGranted ? Colors.green : Colors.orange),
                                   const SizedBox(width: 4),
                                   Flexible(
                                     child: Text(
-                                      _locationPermissionGranted
-                                          ? 'Using your location'
-                                          : 'Using default location',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey[600],
-                                      ),
+                                      _locationPermissionGranted ? 'Using your location' : 'Using default location',
+                                      style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                                     ),
                                   ),
                                 ],
@@ -511,8 +397,6 @@ class _MapPageState extends State<MapPage> {
                       ],
                     ),
                     const SizedBox(height: 16),
-
-                    // Category Dropdown
                     Row(
                       children: [
                         Expanded(
@@ -521,45 +405,28 @@ class _MapPageState extends State<MapPage> {
                             decoration: BoxDecoration(
                               color: const Color(0xFF1565C0).withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: const Color(0xFF1565C0).withOpacity(0.3),
-                              ),
+                              border: Border.all(color: const Color(0xFF1565C0).withOpacity(0.3)),
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
                                 value: _selectedCategory,
                                 isExpanded: true,
-                                icon: const Icon(Icons.arrow_drop_down,
-                                    color: Color(0xFF1565C0)),
+                                icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF1565C0)),
                                 items: _categories.map((String category) {
                                   return DropdownMenuItem(
                                     value: category,
                                     child: Row(
                                       children: [
-                                        Icon(
-                                          _getCategoryIcon(category),
-                                          size: 20,
-                                          color: const Color(0xFF1565C0),
-                                        ),
+                                        Icon(_getCategoryIcon(category), size: 20, color: const Color(0xFF1565C0)),
                                         const SizedBox(width: 8),
-                                        Text(
-                                          category,
-                                          style: const TextStyle(
-                                            color: Color(0xFF1565C0),
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
+                                        Text(category, style: const TextStyle(color: Color(0xFF1565C0), fontWeight: FontWeight.w500)),
                                       ],
                                     ),
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
                                   if (newValue != null) {
-                                    setState(() {
-                                      _selectedCategory = newValue;
-                                      _applyFiltersAndSort();
-                                      _createMarkers();
-                                    });
+                                    setState(() { _selectedCategory = newValue; _applyFiltersAndSort(); _createMarkers(); });
                                   }
                                 },
                               ),
@@ -567,41 +434,26 @@ class _MapPageState extends State<MapPage> {
                           ),
                         ),
                         const SizedBox(width: 8),
-
-                        // Sort Dropdown
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           decoration: BoxDecoration(
                             color: const Color(0xFF1565C0).withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: const Color(0xFF1565C0).withOpacity(0.3),
-                            ),
+                            border: Border.all(color: const Color(0xFF1565C0).withOpacity(0.3)),
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<String>(
                               value: _sortBy,
-                              icon: const Icon(Icons.sort,
-                                  color: Color(0xFF1565C0)),
+                              icon: const Icon(Icons.sort, color: Color(0xFF1565C0)),
                               items: _sortOptions.map((String option) {
                                 return DropdownMenuItem(
                                   value: option,
-                                  child: Text(
-                                    option,
-                                    style: const TextStyle(
-                                      color: Color(0xFF1565C0),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                                  child: Text(option, style: const TextStyle(color: Color(0xFF1565C0), fontWeight: FontWeight.w500)),
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
                                 if (newValue != null) {
-                                  setState(() {
-                                    _sortBy = newValue;
-                                    _applyFiltersAndSort();
-                                    _createMarkers();
-                                  });
+                                  setState(() { _sortBy = newValue; _applyFiltersAndSort(); _createMarkers(); });
                                 }
                               },
                             ),
@@ -610,52 +462,34 @@ class _MapPageState extends State<MapPage> {
                       ],
                     ),
                     const SizedBox(height: 8),
-
-                    // Rating Filter Dropdown
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
                         color: const Color(0xFF1565C0).withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: const Color(0xFF1565C0).withOpacity(0.3),
-                        ),
+                        border: Border.all(color: const Color(0xFF1565C0).withOpacity(0.3)),
                       ),
                       child: DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: _selectedRating,
                           isExpanded: true,
-                          icon: const Icon(Icons.arrow_drop_down,
-                              color: Color(0xFF1565C0)),
+                          icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF1565C0)),
                           items: _ratingFilters.map((String rating) {
                             return DropdownMenuItem(
                               value: rating,
                               child: Row(
                                 children: [
-                                  const Icon(
-                                    Icons.star,
-                                    size: 20,
-                                    color: Colors.amber,
-                                  ),
+                                  const Icon(Icons.star, size: 20, color: Colors.amber),
                                   const SizedBox(width: 8),
-                                  Text(
-                                    rating == 'All' ? 'All Ratings' : rating,
-                                    style: const TextStyle(
-                                      color: Color(0xFF1565C0),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                                  Text(rating == 'All' ? 'All Ratings' : rating,
+                                    style: const TextStyle(color: Color(0xFF1565C0), fontWeight: FontWeight.w500)),
                                 ],
                               ),
                             );
                           }).toList(),
                           onChanged: (String? newValue) {
                             if (newValue != null) {
-                              setState(() {
-                                _selectedRating = newValue;
-                                _applyFiltersAndSort();
-                                _createMarkers();
-                              });
+                              setState(() { _selectedRating = newValue; _applyFiltersAndSort(); _createMarkers(); });
                             }
                           },
                         ),
@@ -667,27 +501,21 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
 
-          // My Location button (custom)
           Positioned(
-            right: 16,
-            bottom: 180,
+            right: 16, bottom: 180,
             child: FloatingActionButton(
               heroTag: 'myLocation',
               onPressed: _recenterToUserLocation,
               backgroundColor: Colors.white,
               child: Icon(
-                _locationPermissionGranted
-                    ? Icons.my_location
-                    : Icons.location_searching,
+                _locationPermissionGranted ? Icons.my_location : Icons.location_searching,
                 color: const Color(0xFF1565C0),
               ),
             ),
           ),
 
-          // Floating action button for bookmarks
           Positioned(
-            right: 16,
-            bottom: 100,
+            right: 16, bottom: 100,
             child: FloatingActionButton(
               heroTag: 'bookmarks',
               onPressed: () => _showBookmarkedStartups(),
@@ -696,35 +524,20 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
 
-          // Legend
           Positioned(
-            left: 16,
-            bottom: 100,
+            left: 16, bottom: 100,
             child: Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10, offset: const Offset(0, 2))],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    'Legend',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      color: Color(0xFF1565C0),
-                    ),
-                  ),
+                  const Text('Legend', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF1565C0))),
                   const SizedBox(height: 8),
                   _buildLegendItem('Food', Colors.orange),
                   _buildLegendItem('Retail', Colors.blue),
@@ -746,16 +559,11 @@ class _MapPageState extends State<MapPage> {
 
   IconData _getCategoryIcon(String category) {
     switch (category) {
-      case 'Food':
-        return Icons.restaurant;
-      case 'Retail':
-        return Icons.shopping_bag;
-      case 'Technology':
-        return Icons.computer;
-      case 'Services':
-        return Icons.spa;
-      default:
-        return Icons.category;
+      case 'Food': return Icons.restaurant;
+      case 'Retail': return Icons.shopping_bag;
+      case 'Technology': return Icons.computer;
+      case 'Services': return Icons.spa;
+      default: return Icons.category;
     }
   }
 
@@ -766,22 +574,11 @@ class _MapPageState extends State<MapPage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 12,
-            height: 12,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 1),
-            ),
+            width: 12, height: 12,
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 1)),
           ),
           const SizedBox(width: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Colors.black87,
-            ),
-          ),
+          Text(label, style: const TextStyle(fontSize: 11, color: Colors.black87)),
         ],
       ),
     );
@@ -793,18 +590,9 @@ class _MapPageState extends State<MapPage> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            emoji,
-            style: const TextStyle(fontSize: 14),
-          ),
+          Text(emoji, style: const TextStyle(fontSize: 14)),
           const SizedBox(width: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Colors.black87,
-            ),
-          ),
+          Text(label, style: const TextStyle(fontSize: 11, color: Colors.black87)),
         ],
       ),
     );
@@ -812,9 +600,7 @@ class _MapPageState extends State<MapPage> {
 
   void _showBookmarkedStartups() async {
     final bookmarkedIds = await _bookmarkService.getBookmarkedIds();
-    final bookmarkedStartups = _allStartups
-        .where((startup) => bookmarkedIds.contains(startup.id))
-        .toList();
+    final bookmarkedStartups = _allStartups.where((s) => bookmarkedIds.contains(s.id)).toList();
 
     if (!mounted) return;
 
@@ -833,12 +619,299 @@ class _MapPageState extends State<MapPage> {
   }
 }
 
-// Startup Details Sheet Widget
+// ─────────────────────────────────────────────────────────────────────────────
+// ROUTE HELPER  ── handles distance estimation & URL launching
+// ─────────────────────────────────────────────────────────────────────────────
+class RouteHelper {
+  /// Rough travel-time estimates using straight-line distance.
+  /// Replace with a real Directions API call for live traffic data.
+  static Map<String, String> estimateTravelTimes({
+    required double fromLat,
+    required double fromLon,
+    required double toLat,
+    required double toLon,
+  }) {
+    final distanceM = Geolocator.distanceBetween(fromLat, fromLon, toLat, toLon);
+    final distanceKm = distanceM / 1000;
+
+    // Average speeds (km/h) with a 1.35 road-factor multiplier
+    final driveMins = ((distanceKm * 1.35) / 40 * 60).round();
+    final transitMins = ((distanceKm * 1.35) / 25 * 60).round();
+    final walkMins = ((distanceKm * 1.35) / 5 * 60).round();
+    final cycleMins = ((distanceKm * 1.35) / 15 * 60).round();
+
+    String fmt(int mins) {
+      if (mins < 60) return '$mins min';
+      final h = mins ~/ 60;
+      final m = mins % 60;
+      return m == 0 ? '${h}h' : '${h}h ${m}m';
+    }
+
+    return {
+      'driving': fmt(driveMins),
+      'transit': fmt(transitMins),
+      'walking': fmt(walkMins),
+      'cycling': fmt(cycleMins),
+      'distanceKm': distanceKm.toStringAsFixed(1),
+    };
+  }
+
+  /// Opens Google Maps with turn-by-turn directions.
+  static Future<void> openGoogleMapsDirections({
+    required double fromLat,
+    required double fromLon,
+    required double toLat,
+    required double toLon,
+    required String travelMode, // 'driving' | 'transit' | 'walking' | 'bicycling'
+  }) async {
+    // comgooglemaps:// deep-link (opens native app if installed)
+    final nativeUri = Uri.parse(
+      'comgooglemaps://?saddr=$fromLat,$fromLon&daddr=$toLat,$toLon&directionsmode=$travelMode',
+    );
+    // Web fallback
+    final webUri = Uri.parse(
+      'https://www.google.com/maps/dir/?api=1'
+      '&origin=$fromLat,$fromLon'
+      '&destination=$toLat,$toLon'
+      '&travelmode=$travelMode',
+    );
+
+    if (await canLaunchUrl(nativeUri)) {
+      await launchUrl(nativeUri);
+    } else {
+      await launchUrl(webUri, mode: LaunchMode.externalApplication);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ROUTE SHEET  ── shown when the user taps "Get Directions"
+// ─────────────────────────────────────────────────────────────────────────────
+class RouteOptionsSheet extends StatefulWidget {
+  final Startup startup;
+  final double userLat;
+  final double userLon;
+
+  const RouteOptionsSheet({
+    super.key,
+    required this.startup,
+    required this.userLat,
+    required this.userLon,
+  });
+
+  @override
+  State<RouteOptionsSheet> createState() => _RouteOptionsSheetState();
+}
+
+class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
+  String _selectedMode = 'driving';
+  late Map<String, String> _times;
+
+  // Travel mode config
+  static const _modes = [
+    {'key': 'driving',   'label': 'Drive',    'icon': Icons.directions_car,   'gmaps': 'driving'},
+    {'key': 'transit',   'label': 'Transit',  'icon': Icons.directions_transit,'gmaps': 'transit'},
+    {'key': 'walking',   'label': 'Walk',     'icon': Icons.directions_walk,  'gmaps': 'walking'},
+    {'key': 'cycling',   'label': 'Cycle',    'icon': Icons.directions_bike,  'gmaps': 'bicycling'},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _times = RouteHelper.estimateTravelTimes(
+      fromLat: widget.userLat,
+      fromLon: widget.userLon,
+      toLat: widget.startup.latitude,
+      toLon: widget.startup.longitude,
+    );
+  }
+
+  void _launch() {
+    final mode = _modes.firstWhere((m) => m['key'] == _selectedMode);
+    RouteHelper.openGoogleMapsDirections(
+      fromLat: widget.userLat,
+      fromLon: widget.userLon,
+      toLat: widget.startup.latitude,
+      toLon: widget.startup.longitude,
+      travelMode: mode['gmaps'] as String,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final distanceKm = _times['distanceKm'] ?? '?';
+
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Handle
+          Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 12),
+              width: 40, height: 4,
+              decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
+            ),
+          ),
+
+          // Title row
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1565C0).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(Icons.directions, color: Color(0xFF1565C0), size: 22),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Directions to', style: TextStyle(fontSize: 13, color: Colors.grey[600])),
+                    Text(widget.startup.name,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text('$distanceKm km',
+                  style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+          const Text('Choose travel mode',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black54)),
+          const SizedBox(height: 12),
+
+          // Mode selector cards
+          Row(
+            children: _modes.map((mode) {
+              final key = mode['key'] as String;
+              final isSelected = _selectedMode == key;
+              final time = _times[key] ?? '—';
+
+              return Expanded(
+                child: GestureDetector(
+                  onTap: () => setState(() => _selectedMode = key),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                      color: isSelected ? const Color(0xFF1565C0) : Colors.grey[100],
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: isSelected ? const Color(0xFF1565C0) : Colors.transparent,
+                        width: 2,
+                      ),
+                      boxShadow: isSelected ? [
+                        BoxShadow(color: const Color(0xFF1565C0).withOpacity(0.3), blurRadius: 8, offset: const Offset(0, 3)),
+                      ] : [],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(mode['icon'] as IconData,
+                          color: isSelected ? Colors.white : Colors.grey[600], size: 26),
+                        const SizedBox(height: 6),
+                        Text(mode['label'] as String,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: isSelected ? Colors.white : Colors.grey[700],
+                          )),
+                        const SizedBox(height: 4),
+                        Text(time,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: isSelected ? Colors.white.withOpacity(0.9) : const Color(0xFF1565C0),
+                          )),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+
+          const SizedBox(height: 16),
+
+          // Traffic / info note
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.amber.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.amber.withOpacity(0.4)),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.info_outline, color: Colors.amber, size: 18),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Times are estimates. Live traffic will be shown in Google Maps.',
+                    style: TextStyle(fontSize: 12, color: Colors.grey[700]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          // Open in Google Maps button
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: _launch,
+              icon: const Text('🗺️', style: TextStyle(fontSize: 18)),
+              label: const Text(
+                'Open in Google Maps',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF1565C0),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                elevation: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STARTUP DETAILS SHEET  (updated – now passes userLat/userLon + route button)
+// ─────────────────────────────────────────────────────────────────────────────
 class StartupDetailsSheet extends StatefulWidget {
   final Startup startup;
   final ReviewService reviewService;
   final DealService dealService;
   final BookmarkService bookmarkService;
+  final double userLat;
+  final double userLon;
   final VoidCallback onBookmarkChanged;
 
   const StartupDetailsSheet({
@@ -847,6 +920,8 @@ class StartupDetailsSheet extends StatefulWidget {
     required this.reviewService,
     required this.dealService,
     required this.bookmarkService,
+    required this.userLat,
+    required this.userLon,
     required this.onBookmarkChanged,
   });
 
@@ -858,7 +933,7 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
   bool _isBookmarked = false;
   List<Review> _reviews = [];
   List<Deal> _deals = [];
-  int _selectedTab = 0; // 0: Info, 1: Deals, 2: Reviews
+  int _selectedTab = 0;
 
   @override
   void initState() {
@@ -867,25 +942,9 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
   }
 
   Future<void> _loadData() async {
-    final isBookmarked =
-        await widget.bookmarkService.isBookmarked(widget.startup.id);
-    final reviews =
-        await widget.reviewService.getReviewsForStartup(widget.startup.id);
+    final isBookmarked = await widget.bookmarkService.isBookmarked(widget.startup.id);
+    final reviews = await widget.reviewService.getReviewsForStartup(widget.startup.id);
     final deals = widget.dealService.getDealsForStartup(widget.startup.id);
-
-    // Debug logging
-    print('=== DEBUG ===');
-    print('Startup ID: ${widget.startup.id}');
-    print('Startup Name: ${widget.startup.name}');
-    print('Reviews found: ${reviews.length}');
-    print('Deals found: ${deals.length}');
-    if (reviews.isNotEmpty) {
-      print('First review: ${reviews.first.comment}');
-    }
-    if (deals.isNotEmpty) {
-      print('First deal: ${deals.first.title}');
-    }
-    print('=============');
 
     setState(() {
       _isBookmarked = isBookmarked;
@@ -895,27 +954,20 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
   }
 
   Future<void> _toggleBookmark() async {
-    final newStatus =
-        await widget.bookmarkService.toggleBookmark(widget.startup.id);
-    setState(() {
-      _isBookmarked = newStatus;
-    });
+    final newStatus = await widget.bookmarkService.toggleBookmark(widget.startup.id);
+    setState(() { _isBookmarked = newStatus; });
     widget.onBookmarkChanged();
 
     if (!mounted) return;
-
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(_isBookmarked
-            ? 'Added to bookmarks (+5 points!)'
-            : 'Removed from bookmarks'),
+        content: Text(_isBookmarked ? 'Added to bookmarks (+5 points!)' : 'Removed from bookmarks'),
         duration: const Duration(seconds: 2),
       ),
     );
   }
 
   void _addReview() async {
-    // Get current user to use their username
     final user = await AuthService.getCurrentUser();
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -923,18 +975,28 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
       );
       return;
     }
-
     if (!mounted) return;
-
     showDialog(
       context: context,
       builder: (context) => AddReviewDialog(
         startup: widget.startup,
         reviewService: widget.reviewService,
         username: user['username'],
-        onReviewAdded: () {
-          _loadData(); // Reload reviews
-        },
+        onReviewAdded: _loadData,
+      ),
+    );
+  }
+
+  // ── NEW: shows the RouteOptionsSheet ──
+  void _showRouteOptions() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => RouteOptionsSheet(
+        startup: widget.startup,
+        userLat: widget.userLat,
+        userLon: widget.userLon,
       ),
     );
   }
@@ -953,15 +1015,11 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
           ),
           child: Column(
             children: [
-              // Handle bar
+              // Handle
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 12),
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(2),
-                ),
+                width: 40, height: 4,
+                decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
               ),
 
               // Header
@@ -970,56 +1028,30 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                 child: Row(
                   children: [
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 60, height: 60,
                       decoration: BoxDecoration(
                         color: const Color(0xFF1565C0).withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(
-                        child: Text(
-                          widget.startup.icon,
-                          style: const TextStyle(fontSize: 30),
-                        ),
-                      ),
+                      child: Center(child: Text(widget.startup.icon, style: const TextStyle(fontSize: 30))),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            widget.startup.name,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          Text(widget.startup.name,
+                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                           const SizedBox(height: 4),
                           Row(
                             children: [
-                              ...List.generate(
-                                widget.startup.getFullStars(),
-                                (index) => const Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                  size: 16,
-                                ),
-                              ),
+                              ...List.generate(widget.startup.getFullStars(),
+                                (i) => const Icon(Icons.star, color: Colors.amber, size: 16)),
                               if (widget.startup.hasHalfStar())
-                                const Icon(
-                                  Icons.star_half,
-                                  color: Colors.amber,
-                                  size: 16,
-                                ),
+                                const Icon(Icons.star_half, color: Colors.amber, size: 16),
                               const SizedBox(width: 4),
-                              Text(
-                                widget.startup.getFormattedRating(),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
+                              Text(widget.startup.getFormattedRating(),
+                                style: TextStyle(fontSize: 12, color: Colors.grey[600])),
                             ],
                           ),
                         ],
@@ -1028,9 +1060,7 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                     IconButton(
                       icon: Icon(
                         _isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-                        color: _isBookmarked
-                            ? const Color(0xFF1565C0)
-                            : Colors.grey,
+                        color: _isBookmarked ? const Color(0xFF1565C0) : Colors.grey,
                       ),
                       onPressed: _toggleBookmark,
                     ),
@@ -1038,16 +1068,37 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
+
+              // ── NEW: Get Directions button ──────────────────────────────
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: _showRouteOptions,
+                    icon: const Icon(Icons.directions, color: Colors.white, size: 20),
+                    label: const Text(
+                      'Get Directions',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF1E88E5),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      elevation: 0,
+                    ),
+                  ),
+                ),
+              ),
+              // ────────────────────────────────────────────────────────────
+
+              const SizedBox(height: 12),
 
               // Tabs
               Container(
                 height: 50,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey[300]!),
-                  ),
-                ),
+                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[300]!))),
                 child: Row(
                   children: [
                     _buildTab('Info', 0),
@@ -1057,7 +1108,6 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                 ),
               ),
 
-              // Content
               Expanded(
                 child: ListView(
                   controller: scrollController,
@@ -1080,31 +1130,21 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
     final isSelected = _selectedTab == index;
     return Expanded(
       child: GestureDetector(
-        onTap: () {
-          setState(() {
-            _selectedTab = index;
-          });
-        },
+        onTap: () => setState(() => _selectedTab = index),
         child: Container(
           decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: isSelected
-                    ? const Color(0xFF1565C0)
-                    : Colors.transparent,
-                width: 2,
-              ),
-            ),
+            border: Border(bottom: BorderSide(
+              color: isSelected ? const Color(0xFF1565C0) : Colors.transparent,
+              width: 2,
+            )),
           ),
           child: Center(
-            child: Text(
-              label,
+            child: Text(label,
               style: TextStyle(
                 color: isSelected ? const Color(0xFF1565C0) : Colors.grey[600],
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 fontSize: 13,
-              ),
-            ),
+              )),
           ),
         ),
       ),
@@ -1115,25 +1155,12 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Description',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        const Text('Description', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
-        Text(
-          widget.startup.description,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[700],
-            height: 1.5,
-          ),
-        ),
+        Text(widget.startup.description,
+          style: TextStyle(fontSize: 14, color: Colors.grey[700], height: 1.5)),
         const SizedBox(height: 20),
-        _buildInfoRow(Icons.location_on, 'Location',
-            widget.startup.location ?? 'N/A'),
+        _buildInfoRow(Icons.location_on, 'Location', widget.startup.location ?? 'N/A'),
         const SizedBox(height: 12),
         _buildInfoRow(Icons.category, 'Category', widget.startup.category),
       ],
@@ -1150,20 +1177,8 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[600],
-                ),
-              ),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              Text(label, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
+              Text(value, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
             ],
           ),
         ),
@@ -1177,21 +1192,14 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.local_offer_outlined,
-                size: 64, color: Colors.grey[400]),
+            Icon(Icons.local_offer_outlined, size: 64, color: Colors.grey[400]),
             const SizedBox(height: 16),
-            Text(
-              'No deals available',
-              style: TextStyle(color: Colors.grey[600]),
-            ),
+            Text('No deals available', style: TextStyle(color: Colors.grey[600])),
           ],
         ),
       );
     }
-
-    return Column(
-      children: _deals.map((deal) => _buildDealCard(deal)).toList(),
-    );
+    return Column(children: _deals.map((deal) => _buildDealCard(deal)).toList());
   }
 
   Widget _buildDealCard(Deal deal) {
@@ -1199,9 +1207,7 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF1565C0), Color(0xFF0D47A1)],
-        ),
+        gradient: const LinearGradient(colors: [Color(0xFF1565C0), Color(0xFF0D47A1)]),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -1211,40 +1217,19 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  deal.getDiscountBadge(),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
+                decoration: BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.circular(4)),
+                child: Text(deal.getDiscountBadge(),
+                  style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12)),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Text(
-                  deal.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text(deal.title,
+                  style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          Text(
-            deal.description,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.9),
-              fontSize: 14,
-            ),
-          ),
+          Text(deal.description, style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: 14)),
           const SizedBox(height: 12),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -1257,37 +1242,20 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
               children: [
                 const Icon(Icons.code, color: Colors.white, size: 16),
                 const SizedBox(width: 4),
-                Text(
-                  deal.code,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.2,
-                  ),
-                ),
+                Text(deal.code,
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
               ],
             ),
           ),
           const SizedBox(height: 8),
-          Text(
-            'Valid until ${deal.getFormattedValidUntil()}',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 12,
-            ),
-          ),
+          Text('Valid until ${deal.getFormattedValidUntil()}',
+            style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 12)),
           if (deal.terms.isNotEmpty) ...[
             const SizedBox(height: 8),
             const Divider(color: Colors.white24),
             const SizedBox(height: 8),
-            Text(
-              'Terms: ${deal.terms}',
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.6),
-                fontSize: 11,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
+            Text('Terms: ${deal.terms}',
+              style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 11, fontStyle: FontStyle.italic)),
           ],
         ],
       ),
@@ -1302,16 +1270,11 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
           child: ElevatedButton.icon(
             onPressed: _addReview,
             icon: const Icon(Icons.add, color: Colors.white),
-            label: const Text(
-              'Write a Review (+10 points)',
-              style: TextStyle(color: Colors.white),
-            ),
+            label: const Text('Write a Review (+10 points)', style: TextStyle(color: Colors.white)),
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF1565C0),
               padding: const EdgeInsets.symmetric(vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
           ),
         ),
@@ -1320,18 +1283,11 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
           Center(
             child: Column(
               children: [
-                Icon(Icons.rate_review_outlined,
-                    size: 64, color: Colors.grey[400]),
+                Icon(Icons.rate_review_outlined, size: 64, color: Colors.grey[400]),
                 const SizedBox(height: 16),
-                Text(
-                  'No reviews yet',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
+                Text('No reviews yet', style: TextStyle(color: Colors.grey[600])),
                 const SizedBox(height: 8),
-                Text(
-                  'Be the first to review!',
-                  style: TextStyle(color: Colors.grey[500], fontSize: 12),
-                ),
+                Text('Be the first to review!', style: TextStyle(color: Colors.grey[500], fontSize: 12)),
               ],
             ),
           )
@@ -1357,61 +1313,41 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
             children: [
               CircleAvatar(
                 backgroundColor: const Color(0xFF1565C0),
-                child: Text(
-                  review.username[0].toUpperCase(),
-                  style: const TextStyle(color: Colors.white),
-                ),
+                child: Text(review.username[0].toUpperCase(),
+                  style: const TextStyle(color: Colors.white)),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      review.username,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Text(
-                      review.getFormattedDate(),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[600],
-                      ),
-                    ),
+                    Text(review.username,
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                    Text(review.getFormattedDate(),
+                      style: TextStyle(fontSize: 12, color: Colors.grey[600])),
                   ],
                 ),
               ),
               Row(
-                children: List.generate(
-                  5,
-                  (index) => Icon(
-                    index < review.rating ? Icons.star : Icons.star_border,
-                    color: Colors.amber,
-                    size: 16,
-                  ),
-                ),
+                children: List.generate(5, (i) => Icon(
+                  i < review.rating ? Icons.star : Icons.star_border,
+                  color: Colors.amber, size: 16,
+                )),
               ),
             ],
           ),
           const SizedBox(height: 12),
-          Text(
-            review.comment,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[800],
-              height: 1.4,
-            ),
-          ),
+          Text(review.comment,
+            style: TextStyle(fontSize: 14, color: Colors.grey[800], height: 1.4)),
         ],
       ),
     );
   }
 }
 
-// Add Review Dialog with Puzzle CAPTCHA
+// ─────────────────────────────────────────────────────────────────────────────
+// ADD REVIEW DIALOG  (unchanged)
+// ─────────────────────────────────────────────────────────────────────────────
 class AddReviewDialog extends StatefulWidget {
   final Startup startup;
   final ReviewService reviewService;
@@ -1438,14 +1374,10 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
   Future<void> _submitReview() async {
     if (!_isVerified) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please complete the puzzle verification'),
-          backgroundColor: Colors.orange,
-        ),
+        const SnackBar(content: Text('Please complete the puzzle verification'), backgroundColor: Colors.orange),
       );
       return;
     }
-
     if (_commentController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please write a comment')),
@@ -1464,7 +1396,6 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
     );
 
     final success = await widget.reviewService.addReview(review);
-
     if (success && mounted) {
       widget.onReviewAdded();
       Navigator.pop(context);
@@ -1481,9 +1412,7 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -1491,7 +1420,6 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
               Row(
                 children: [
                   Container(
@@ -1500,104 +1428,52 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
                       color: const Color(0xFF1565C0).withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Icon(
-                      Icons.rate_review,
-                      color: Color(0xFF1565C0),
-                    ),
+                    child: const Icon(Icons.rate_review, color: Color(0xFF1565C0)),
                   ),
                   const SizedBox(width: 12),
                   const Expanded(
-                    child: Text(
-                      'Write a Review',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: Text('Write a Review',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => Navigator.pop(context),
-                  ),
+                  IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.pop(context)),
                 ],
               ),
-
               const SizedBox(height: 20),
-
-              // Rating Section
-              const Text(
-                'Rating',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
+              const Text('Rating', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(5, (index) {
                   return IconButton(
-                    icon: Icon(
-                      index < _rating ? Icons.star : Icons.star_border,
-                      color: Colors.amber,
-                      size: 36,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _rating = index + 1;
-                      });
-                    },
+                    icon: Icon(index < _rating ? Icons.star : Icons.star_border,
+                      color: Colors.amber, size: 36),
+                    onPressed: () => setState(() => _rating = index + 1),
                   );
                 }),
               ),
-
               const SizedBox(height: 20),
-
-              // Comment Section
-              const Text(
-                'Comment',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
+              const Text('Comment', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               const SizedBox(height: 8),
               TextField(
                 controller: _commentController,
                 maxLines: 4,
                 maxLength: 500,
                 decoration: InputDecoration(
-                  hintText:
-                      'Share your experience with ${widget.startup.name}...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+                  hintText: 'Share your experience with ${widget.startup.name}...',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(
-                      color: Color(0xFF1565C0),
-                      width: 2,
-                    ),
+                    borderSide: const BorderSide(color: Color(0xFF1565C0), width: 2),
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              // Puzzle CAPTCHA
               PuzzleCaptchaWidget(
-                onVerified: (isVerified) {
-                  setState(() {
-                    _isVerified = isVerified;
-                  });
-                },
+                onVerified: (isVerified) => setState(() => _isVerified = isVerified),
                 width: MediaQuery.of(context).size.width * 0.7,
                 height: 120,
               ),
-
               const SizedBox(height: 20),
-
-              // Submit Button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -1605,18 +1481,10 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1565C0),
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text(
-                    'Submit Review',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: const Text('Submit Review',
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -1633,7 +1501,9 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
   }
 }
 
-// Bookmarked Startups Sheet
+// ─────────────────────────────────────────────────────────────────────────────
+// BOOKMARKED STARTUPS SHEET  (unchanged)
+// ─────────────────────────────────────────────────────────────────────────────
 class BookmarkedStartupsSheet extends StatelessWidget {
   final List<Startup> startups;
   final Function(Startup) onStartupTap;
@@ -1656,12 +1526,8 @@ class BookmarkedStartupsSheet extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.symmetric(vertical: 12),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(2),
-            ),
+            width: 40, height: 4,
+            decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -1669,13 +1535,8 @@ class BookmarkedStartupsSheet extends StatelessWidget {
               children: [
                 const Icon(Icons.bookmark, color: Color(0xFF1565C0)),
                 const SizedBox(width: 12),
-                Text(
-                  'Bookmarked Startups (${startups.length})',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text('Bookmarked Startups (${startups.length})',
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
@@ -1685,13 +1546,9 @@ class BookmarkedStartupsSheet extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.bookmark_border,
-                            size: 64, color: Colors.grey[400]),
+                        Icon(Icons.bookmark_border, size: 64, color: Colors.grey[400]),
                         const SizedBox(height: 16),
-                        Text(
-                          'No bookmarks yet',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
+                        Text('No bookmarks yet', style: TextStyle(color: Colors.grey[600])),
                       ],
                     ),
                   )
@@ -1704,32 +1561,23 @@ class BookmarkedStartupsSheet extends StatelessWidget {
                         margin: const EdgeInsets.only(bottom: 12),
                         child: ListTile(
                           leading: Container(
-                            width: 50,
-                            height: 50,
+                            width: 50, height: 50,
                             decoration: BoxDecoration(
-                              color:
-                                  const Color(0xFF1565C0).withOpacity(0.1),
+                              color: const Color(0xFF1565C0).withOpacity(0.1),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Center(
-                              child: Text(startup.icon,
-                                  style: const TextStyle(fontSize: 24)),
-                            ),
+                            child: Center(child: Text(startup.icon, style: const TextStyle(fontSize: 24))),
                           ),
-                          title: Text(
-                            startup.name,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                          title: Text(startup.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold)),
                           subtitle: Row(
                             children: [
-                              const Icon(Icons.star,
-                                  color: Colors.amber, size: 16),
+                              const Icon(Icons.star, color: Colors.amber, size: 16),
                               const SizedBox(width: 4),
                               Text('${startup.rating}'),
                               const SizedBox(width: 8),
                               if (startup.hasActiveDeals())
-                                const Icon(Icons.local_offer,
-                                    color: Colors.green, size: 16),
+                                const Icon(Icons.local_offer, color: Colors.green, size: 16),
                             ],
                           ),
                           trailing: const Icon(Icons.chevron_right),

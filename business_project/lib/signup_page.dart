@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'services/auth_service.dart';
 import 'customer_home_page.dart';
 import 'business_registration_page.dart';
+import 'widgets/puzzle_captcha_widget.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -18,6 +19,19 @@ class _SignUpPageState extends State<SignUpPage> {
   final _confirmPasswordController = TextEditingController();
   String _selectedUserType = 'customer';
   bool _isLoading = false;
+  bool _isCaptchaVerified = false;
+  bool _showCaptcha = false;
+
+  void _onCaptchaVerified(bool isVerified) {
+    setState(() {
+      _isCaptchaVerified = isVerified;
+    });
+
+    if (isVerified) {
+      // Proceed with signup after successful captcha
+      _performSignUp();
+    }
+  }
 
   Future<void> _handleSignUp() async {
     if (!_formKey.currentState!.validate()) {
@@ -31,6 +45,14 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
+    // Show captcha before allowing signup
+    setState(() {
+      _showCaptcha = true;
+      _isCaptchaVerified = false;
+    });
+  }
+
+  Future<void> _performSignUp() async {
     setState(() {
       _isLoading = true;
     });
@@ -44,6 +66,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
     setState(() {
       _isLoading = false;
+      _showCaptcha = false;
+      _isCaptchaVerified = false;
     });
 
     if (success && mounted) {
@@ -68,9 +92,11 @@ class _SignUpPageState extends State<SignUpPage> {
         );
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Username already exists')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Username already exists')),
+        );
+      }
     }
   }
 
@@ -298,6 +324,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 const SizedBox(height: 24),
+                
+                // Show captcha if signup button was pressed
+                if (_showCaptcha && !_isCaptchaVerified)
+                  Column(
+                    children: [
+                      PuzzleCaptchaWidget(
+                        onVerified: _onCaptchaVerified,
+                        width: MediaQuery.of(context).size.width - 48,
+                        height: 150,
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                
                 SizedBox(
                   width: double.infinity,
                   height: 50,
