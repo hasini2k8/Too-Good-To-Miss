@@ -20,7 +20,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
-  // User data - will be loaded from auth service
   String userName = 'Loading...';
   String userEmail = 'Loading...';
   int points = 0;
@@ -49,7 +48,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Refresh data when returning to this page
     _refreshUserData();
   }
 

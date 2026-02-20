@@ -28,7 +28,6 @@ class _SignUpPageState extends State<SignUpPage> {
     });
 
     if (isVerified) {
-      // Proceed with signup after successful captcha
       _performSignUp();
     }
   }
@@ -45,7 +44,6 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    // Show captcha before allowing signup
     setState(() {
       _showCaptcha = true;
       _isCaptchaVerified = false;
@@ -71,13 +69,11 @@ class _SignUpPageState extends State<SignUpPage> {
     });
 
     if (success && mounted) {
-      // Auto login after signup
       await AuthService.loginUser(
-        usernameOrEmail: _emailController.text,  // CHANGED: Use email instead of username
+        usernameOrEmail: _emailController.text,
         password: _passwordController.text,
       );
 
-      // Navigate based on user type
       if (_selectedUserType == 'customer') {
         Navigator.pushReplacement(
           context,
@@ -325,7 +321,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 24),
                 
-                // Show captcha if signup button was pressed
                 if (_showCaptcha && !_isCaptchaVerified)
                   Column(
                     children: [

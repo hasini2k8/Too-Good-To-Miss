@@ -14,7 +14,6 @@ class StartupDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Group menu items by category
     Map<String, List<MenuItem>> groupedMenu = {};
     for (var item in startup.menu) {
       if (!groupedMenu.containsKey(item.category)) {
@@ -43,7 +42,6 @@ class StartupDetailPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Compact Header Section
           Container(
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -127,7 +125,6 @@ class StartupDetailPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          // Menu Section
           Expanded(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -195,7 +192,6 @@ class StartupDetailPage extends StatelessWidget {
                                 children: [
                                   if (categoryIndex > 0)
                                     const SizedBox(height: 24),
-                                  // Category Header
                                   Padding(
                                     padding: const EdgeInsets.only(
                                       left: 4,
@@ -210,7 +206,6 @@ class StartupDetailPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // Menu Items in this category
                                   ...items.map((item) =>
                                       _buildMenuItem(item)),
                                 ],

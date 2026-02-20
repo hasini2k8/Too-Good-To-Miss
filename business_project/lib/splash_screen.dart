@@ -39,7 +39,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _animationController.forward();
 
-    // Navigate to login page after animation
     Timer(const Duration(milliseconds: 2500), () {
       if (mounted) {
         Navigator.pushReplacement(

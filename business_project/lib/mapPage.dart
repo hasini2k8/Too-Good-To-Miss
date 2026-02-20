@@ -42,7 +42,6 @@ class _MapPageState extends State<MapPage> {
   final BookmarkService _bookmarkService = BookmarkService();
 
   final List<String> _categories = ['All', 'Food', 'Retail', 'Technology', 'Services'];
-  final List<String> _sortOptions = ['Name', 'Rating', 'Reviews'];
   final List<String> _ratingFilters = ['All', '5★', '4★+', '3★+', '2★+', '1★+'];
 
   @override
@@ -433,32 +432,7 @@ class _MapPageState extends State<MapPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF1565C0).withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: const Color(0xFF1565C0).withOpacity(0.3)),
-                          ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              value: _sortBy,
-                              icon: const Icon(Icons.sort, color: Color(0xFF1565C0)),
-                              items: _sortOptions.map((String option) {
-                                return DropdownMenuItem(
-                                  value: option,
-                                  child: Text(option, style: const TextStyle(color: Color(0xFF1565C0), fontWeight: FontWeight.w500)),
-                                );
-                              }).toList(),
-                              onChanged: (String? newValue) {
-                                if (newValue != null) {
-                                  setState(() { _sortBy = newValue; _applyFiltersAndSort(); _createMarkers(); });
-                                }
-                              },
-                            ),
-                          ),
-                        ),
+                        // Sort dropdown removed per request (defaults to `_sortBy` = 'Name')
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -619,12 +593,8 @@ class _MapPageState extends State<MapPage> {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ROUTE HELPER  ── handles distance estimation & URL launching
-// ─────────────────────────────────────────────────────────────────────────────
 class RouteHelper {
-  /// Rough travel-time estimates using straight-line distance.
-  /// Replace with a real Directions API call for live traffic data.
+
   static Map<String, String> estimateTravelTimes({
     required double fromLat,
     required double fromLon,
@@ -634,7 +604,6 @@ class RouteHelper {
     final distanceM = Geolocator.distanceBetween(fromLat, fromLon, toLat, toLon);
     final distanceKm = distanceM / 1000;
 
-    // Average speeds (km/h) with a 1.35 road-factor multiplier
     final driveMins = ((distanceKm * 1.35) / 40 * 60).round();
     final transitMins = ((distanceKm * 1.35) / 25 * 60).round();
     final walkMins = ((distanceKm * 1.35) / 5 * 60).round();
@@ -656,19 +625,16 @@ class RouteHelper {
     };
   }
 
-  /// Opens Google Maps with turn-by-turn directions.
   static Future<void> openGoogleMapsDirections({
     required double fromLat,
     required double fromLon,
     required double toLat,
     required double toLon,
-    required String travelMode, // 'driving' | 'transit' | 'walking' | 'bicycling'
+    required String travelMode, 
   }) async {
-    // comgooglemaps:// deep-link (opens native app if installed)
     final nativeUri = Uri.parse(
       'comgooglemaps://?saddr=$fromLat,$fromLon&daddr=$toLat,$toLon&directionsmode=$travelMode',
     );
-    // Web fallback
     final webUri = Uri.parse(
       'https://www.google.com/maps/dir/?api=1'
       '&origin=$fromLat,$fromLon'
@@ -684,9 +650,7 @@ class RouteHelper {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ROUTE SHEET  ── shown when the user taps "Get Directions"
-// ─────────────────────────────────────────────────────────────────────────────
+
 class RouteOptionsSheet extends StatefulWidget {
   final Startup startup;
   final double userLat;
@@ -707,7 +671,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
   String _selectedMode = 'driving';
   late Map<String, String> _times;
 
-  // Travel mode config
   static const _modes = [
     {'key': 'driving',   'label': 'Drive',    'icon': Icons.directions_car,   'gmaps': 'driving'},
     {'key': 'transit',   'label': 'Transit',  'icon': Icons.directions_transit,'gmaps': 'transit'},
@@ -751,7 +714,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Handle
           Center(
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 12),
@@ -760,7 +722,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
             ),
           ),
 
-          // Title row
           Row(
             children: [
               Container(
@@ -800,7 +761,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black54)),
           const SizedBox(height: 12),
 
-          // Mode selector cards
           Row(
             children: _modes.map((mode) {
               final key = mode['key'] as String;
@@ -854,7 +814,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
 
           const SizedBox(height: 16),
 
-          // Traffic / info note
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
@@ -878,7 +837,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
 
           const SizedBox(height: 20),
 
-          // Open in Google Maps button
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
@@ -902,9 +860,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// STARTUP DETAILS SHEET  (updated – now passes userLat/userLon + route button)
-// ─────────────────────────────────────────────────────────────────────────────
 class StartupDetailsSheet extends StatefulWidget {
   final Startup startup;
   final ReviewService reviewService;
@@ -987,7 +942,6 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
     );
   }
 
-  // ── NEW: shows the RouteOptionsSheet ──
   void _showRouteOptions() {
     showModalBottomSheet(
       context: context,
@@ -1070,7 +1024,6 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
 
               const SizedBox(height: 12),
 
-              // ── NEW: Get Directions button ──────────────────────────────
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
@@ -1091,11 +1044,9 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                   ),
                 ),
               ),
-              // ────────────────────────────────────────────────────────────
 
               const SizedBox(height: 12),
 
-              // Tabs
               Container(
                 height: 50,
                 decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[300]!))),
@@ -1345,9 +1296,6 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ADD REVIEW DIALOG  (unchanged)
-// ─────────────────────────────────────────────────────────────────────────────
 class AddReviewDialog extends StatefulWidget {
   final Startup startup;
   final ReviewService reviewService;
@@ -1501,9 +1449,6 @@ class _AddReviewDialogState extends State<AddReviewDialog> {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// BOOKMARKED STARTUPS SHEET  (unchanged)
-// ─────────────────────────────────────────────────────────────────────────────
 class BookmarkedStartupsSheet extends StatelessWidget {
   final List<Startup> startups;
   final Function(Startup) onStartupTap;

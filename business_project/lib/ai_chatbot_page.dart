@@ -143,17 +143,16 @@ Example queries you should handle:
       if (await _audioRecorder.hasPermission()) {
         final timestamp = DateTime.now().millisecondsSinceEpoch;
         
-        // On web, use opus or wav encoder (better compatibility)
-        // On mobile, use aac
+
         final filePath = kIsWeb 
-            ? 'mivi_recording_$timestamp'  // Web: extension will be added automatically
-            : '/cache/mivi_recording_$timestamp.m4a';  // Mobile: actual path
+            ? 'mivi_recording_$timestamp'  
+            : '/cache/mivi_recording_$timestamp.m4a';
         
         await _audioRecorder.start(
           RecordConfig(
             encoder: kIsWeb ? AudioEncoder.opus : AudioEncoder.aacLc,
             bitRate: 128000,
-            sampleRate: kIsWeb ? 48000 : 44100,  // 48kHz is standard for web
+            sampleRate: kIsWeb ? 48000 : 44100,  
           ),
           path: filePath,
         );

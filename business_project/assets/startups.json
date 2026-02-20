@@ -5,7 +5,7 @@
     "city": "Toronto",
     "province": "ON"
   },
-  "search_radius_km": 50,
+  "search_radius_km": 500,
   "startups": [
     {
       "id": "s001",
@@ -24,7 +24,7 @@
           "id": "m001",
           "name": "Maple Walnut",
           "description": "Classic Canadian flavor with real maple syrup",
-          "price": 6.50,
+          "price": 6.5,
           "category": "Ice Cream",
           "points": 65
         },
@@ -32,7 +32,7 @@
           "id": "m002",
           "name": "Lavender Honey",
           "description": "Floral and sweet with local honey",
-          "price": 7.00,
+          "price": 7.0,
           "category": "Ice Cream",
           "points": 70
         },
@@ -40,7 +40,7 @@
           "id": "m003",
           "name": "Dark Chocolate Sea Salt",
           "description": "Rich chocolate with a hint of sea salt",
-          "price": 6.50,
+          "price": 6.5,
           "category": "Ice Cream",
           "points": 65
         },
@@ -48,7 +48,7 @@
           "id": "m004",
           "name": "Strawberry Basil",
           "description": "Fresh strawberries with garden basil",
-          "price": 7.50,
+          "price": 7.5,
           "category": "Ice Cream",
           "points": 75
         }
@@ -87,7 +87,7 @@
           "id": "m007",
           "name": "Farm Fresh Eggs",
           "description": "Free-range eggs from Ontario farms",
-          "price": 7.50,
+          "price": 7.5,
           "category": "Dairy",
           "points": 75
         },
@@ -95,7 +95,7 @@
           "id": "m008",
           "name": "Organic Bread Loaf",
           "description": "Whole grain sourdough bread",
-          "price": 8.00,
+          "price": 8.0,
           "category": "Bakery",
           "points": 80
         }
@@ -107,8 +107,8 @@
       "category": "Food",
       "description": "Co-working cafe with high-speed internet and artisan coffee",
       "location": "789 King St E, Toronto, ON",
-      "latitude": 43.6510,
-      "longitude": -79.3470,
+      "latitude": 43.651,
+      "longitude": -79.347,
       "rating": 4.7,
       "reviewCount": 3,
       "icon": "☕",
@@ -118,7 +118,7 @@
           "id": "m009",
           "name": "Espresso",
           "description": "Single shot of premium espresso",
-          "price": 3.50,
+          "price": 3.5,
           "category": "Coffee",
           "points": 35
         },
@@ -126,7 +126,7 @@
           "id": "m010",
           "name": "Cappuccino",
           "description": "Espresso with steamed milk foam",
-          "price": 5.00,
+          "price": 5.0,
           "category": "Coffee",
           "points": 50
         },
@@ -134,7 +134,7 @@
           "id": "m011",
           "name": "Avocado Toast",
           "description": "Smashed avocado on sourdough",
-          "price": 12.00,
+          "price": 12.0,
           "category": "Food",
           "points": 120
         },
@@ -142,7 +142,7 @@
           "id": "m012",
           "name": "Croissant",
           "description": "Buttery French croissant",
-          "price": 4.50,
+          "price": 4.5,
           "category": "Pastries",
           "points": 45
         }
@@ -189,7 +189,7 @@
           "id": "m016",
           "name": "Gym Bag",
           "description": "Recycled material gym duffel bag",
-          "price": 45.00,
+          "price": 45.0,
           "category": "Accessories",
           "points": 450
         }
@@ -228,7 +228,7 @@
           "id": "m019",
           "name": "Butter Tart",
           "description": "Classic Canadian butter tart",
-          "price": 5.50,
+          "price": 5.5,
           "category": "Desserts",
           "points": 55
         },
@@ -236,7 +236,7 @@
           "id": "m020",
           "name": "Caesar Cocktail",
           "description": "Canada's signature cocktail",
-          "price": 9.00,
+          "price": 9.0,
           "category": "Drinks",
           "points": 90
         }
@@ -275,7 +275,7 @@
           "id": "m023",
           "name": "BookNook Tote Bag",
           "description": "Canvas tote with bookstore logo",
-          "price": 15.00,
+          "price": 15.0,
           "category": "Merchandise",
           "points": 150
         },
@@ -295,8 +295,8 @@
       "category": "Technology",
       "description": "Electronics store specializing in eco-friendly tech products",
       "location": "147 Spadina Ave, Toronto, ON",
-      "latitude": 43.6600,
-      "longitude": -79.3700,
+      "latitude": 43.66,
+      "longitude": -79.37,
       "rating": 4.4,
       "reviewCount": 2,
       "icon": "💻",
@@ -314,7 +314,7 @@
           "id": "m026",
           "name": "Eco Laptop Stand",
           "description": "Bamboo adjustable laptop stand",
-          "price": 45.00,
+          "price": 45.0,
           "category": "Accessories",
           "points": 450
         },
@@ -342,8 +342,8 @@
       "category": "Services",
       "description": "Holistic health center offering yoga, meditation, and spa services",
       "location": "258 Harbord St, Toronto, ON",
-      "latitude": 43.6480,
-      "longitude": -79.3950,
+      "latitude": 43.648,
+      "longitude": -79.395,
       "rating": 1.5,
       "reviewCount": 2,
       "icon": "🧘",
@@ -353,7 +353,7 @@
           "id": "m029",
           "name": "Hot Yoga Class",
           "description": "60-minute heated yoga session",
-          "price": 25.00,
+          "price": 25.0,
           "category": "Classes",
           "points": 250
         },
@@ -361,7 +361,7 @@
           "id": "m030",
           "name": "Deep Tissue Massage",
           "description": "90-minute therapeutic massage",
-          "price": 120.00,
+          "price": 120.0,
           "category": "Spa",
           "points": 1200
         },
@@ -369,7 +369,7 @@
           "id": "m031",
           "name": "Meditation Workshop",
           "description": "2-hour guided meditation workshop",
-          "price": 45.00,
+          "price": 45.0,
           "category": "Classes",
           "points": 450
         },
@@ -377,7 +377,7 @@
           "id": "m032",
           "name": "Aromatherapy Facial",
           "description": "Relaxing facial with essential oils",
-          "price": 85.00,
+          "price": 85.0,
           "category": "Spa",
           "points": 850
         }
@@ -389,8 +389,8 @@
       "category": "Food",
       "description": "Family-owned Italian restaurant with homemade pasta",
       "location": "369 Bay St, Toronto, ON",
-      "latitude": 43.6590,
-      "longitude": -79.3780,
+      "latitude": 43.659,
+      "longitude": -79.378,
       "rating": 3.7,
       "reviewCount": 2,
       "icon": "🍝",
@@ -436,8 +436,8 @@
       "category": "Retail",
       "description": "Premium pet supply store with grooming services",
       "location": "741 Adelaide St, Toronto, ON",
-      "latitude": 43.6520,
-      "longitude": -79.3920,
+      "latitude": 43.652,
+      "longitude": -79.392,
       "rating": 4.6,
       "reviewCount": 2,
       "icon": "🐾",
@@ -463,7 +463,7 @@
           "id": "m039",
           "name": "Dog Grooming Session",
           "description": "Full bath, trim, and nail clipping",
-          "price": 65.00,
+          "price": 65.0,
           "category": "Services",
           "points": 650
         },
@@ -483,8 +483,8 @@
       "category": "Food",
       "description": "Specialty coffee roastery with fresh pastries and sandwiches",
       "location": "852 Queen St E, Toronto, ON",
-      "latitude": 43.6580,
-      "longitude": -79.3650,
+      "latitude": 43.658,
+      "longitude": -79.365,
       "rating": 4.4,
       "reviewCount": 2,
       "icon": "☕",
@@ -494,7 +494,7 @@
           "id": "m041",
           "name": "Pour Over Coffee",
           "description": "Single-origin pour over coffee",
-          "price": 5.50,
+          "price": 5.5,
           "category": "Coffee",
           "points": 55
         },
@@ -502,7 +502,7 @@
           "id": "m042",
           "name": "Cold Brew",
           "description": "Smooth 24-hour cold brew",
-          "price": 6.00,
+          "price": 6.0,
           "category": "Coffee",
           "points": 60
         },
@@ -518,7 +518,7 @@
           "id": "m044",
           "name": "Blueberry Muffin",
           "description": "Fresh-baked with wild blueberries",
-          "price": 4.50,
+          "price": 4.5,
           "category": "Pastries",
           "points": 45
         }
@@ -531,7 +531,7 @@
       "description": "Curated fashion boutique with emerging designer collections",
       "location": "963 Ossington Ave, Toronto, ON",
       "latitude": 43.6495,
-      "longitude": -79.4180,
+      "longitude": -79.418,
       "rating": 4.5,
       "reviewCount": 2,
       "icon": "👗",
@@ -557,7 +557,7 @@
           "id": "m047",
           "name": "Statement Earrings",
           "description": "Bold contemporary earrings",
-          "price": 45.00,
+          "price": 45.0,
           "category": "Jewelry",
           "points": 450
         },
@@ -565,7 +565,7 @@
           "id": "m048",
           "name": "Silk Scarf",
           "description": "Hand-printed silk scarf",
-          "price": 75.00,
+          "price": 75.0,
           "category": "Accessories",
           "points": 750
         }
@@ -577,8 +577,8 @@
       "category": "Food",
       "description": "Asian fusion restaurant featuring creative sushi rolls",
       "location": "147 Baldwin St, Toronto, ON",
-      "latitude": 43.6540,
-      "longitude": -79.3990,
+      "latitude": 43.654,
+      "longitude": -79.399,
       "rating": 2.6,
       "reviewCount": 2,
       "icon": "🍱",
@@ -625,7 +625,7 @@
       "description": "Programming bootcamp and tech education center",
       "location": "258 Richmond St W, Toronto, ON",
       "latitude": 43.6505,
-      "longitude": -79.3900,
+      "longitude": -79.39,
       "rating": 3.7,
       "reviewCount": 2,
       "icon": "💡",
@@ -635,7 +635,7 @@
           "id": "m053",
           "name": "Web Development Course",
           "description": "12-week intensive bootcamp",
-          "price": 8999.00,
+          "price": 8999.0,
           "category": "Courses",
           "points": 89990
         },
@@ -643,7 +643,7 @@
           "id": "m054",
           "name": "Python Workshop",
           "description": "Weekend crash course",
-          "price": 299.00,
+          "price": 299.0,
           "category": "Workshops",
           "points": 2990
         },
@@ -651,7 +651,7 @@
           "id": "m055",
           "name": "1-on-1 Mentorship",
           "description": "Personal coding mentor session",
-          "price": 75.00,
+          "price": 75.0,
           "category": "Services",
           "points": 750
         },
@@ -659,7 +659,7 @@
           "id": "m056",
           "name": "Study Materials Kit",
           "description": "Books and resources bundle",
-          "price": 150.00,
+          "price": 150.0,
           "category": "Materials",
           "points": 1500
         }
@@ -671,8 +671,8 @@
       "category": "Services",
       "description": "Full-service spa offering massages, facials, and beauty treatments",
       "location": "741 Danforth Ave, Toronto, ON",
-      "latitude": 43.6780,
-      "longitude": -79.3500,
+      "latitude": 43.678,
+      "longitude": -79.35,
       "rating": 4.3,
       "reviewCount": 2,
       "icon": "💆",
@@ -682,7 +682,7 @@
           "id": "m057",
           "name": "Swedish Massage",
           "description": "60-minute relaxation massage",
-          "price": 95.00,
+          "price": 95.0,
           "category": "Massage",
           "points": 950
         },
@@ -690,7 +690,7 @@
           "id": "m058",
           "name": "Hydrating Facial",
           "description": "Deep cleansing and moisturizing",
-          "price": 110.00,
+          "price": 110.0,
           "category": "Facial",
           "points": 1100
         },
@@ -698,7 +698,7 @@
           "id": "m059",
           "name": "Manicure & Pedicure",
           "description": "Complete nail care package",
-          "price": 65.00,
+          "price": 65.0,
           "category": "Nails",
           "points": 650
         },
@@ -706,7 +706,7 @@
           "id": "m060",
           "name": "Hair Styling",
           "description": "Cut, wash, and style",
-          "price": 75.00,
+          "price": 75.0,
           "category": "Hair",
           "points": 750
         }
@@ -739,6 +739,4675 @@
           "description": "Spicy buffalo wings",
           "price": 11.99,
           "category": "Appetizers",
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "s017",
+      "name": "Markham Dim Sum Palace",
+      "category": "Food",
+      "description": "Authentic Hong Kong-style dim sum with over 60 varieties of dumplings and bao",
+      "location": "8250 Kennedy Rd, Markham, ON",
+      "latitude": 43.8563,
+      "longitude": -79.2623,
+      "rating": 4.8,
+      "reviewCount": 8,
+      "icon": "🥟",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m063",
+          "name": "Har Gow",
+          "description": "Steamed shrimp dumplings in translucent wrapper",
+          "price": 6.5,
+          "category": "Steamed",
+          "points": 65
+        },
+        {
+          "id": "m064",
+          "name": "Siu Mai",
+          "description": "Pork and shrimp open-top dumplings",
+          "price": 6.0,
+          "category": "Steamed",
+          "points": 60
+        },
+        {
+          "id": "m065",
+          "name": "BBQ Pork Bao",
+          "description": "Fluffy steamed buns filled with char siu",
+          "price": 5.5,
+          "category": "Bao",
+          "points": 55
+        },
+        {
+          "id": "m066",
+          "name": "Turnip Cake",
+          "description": "Pan-fried radish cake with XO sauce",
+          "price": 7.0,
+          "category": "Fried",
+          "points": 70
+        },
+        {
+          "id": "m067",
+          "name": "Egg Tart",
+          "description": "Flaky pastry shell with silky egg custard",
+          "price": 4.5,
+          "category": "Desserts",
+          "points": 45
+        }
+      ]
+    },
+    {
+      "id": "s018",
+      "name": "Pacific Mall Electronics",
+      "category": "Technology",
+      "description": "North America's largest indoor Asian mall with electronics, gadgets, and accessories",
+      "location": "4300 Steeles Ave E, Markham, ON",
+      "latitude": 43.821,
+      "longitude": -79.289,
+      "rating": 4.2,
+      "reviewCount": 7,
+      "icon": "📱",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m068",
+          "name": "Phone Case Bundle",
+          "description": "Custom cases for all major phone models",
+          "price": 19.99,
+          "category": "Accessories",
+          "points": 200
+        },
+        {
+          "id": "m069",
+          "name": "Bluetooth Earbuds",
+          "description": "Wireless earbuds with noise cancellation",
+          "price": 49.99,
+          "category": "Audio",
+          "points": 500
+        },
+        {
+          "id": "m070",
+          "name": "USB-C Hub",
+          "description": "7-in-1 multiport adapter",
+          "price": 35.99,
+          "category": "Accessories",
+          "points": 360
+        },
+        {
+          "id": "m071",
+          "name": "Portable Charger",
+          "description": "10,000mAh slim power bank",
+          "price": 29.99,
+          "category": "Charging",
+          "points": 300
+        }
+      ]
+    },
+    {
+      "id": "s019",
+      "name": "Sakura Ramen",
+      "category": "Food",
+      "description": "Japanese ramen shop with 18-hour tonkotsu broth and handmade noodles",
+      "location": "3255 Hwy 7 E, Markham, ON",
+      "latitude": 43.8471,
+      "longitude": -79.301,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🍜",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m072",
+          "name": "Tonkotsu Ramen",
+          "description": "Rich pork bone broth with chashu pork",
+          "price": 17.99,
+          "category": "Ramen",
+          "points": 180
+        },
+        {
+          "id": "m073",
+          "name": "Spicy Miso Ramen",
+          "description": "Miso broth with chili paste and corn",
+          "price": 18.99,
+          "category": "Ramen",
+          "points": 190
+        },
+        {
+          "id": "m074",
+          "name": "Gyoza (6pc)",
+          "description": "Pan-fried pork and cabbage dumplings",
+          "price": 9.99,
+          "category": "Sides",
+          "points": 100
+        },
+        {
+          "id": "m075",
+          "name": "Karaage Chicken",
+          "description": "Japanese fried chicken with yuzu mayo",
+          "price": 12.99,
+          "category": "Sides",
+          "points": 130
+        }
+      ]
+    },
+    {
+      "id": "s020",
+      "name": "Markham Bubble Tea Bar",
+      "category": "Food",
+      "description": "Taiwanese-style bubble tea with fresh toppings and customizable sweetness levels",
+      "location": "7163 Yonge St, Markham, ON",
+      "latitude": 43.8401,
+      "longitude": -79.4255,
+      "rating": 4.5,
+      "reviewCount": 9,
+      "icon": "🧋",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m076",
+          "name": "Brown Sugar Milk Tea",
+          "description": "Tiger stripe brown sugar with tapioca pearls",
+          "price": 7.5,
+          "category": "Milk Tea",
+          "points": 75
+        },
+        {
+          "id": "m077",
+          "name": "Taro Milk Tea",
+          "description": "Creamy taro with chewy boba",
+          "price": 7.0,
+          "category": "Milk Tea",
+          "points": 70
+        },
+        {
+          "id": "m078",
+          "name": "Mango Yakult",
+          "description": "Fresh mango with Yakult and popping boba",
+          "price": 7.5,
+          "category": "Fruit Tea",
+          "points": 75
+        },
+        {
+          "id": "m079",
+          "name": "Matcha Latte",
+          "description": "Premium ceremonial matcha with oat milk",
+          "price": 8.0,
+          "category": "Latte",
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "s021",
+      "name": "Heritage Korean BBQ",
+      "category": "Food",
+      "description": "All-you-can-eat Korean BBQ with premium cuts and authentic banchan",
+      "location": "5328 Hwy 7, Markham, ON",
+      "latitude": 43.8503,
+      "longitude": -79.3422,
+      "rating": 4.7,
+      "reviewCount": 10,
+      "icon": "🥩",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m080",
+          "name": "AYCE Lunch",
+          "description": "All-you-can-eat BBQ lunch special",
+          "price": 28.99,
+          "category": "AYCE",
+          "points": 290
+        },
+        {
+          "id": "m081",
+          "name": "AYCE Dinner",
+          "description": "All-you-can-eat BBQ dinner with premium cuts",
+          "price": 39.99,
+          "category": "AYCE",
+          "points": 400
+        },
+        {
+          "id": "m082",
+          "name": "Wagyu Add-on",
+          "description": "Premium A5 wagyu beef add-on",
+          "price": 19.99,
+          "category": "Premium",
+          "points": 200
+        },
+        {
+          "id": "m083",
+          "name": "Seafood Platter",
+          "description": "Shrimp, squid, and scallops for grilling",
+          "price": 14.99,
+          "category": "Seafood",
+          "points": 150
+        }
+      ]
+    },
+    {
+      "id": "s022",
+      "name": "Markham Bakehouse",
+      "category": "Food",
+      "description": "Hong Kong-style bakery with freshly baked breads, cakes, and pastries daily",
+      "location": "4315 Sheppard Ave E, Markham, ON",
+      "latitude": 43.7784,
+      "longitude": -79.2611,
+      "rating": 4.4,
+      "reviewCount": 6,
+      "icon": "🥐",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m084",
+          "name": "Pineapple Bun",
+          "description": "Iconic HK pineapple bun with butter",
+          "price": 2.5,
+          "category": "Buns",
+          "points": 25
+        },
+        {
+          "id": "m085",
+          "name": "Coconut Tart",
+          "description": "Flaky tart with coconut custard filling",
+          "price": 3.0,
+          "category": "Pastries",
+          "points": 30
+        },
+        {
+          "id": "m086",
+          "name": "Swiss Roll Cake",
+          "description": "Light cream-filled sponge roll",
+          "price": 18.0,
+          "category": "Cakes",
+          "points": 180
+        },
+        {
+          "id": "m087",
+          "name": "Bolo Bao",
+          "description": "Crispy topped milk bread",
+          "price": 2.0,
+          "category": "Buns",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "id": "s023",
+      "name": "Unionville Antiques & Curiosities",
+      "category": "Retail",
+      "description": "Charming antique shop on historic Main Street Unionville with curated vintage finds",
+      "location": "160 Main St Unionville, Markham, ON",
+      "latitude": 43.868,
+      "longitude": -79.3148,
+      "rating": 4.6,
+      "reviewCount": 5,
+      "icon": "🏺",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m088",
+          "name": "Vintage Timepiece",
+          "description": "Restored antique watches and clocks",
+          "price": 125.0,
+          "category": "Collectibles",
+          "points": 1250
+        },
+        {
+          "id": "m089",
+          "name": "Art Deco Print",
+          "description": "Original vintage framed prints",
+          "price": 75.0,
+          "category": "Art",
+          "points": 750
+        },
+        {
+          "id": "m090",
+          "name": "Ceramic Figurine",
+          "description": "Hand-painted vintage porcelain",
+          "price": 45.0,
+          "category": "Décor",
+          "points": 450
+        },
+        {
+          "id": "m091",
+          "name": "Vintage Postcard Set",
+          "description": "Set of 10 antique Ontario postcards",
+          "price": 22.0,
+          "category": "Paper",
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "s024",
+      "name": "Markham Physiotherapy & Sports",
+      "category": "Services",
+      "description": "Sports medicine and physiotherapy clinic with certified therapists and modern equipment",
+      "location": "9225 Markham Rd, Markham, ON",
+      "latitude": 43.8762,
+      "longitude": -79.2539,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "🏥",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m092",
+          "name": "Initial Assessment",
+          "description": "Comprehensive physiotherapy assessment",
+          "price": 120.0,
+          "category": "Assessment",
+          "points": 1200
+        },
+        {
+          "id": "m093",
+          "name": "Follow-up Session",
+          "description": "45-minute physiotherapy treatment",
+          "price": 90.0,
+          "category": "Treatment",
+          "points": 900
+        },
+        {
+          "id": "m094",
+          "name": "Sports Massage",
+          "description": "60-minute deep tissue sports massage",
+          "price": 100.0,
+          "category": "Massage",
+          "points": 1000
+        },
+        {
+          "id": "m095",
+          "name": "Acupuncture Session",
+          "description": "Traditional acupuncture treatment",
+          "price": 85.0,
+          "category": "Alternative",
+          "points": 850
+        }
+      ]
+    },
+    {
+      "id": "s025",
+      "name": "Taste of Taiwan",
+      "category": "Food",
+      "description": "Authentic Taiwanese street food and night market dishes in Markham",
+      "location": "1865 Denison St, Markham, ON",
+      "latitude": 43.8356,
+      "longitude": -79.2867,
+      "rating": 4.3,
+      "reviewCount": 6,
+      "icon": "🥡",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m096",
+          "name": "Beef Noodle Soup",
+          "description": "Braised beef shank in rich spiced broth",
+          "price": 15.99,
+          "category": "Soups",
+          "points": 160
+        },
+        {
+          "id": "m097",
+          "name": "Scallion Pancake",
+          "description": "Crispy layered scallion pancake",
+          "price": 6.99,
+          "category": "Snacks",
+          "points": 70
+        },
+        {
+          "id": "m098",
+          "name": "Oyster Vermicelli",
+          "description": "Sweet potato starch noodles with oysters",
+          "price": 12.99,
+          "category": "Mains",
+          "points": 130
+        },
+        {
+          "id": "m099",
+          "name": "Shaved Ice",
+          "description": "Taiwanese bao bing with fresh fruit and condensed milk",
+          "price": 10.99,
+          "category": "Desserts",
+          "points": 110
+        }
+      ]
+    },
+    {
+      "id": "s026",
+      "name": "Markham Auto Detailing",
+      "category": "Services",
+      "description": "Professional auto detailing and ceramic coating specialists",
+      "location": "500 Esna Park Dr, Markham, ON",
+      "latitude": 43.8501,
+      "longitude": -79.318,
+      "rating": 4.5,
+      "reviewCount": 5,
+      "icon": "🚗",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m100",
+          "name": "Basic Wash & Wax",
+          "description": "Exterior wash, clay bar, and wax coat",
+          "price": 149.99,
+          "category": "Exterior",
+          "points": 1500
+        },
+        {
+          "id": "m101",
+          "name": "Full Interior Detail",
+          "description": "Deep clean, shampoo, and conditioning",
+          "price": 199.99,
+          "category": "Interior",
+          "points": 2000
+        },
+        {
+          "id": "m102",
+          "name": "Ceramic Coating",
+          "description": "Professional 3-year ceramic paint protection",
+          "price": 899.99,
+          "category": "Protection",
+          "points": 9000
+        },
+        {
+          "id": "m103",
+          "name": "Paint Correction",
+          "description": "Remove swirl marks and light scratches",
+          "price": 349.99,
+          "category": "Correction",
+          "points": 3500
+        }
+      ]
+    },
+    {
+      "id": "s027",
+      "name": "Markham Yoga & Pilates",
+      "category": "Services",
+      "description": "Boutique fitness studio offering yoga, pilates, and barre classes in Markham",
+      "location": "7181 Woodbine Ave, Markham, ON",
+      "latitude": 43.863,
+      "longitude": -79.371,
+      "rating": 4.7,
+      "reviewCount": 8,
+      "icon": "🧘",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m104",
+          "name": "Drop-in Class",
+          "description": "Single class for any format",
+          "price": 22.0,
+          "category": "Classes",
+          "points": 220
+        },
+        {
+          "id": "m105",
+          "name": "10-Class Pass",
+          "description": "Flexible class pass valid 3 months",
+          "price": 180.0,
+          "category": "Passes",
+          "points": 1800
+        },
+        {
+          "id": "m106",
+          "name": "Monthly Unlimited",
+          "description": "Unlimited classes for one month",
+          "price": 99.0,
+          "category": "Memberships",
+          "points": 990
+        },
+        {
+          "id": "m107",
+          "name": "Private Instruction",
+          "description": "60-minute private session with instructor",
+          "price": 85.0,
+          "category": "Private",
+          "points": 850
+        }
+      ]
+    },
+    {
+      "id": "s028",
+      "name": "Hive Creative Co.",
+      "category": "Technology",
+      "description": "Digital marketing and web design agency serving Markham's growing business community",
+      "location": "3601 Hwy 7 E Suite 400, Markham, ON",
+      "latitude": 43.8462,
+      "longitude": -79.294,
+      "rating": 4.4,
+      "reviewCount": 5,
+      "icon": "🖥️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m108",
+          "name": "Website Starter",
+          "description": "5-page business website with SEO setup",
+          "price": 1499.0,
+          "category": "Web Design",
+          "points": 14990
+        },
+        {
+          "id": "m109",
+          "name": "Social Media Management",
+          "description": "Monthly social media content and ads",
+          "price": 799.0,
+          "category": "Marketing",
+          "points": 7990
+        },
+        {
+          "id": "m110",
+          "name": "Logo & Branding",
+          "description": "Complete brand identity package",
+          "price": 599.0,
+          "category": "Branding",
+          "points": 5990
+        },
+        {
+          "id": "m111",
+          "name": "SEO Audit",
+          "description": "Comprehensive website SEO analysis",
+          "price": 299.0,
+          "category": "SEO",
+          "points": 2990
+        }
+      ]
+    },
+    {
+      "id": "s029",
+      "name": "Niagara Falls Fudge Co.",
+      "category": "Food",
+      "description": "Handcrafted fudge and confections made fresh daily near Niagara Falls",
+      "location": "4960 Clifton Hill, Niagara Falls, ON",
+      "latitude": 43.0896,
+      "longitude": -79.0849,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🍫",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m112",
+          "name": "Maple Walnut Fudge",
+          "description": "Classic fudge with Ontario maple and walnuts",
+          "price": 12.99,
+          "category": "Fudge",
+          "points": 130
+        },
+        {
+          "id": "m113",
+          "name": "Cookies & Cream Fudge",
+          "description": "White chocolate fudge with Oreo pieces",
+          "price": 11.99,
+          "category": "Fudge",
+          "points": 120
+        },
+        {
+          "id": "m114",
+          "name": "Rocky Road Fudge",
+          "description": "Dark chocolate with marshmallow and almonds",
+          "price": 12.99,
+          "category": "Fudge",
+          "points": 130
+        },
+        {
+          "id": "m115",
+          "name": "Fudge Sampler Box",
+          "description": "Assorted 12-piece fudge gift box",
+          "price": 29.99,
+          "category": "Gifts",
+          "points": 300
+        }
+      ]
+    },
+    {
+      "id": "s030",
+      "name": "Ottawa Artisan Market",
+      "category": "Retail",
+      "description": "Curated local artisan goods, crafts, and food products from Ottawa makers",
+      "location": "55 ByWard Market Square, Ottawa, ON",
+      "latitude": 45.4291,
+      "longitude": -75.6944,
+      "rating": 4.5,
+      "reviewCount": 6,
+      "icon": "🎨",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m116",
+          "name": "Handmade Pottery",
+          "description": "Wheel-thrown ceramics by local artists",
+          "price": 55.0,
+          "category": "Crafts",
+          "points": 550
+        },
+        {
+          "id": "m117",
+          "name": "Beeswax Candles",
+          "description": "Pure Ottawa Valley beeswax candles",
+          "price": 18.0,
+          "category": "Home",
+          "points": 180
+        },
+        {
+          "id": "m118",
+          "name": "Artisan Jam Set",
+          "description": "3-pack local berry and fruit jams",
+          "price": 24.0,
+          "category": "Food",
+          "points": 240
+        },
+        {
+          "id": "m119",
+          "name": "Indigenous Art Print",
+          "description": "Signed prints by Ottawa Valley Indigenous artists",
+          "price": 75.0,
+          "category": "Art",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s031",
+      "name": "Kingston Craft Brewery",
+      "category": "Food",
+      "description": "Award-winning craft brewery and taproom in historic downtown Kingston",
+      "location": "34 Clarence St, Kingston, ON",
+      "latitude": 44.2298,
+      "longitude": -76.481,
+      "rating": 4.7,
+      "reviewCount": 8,
+      "icon": "🍺",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m120",
+          "name": "Limestone IPA",
+          "description": "Hoppy West Coast IPA with citrus notes",
+          "price": 7.5,
+          "category": "Beer",
+          "points": 75
+        },
+        {
+          "id": "m121",
+          "name": "Rideau Dark Stout",
+          "description": "Smooth chocolate and coffee stout",
+          "price": 7.0,
+          "category": "Beer",
+          "points": 70
+        },
+        {
+          "id": "m122",
+          "name": "Wheat Ale",
+          "description": "Light Belgian-style wheat ale",
+          "price": 6.5,
+          "category": "Beer",
+          "points": 65
+        },
+        {
+          "id": "m123",
+          "name": "Beer Tasting Flight",
+          "description": "Sample 5 of our rotating taps",
+          "price": 18.0,
+          "category": "Flights",
+          "points": 180
+        },
+        {
+          "id": "m124",
+          "name": "Brewery Growler",
+          "description": "64oz refillable growler of your choice",
+          "price": 24.0,
+          "category": "Growlers",
+          "points": 240
+        }
+      ]
+    },
+    {
+      "id": "s032",
+      "name": "Muskoka Lake Adventures",
+      "category": "Services",
+      "description": "Kayak, canoe, and paddleboard rentals with guided eco-tours on Lake Muskoka",
+      "location": "1235 Muskoka Beach Rd, Gravenhurst, ON",
+      "latitude": 44.9172,
+      "longitude": -79.3652,
+      "rating": 4.9,
+      "reviewCount": 9,
+      "icon": "🛶",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m125",
+          "name": "Kayak Rental (Half Day)",
+          "description": "4-hour single kayak rental",
+          "price": 55.0,
+          "category": "Rentals",
+          "points": 550
+        },
+        {
+          "id": "m126",
+          "name": "Canoe Rental (Full Day)",
+          "description": "Full day canoe for 2 people",
+          "price": 85.0,
+          "category": "Rentals",
+          "points": 850
+        },
+        {
+          "id": "m127",
+          "name": "Guided Sunset Tour",
+          "description": "2-hour guided paddleboard tour at sunset",
+          "price": 75.0,
+          "category": "Tours",
+          "points": 750
+        },
+        {
+          "id": "m128",
+          "name": "Beginner Kayak Lesson",
+          "description": "90-minute beginner kayaking class",
+          "price": 65.0,
+          "category": "Lessons",
+          "points": 650
+        }
+      ]
+    },
+    {
+      "id": "s033",
+      "name": "Hamilton Steel & Vine",
+      "category": "Food",
+      "description": "Industrial-chic winery and bistro celebrating Hamilton's steel city heritage",
+      "location": "225 James St N, Hamilton, ON",
+      "latitude": 43.2601,
+      "longitude": -79.8728,
+      "rating": 4.4,
+      "reviewCount": 6,
+      "icon": "🍷",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m129",
+          "name": "Niagara Riesling",
+          "description": "Off-dry Niagara Peninsula Riesling",
+          "price": 12.0,
+          "category": "Wine",
+          "points": 120
+        },
+        {
+          "id": "m130",
+          "name": "Steel City Red Blend",
+          "description": "Bold Cabernet-Merlot house blend",
+          "price": 14.0,
+          "category": "Wine",
+          "points": 140
+        },
+        {
+          "id": "m131",
+          "name": "Charcuterie Board",
+          "description": "Ontario cheeses, cured meats, and preserves",
+          "price": 28.0,
+          "category": "Boards",
+          "points": 280
+        },
+        {
+          "id": "m132",
+          "name": "Wine Tasting Flight",
+          "description": "3 curated wines with tasting notes",
+          "price": 22.0,
+          "category": "Flights",
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "s034",
+      "name": "London Vintage Records",
+      "category": "Retail",
+      "description": "Rare and used vinyl records, cassettes, and music memorabilia in London, Ontario",
+      "location": "632 Dundas St, London, ON",
+      "latitude": 42.989,
+      "longitude": -81.2456,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🎵",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m133",
+          "name": "Used Vinyl LP",
+          "description": "Pre-owned vinyl records across all genres",
+          "price": 14.99,
+          "category": "Vinyl",
+          "points": 150
+        },
+        {
+          "id": "m134",
+          "name": "New Vinyl LP",
+          "description": "Newly pressed records from current artists",
+          "price": 34.99,
+          "category": "Vinyl",
+          "points": 350
+        },
+        {
+          "id": "m135",
+          "name": "Vintage Cassette Tape",
+          "description": "Curated selection of classic tapes",
+          "price": 7.99,
+          "category": "Cassette",
+          "points": 80
+        },
+        {
+          "id": "m136",
+          "name": "Record Cleaning Kit",
+          "description": "Complete vinyl cleaning and care kit",
+          "price": 29.99,
+          "category": "Accessories",
+          "points": 300
+        }
+      ]
+    },
+    {
+      "id": "s035",
+      "name": "Windsor Spice Market",
+      "category": "Food",
+      "description": "International spice shop with over 300 spices, blends, and specialty ingredients",
+      "location": "483 Ouellette Ave, Windsor, ON",
+      "latitude": 42.3149,
+      "longitude": -83.0364,
+      "rating": 4.5,
+      "reviewCount": 5,
+      "icon": "🌶️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m137",
+          "name": "Spice Sampler Kit",
+          "description": "12 house-blended spice sampler set",
+          "price": 34.99,
+          "category": "Sets",
+          "points": 350
+        },
+        {
+          "id": "m138",
+          "name": "Smoked Paprika (250g)",
+          "description": "Spanish-style smoked paprika",
+          "price": 9.99,
+          "category": "Spices",
+          "points": 100
+        },
+        {
+          "id": "m139",
+          "name": "Za'atar Blend (200g)",
+          "description": "Authentic Middle Eastern herb blend",
+          "price": 11.99,
+          "category": "Blends",
+          "points": 120
+        },
+        {
+          "id": "m140",
+          "name": "Saffron Threads (2g)",
+          "description": "Premium Iranian saffron threads",
+          "price": 18.99,
+          "category": "Spices",
+          "points": 190
+        }
+      ]
+    },
+    {
+      "id": "s036",
+      "name": "Sudbury Northern Outfitters",
+      "category": "Retail",
+      "description": "Outdoor gear and camping equipment for Northern Ontario adventures",
+      "location": "1485 Lasalle Blvd, Sudbury, ON",
+      "latitude": 46.5086,
+      "longitude": -81.0055,
+      "rating": 4.3,
+      "reviewCount": 6,
+      "icon": "🏕️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m141",
+          "name": "4-Season Tent",
+          "description": "2-person all-weather backpacking tent",
+          "price": 349.99,
+          "category": "Camping",
+          "points": 3500
+        },
+        {
+          "id": "m142",
+          "name": "Hiking Boots",
+          "description": "Waterproof mid-cut trail boots",
+          "price": 189.99,
+          "category": "Footwear",
+          "points": 1900
+        },
+        {
+          "id": "m143",
+          "name": "Down Sleeping Bag",
+          "description": "750-fill -10°C rated sleeping bag",
+          "price": 249.99,
+          "category": "Sleeping",
+          "points": 2500
+        },
+        {
+          "id": "m144",
+          "name": "Headlamp",
+          "description": "350-lumen rechargeable headlamp",
+          "price": 49.99,
+          "category": "Lighting",
+          "points": 500
+        }
+      ]
+    },
+    {
+      "id": "s037",
+      "name": "Mississauga Flower Studio",
+      "category": "Retail",
+      "description": "Modern floral design studio offering custom arrangements, subscriptions, and workshops",
+      "location": "205 City Centre Dr, Mississauga, ON",
+      "latitude": 43.593,
+      "longitude": -79.644,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "💐",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m145",
+          "name": "Seasonal Bouquet",
+          "description": "Fresh hand-tied seasonal flowers",
+          "price": 45.0,
+          "category": "Bouquets",
+          "points": 450
+        },
+        {
+          "id": "m146",
+          "name": "Wedding Centerpiece",
+          "description": "Custom wedding table centerpiece",
+          "price": 120.0,
+          "category": "Events",
+          "points": 1200
+        },
+        {
+          "id": "m147",
+          "name": "Weekly Flower Subscription",
+          "description": "Fresh blooms delivered every week",
+          "price": 39.0,
+          "category": "Subscriptions",
+          "points": 390
+        },
+        {
+          "id": "m148",
+          "name": "Floral Arrangement Workshop",
+          "description": "2-hour hands-on workshop with take-home bouquet",
+          "price": 75.0,
+          "category": "Workshops",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s038",
+      "name": "Brampton South Asian Grocery",
+      "category": "Retail",
+      "description": "Full-service South Asian supermarket with fresh produce, spices, and specialty items",
+      "location": "10 Gillingham Dr, Brampton, ON",
+      "latitude": 43.6838,
+      "longitude": -79.7624,
+      "rating": 4.4,
+      "reviewCount": 8,
+      "icon": "🛒",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m149",
+          "name": "Basmati Rice (10kg)",
+          "description": "Premium aged basmati rice",
+          "price": 24.99,
+          "category": "Grains",
+          "points": 250
+        },
+        {
+          "id": "m150",
+          "name": "Fresh Paneer (500g)",
+          "description": "House-made fresh paneer",
+          "price": 8.99,
+          "category": "Dairy",
+          "points": 90
+        },
+        {
+          "id": "m151",
+          "name": "Masala Spice Box",
+          "description": "Assorted essential Indian spices",
+          "price": 19.99,
+          "category": "Spices",
+          "points": 200
+        },
+        {
+          "id": "m152",
+          "name": "Mango Lassi (500ml)",
+          "description": "Fresh mango yogurt drink",
+          "price": 4.99,
+          "category": "Drinks",
+          "points": 50
+        }
+      ]
+    },
+    {
+      "id": "s039",
+      "name": "Vaughan Escape Rooms",
+      "category": "Services",
+      "description": "Immersive puzzle-based escape room experiences for groups in Vaughan",
+      "location": "9200 Weston Rd, Vaughan, ON",
+      "latitude": 43.848,
+      "longitude": -79.531,
+      "rating": 4.6,
+      "reviewCount": 9,
+      "icon": "🔐",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m153",
+          "name": "The Heist (2-6 players)",
+          "description": "60-minute bank heist themed escape room",
+          "price": 28.0,
+          "category": "Rooms",
+          "points": 280
+        },
+        {
+          "id": "m154",
+          "name": "Haunted Mansion (2-8 players)",
+          "description": "Horror-themed 75-minute escape room",
+          "price": 32.0,
+          "category": "Rooms",
+          "points": 320
+        },
+        {
+          "id": "m155",
+          "name": "Space Station (2-6 players)",
+          "description": "Sci-fi puzzle challenge room",
+          "price": 30.0,
+          "category": "Rooms",
+          "points": 300
+        },
+        {
+          "id": "m156",
+          "name": "Birthday Party Package",
+          "description": "2 rooms + private lounge for up to 12",
+          "price": 249.0,
+          "category": "Packages",
+          "points": 2490
+        }
+      ]
+    },
+    {
+      "id": "s040",
+      "name": "Thunder Bay Wild Blueberry Farm",
+      "category": "Food",
+      "description": "Pick-your-own wild blueberry farm with preserves, baked goods, and agri-tourism",
+      "location": "1150 Lakeshore Dr, Thunder Bay, ON",
+      "latitude": 48.3809,
+      "longitude": -89.2477,
+      "rating": 4.8,
+      "reviewCount": 5,
+      "icon": "🫐",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m157",
+          "name": "Pick-Your-Own Blueberries (1kg)",
+          "description": "Fresh wild blueberries picked by you",
+          "price": 12.0,
+          "category": "Produce",
+          "points": 120
+        },
+        {
+          "id": "m158",
+          "name": "Wild Blueberry Jam (250ml)",
+          "description": "House-made jam with no preservatives",
+          "price": 9.99,
+          "category": "Preserves",
+          "points": 100
+        },
+        {
+          "id": "m159",
+          "name": "Blueberry Pie (whole)",
+          "description": "Freshly baked wild blueberry pie",
+          "price": 22.0,
+          "category": "Baked Goods",
+          "points": 220
+        },
+        {
+          "id": "m160",
+          "name": "Farm Tour & Tasting",
+          "description": "Guided 1-hour farm tour with tasting",
+          "price": 18.0,
+          "category": "Experiences",
+          "points": 180
+        }
+      ]
+    },
+    {
+      "id": "s041",
+      "name": "Scarborough Hakka Kitchen",
+      "category": "Food",
+      "description": "Indo-Chinese Hakka cuisine — a Toronto specialty beloved since the 1970s",
+      "location": "3300 Midland Ave, Scarborough, ON",
+      "latitude": 43.7784,
+      "longitude": -79.2648,
+      "rating": 4.5,
+      "reviewCount": 7,
+      "icon": "🍛",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m161",
+          "name": "Hakka Chili Chicken",
+          "description": "Crispy chicken tossed in chili garlic sauce",
+          "price": 17.99,
+          "category": "Mains",
+          "points": 180
+        },
+        {
+          "id": "m162",
+          "name": "Manchurian Gravy",
+          "description": "Deep-fried veg balls in tangy manchurian sauce",
+          "price": 15.99,
+          "category": "Mains",
+          "points": 160
+        },
+        {
+          "id": "m163",
+          "name": "Hakka Noodles",
+          "description": "Stir-fried noodles with vegetables and soy",
+          "price": 13.99,
+          "category": "Noodles",
+          "points": 140
+        },
+        {
+          "id": "m164",
+          "name": "Gobi 65",
+          "description": "Spiced crispy cauliflower with green chili",
+          "price": 13.99,
+          "category": "Appetizers",
+          "points": 140
+        }
+      ]
+    },
+    {
+      "id": "s042",
+      "name": "Etobicoke Sourdough Bakery",
+      "category": "Food",
+      "description": "Small-batch artisan sourdough bakery with long-fermented loaves and pastries",
+      "location": "1530 The Queensway, Etobicoke, ON",
+      "latitude": 43.6155,
+      "longitude": -79.524,
+      "rating": 4.9,
+      "reviewCount": 8,
+      "icon": "🍞",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m165",
+          "name": "Country Sourdough Loaf",
+          "description": "Classic 72-hour fermented country loaf",
+          "price": 13.0,
+          "category": "Bread",
+          "points": 130
+        },
+        {
+          "id": "m166",
+          "name": "Seeded Rye Loaf",
+          "description": "Dark rye with caraway and flax seeds",
+          "price": 14.0,
+          "category": "Bread",
+          "points": 140
+        },
+        {
+          "id": "m167",
+          "name": "Morning Bun",
+          "description": "Laminated pastry with orange sugar",
+          "price": 5.5,
+          "category": "Pastries",
+          "points": 55
+        },
+        {
+          "id": "m168",
+          "name": "Pain au Chocolat",
+          "description": "Buttery croissant dough with dark chocolate",
+          "price": 5.0,
+          "category": "Pastries",
+          "points": 50
+        }
+      ]
+    },
+    {
+      "id": "s043",
+      "name": "North York Dance Academy",
+      "category": "Services",
+      "description": "Dance studio offering ballet, hip hop, salsa, and contemporary classes for all ages",
+      "location": "4650 Yonge St, North York, ON",
+      "latitude": 43.7527,
+      "longitude": -79.4037,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "💃",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m169",
+          "name": "Trial Class",
+          "description": "Single drop-in trial for any class",
+          "price": 20.0,
+          "category": "Classes",
+          "points": 200
+        },
+        {
+          "id": "m170",
+          "name": "8-Week Session",
+          "description": "Weekly classes for one dance style",
+          "price": 145.0,
+          "category": "Sessions",
+          "points": 1450
+        },
+        {
+          "id": "m171",
+          "name": "Adult Salsa Beginner",
+          "description": "6-week beginner salsa course",
+          "price": 110.0,
+          "category": "Courses",
+          "points": 1100
+        },
+        {
+          "id": "m172",
+          "name": "Kids Ballet (Monthly)",
+          "description": "Monthly kids ballet membership",
+          "price": 85.0,
+          "category": "Memberships",
+          "points": 850
+        }
+      ]
+    },
+    {
+      "id": "s044",
+      "name": "Ajax Woodworking Co.",
+      "category": "Retail",
+      "description": "Custom handcrafted furniture and woodworking studio in Ajax, Durham Region",
+      "location": "150 Westney Rd S, Ajax, ON",
+      "latitude": 43.8456,
+      "longitude": -79.0335,
+      "rating": 4.7,
+      "reviewCount": 5,
+      "icon": "🪵",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m173",
+          "name": "Live Edge Coffee Table",
+          "description": "Custom walnut live edge slab table",
+          "price": 850.0,
+          "category": "Furniture",
+          "points": 8500
+        },
+        {
+          "id": "m174",
+          "name": "Cutting Board",
+          "description": "End-grain maple and walnut cutting board",
+          "price": 95.0,
+          "category": "Kitchen",
+          "points": 950
+        },
+        {
+          "id": "m175",
+          "name": "Serving Charcuterie Board",
+          "description": "Large maple board with juice groove",
+          "price": 75.0,
+          "category": "Kitchen",
+          "points": 750
+        },
+        {
+          "id": "m176",
+          "name": "Woodworking Workshop",
+          "description": "Half-day beginner woodworking class",
+          "price": 125.0,
+          "category": "Workshops",
+          "points": 1250
+        }
+      ]
+    },
+    {
+      "id": "s045",
+      "name": "Whitby Harbor Seafood",
+      "category": "Food",
+      "description": "Fresh Lake Ontario and Atlantic seafood restaurant with waterfront views",
+      "location": "1 Port Whitby Marina, Whitby, ON",
+      "latitude": 43.8487,
+      "longitude": -78.9428,
+      "rating": 4.5,
+      "reviewCount": 6,
+      "icon": "🦞",
+      "deals": [],
+      "menu": [
+        {
+          "id": "m177",
+          "name": "Fish & Chips",
+          "description": "Beer-battered Lake Ontario perch with fries",
+          "price": 18.99,
+          "category": "Mains",
+          "points": 190
+        },
+        {
+          "id": "m178",
+          "name": "Lobster Roll",
+          "description": "Atlantic lobster in a buttered brioche bun",
+          "price": 26.99,
+          "category": "Mains",
+          "points": 270
+        },
+        {
+          "id": "m179",
+          "name": "Seafood Chowder",
+          "description": "Creamy Maritime-style chowder",
+          "price": 11.99,
+          "category": "Soups",
+          "points": 120
+        },
+        {
+          "id": "m180",
+          "name": "Grilled Salmon",
+          "description": "Atlantic salmon with lemon butter and vegetables",
+          "price": 24.99,
+          "category": "Mains",
+          "points": 250
+        }
+      ]
+    },
+    {
+      "id": "s046",
+      "name": "Markham Sushi Omakase",
+      "category": "Food",
+      "description": "Intimate 12-seat omakase sushi counter with seasonal nigiri crafted by a classically trained Tokyo chef",
+      "location": "8700 Woodbine Ave, Markham, ON",
+      "latitude": 43.8675,
+      "longitude": -79.3745,
+      "rating": 4.9,
+      "reviewCount": 7,
+      "icon": "🍣",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms001",
+          "name": "10-Piece Omakase",
+          "description": "Chef's seasonal nigiri selection",
+          "price": 95.0,
+          "category": "Omakase",
+          "points": 950
+        },
+        {
+          "id": "ms002",
+          "name": "15-Piece Omakase",
+          "description": "Premium seasonal nigiri with specialty cuts",
+          "price": 145.0,
+          "category": "Omakase",
+          "points": 1450
+        },
+        {
+          "id": "ms003",
+          "name": "Uni Handroll",
+          "description": "Santa Barbara uni in crispy nori",
+          "price": 22.0,
+          "category": "Handrolls",
+          "points": 220
+        },
+        {
+          "id": "ms004",
+          "name": "Wagyu Nigiri",
+          "description": "A5 wagyu lightly torched over shari",
+          "price": 28.0,
+          "category": "Premium",
+          "points": 280
+        }
+      ]
+    },
+    {
+      "id": "s047",
+      "name": "Markham Indoor Climbing Gym",
+      "category": "Services",
+      "description": "State-of-the-art bouldering and top-rope climbing gym with 8,000 sq ft of climbing surface",
+      "location": "2300 Bur Oak Ave, Markham, ON",
+      "latitude": 43.878,
+      "longitude": -79.283,
+      "rating": 4.7,
+      "reviewCount": 8,
+      "icon": "🧗",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms005",
+          "name": "Day Pass",
+          "description": "Full day access to all walls",
+          "price": 24.0,
+          "category": "Passes",
+          "points": 240
+        },
+        {
+          "id": "ms006",
+          "name": "Monthly Membership",
+          "description": "Unlimited climbing for one month",
+          "price": 79.0,
+          "category": "Memberships",
+          "points": 790
+        },
+        {
+          "id": "ms007",
+          "name": "Beginner Lesson",
+          "description": "2-hour intro to climbing with gear",
+          "price": 65.0,
+          "category": "Lessons",
+          "points": 650
+        },
+        {
+          "id": "ms008",
+          "name": "Gear Rental",
+          "description": "Shoes, harness, and chalk bag",
+          "price": 12.0,
+          "category": "Rentals",
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "s048",
+      "name": "Rouge Valley Honey Co.",
+      "category": "Food",
+      "description": "Local urban beekeeping operation producing small-batch raw honey from Rouge Valley hives",
+      "location": "1450 Elgin Mills Rd E, Markham, ON",
+      "latitude": 43.9012,
+      "longitude": -79.2645,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🍯",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms009",
+          "name": "Raw Wildflower Honey (500g)",
+          "description": "Unfiltered local wildflower honey",
+          "price": 18.0,
+          "category": "Honey",
+          "points": 180
+        },
+        {
+          "id": "ms010",
+          "name": "Creamed Honey (250g)",
+          "description": "Smooth crystallized whipped honey",
+          "price": 14.0,
+          "category": "Honey",
+          "points": 140
+        },
+        {
+          "id": "ms011",
+          "name": "Honey & Beeswax Gift Set",
+          "description": "Honey jar with pure beeswax lip balm",
+          "price": 28.0,
+          "category": "Gifts",
+          "points": 280
+        },
+        {
+          "id": "ms012",
+          "name": "Beekeeping Experience",
+          "description": "2-hour guided hive tour with suit",
+          "price": 75.0,
+          "category": "Experiences",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s049",
+      "name": "Markham Chess Club & Café",
+      "category": "Services",
+      "description": "Cozy café and chess club with tournament play, lessons for all ages, and a curated game library",
+      "location": "185 Enterprise Blvd, Markham, ON",
+      "latitude": 43.8522,
+      "longitude": -79.3375,
+      "rating": 4.5,
+      "reviewCount": 5,
+      "icon": "♟️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms013",
+          "name": "Table Fee (Per Hour)",
+          "description": "Board access + café seating",
+          "price": 8.0,
+          "category": "Access",
+          "points": 80
+        },
+        {
+          "id": "ms014",
+          "name": "Private Chess Lesson",
+          "description": "1-hour one-on-one coaching",
+          "price": 55.0,
+          "category": "Lessons",
+          "points": 550
+        },
+        {
+          "id": "ms015",
+          "name": "Junior Chess Course (8wks)",
+          "description": "After-school chess program for kids",
+          "price": 160.0,
+          "category": "Courses",
+          "points": 1600
+        },
+        {
+          "id": "ms016",
+          "name": "Tournament Entry",
+          "description": "Weekend rated chess tournament",
+          "price": 25.0,
+          "category": "Events",
+          "points": 250
+        }
+      ]
+    },
+    {
+      "id": "s050",
+      "name": "Unionville Photo Studio",
+      "category": "Services",
+      "description": "Professional photography studio specializing in portrait, family, and commercial photography",
+      "location": "4750 Hwy 7, Unionville, ON",
+      "latitude": 43.8658,
+      "longitude": -79.321,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "📸",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms017",
+          "name": "Family Portrait Session",
+          "description": "1-hour session with 20 edited photos",
+          "price": 250.0,
+          "category": "Portraits",
+          "points": 2500
+        },
+        {
+          "id": "ms018",
+          "name": "Newborn Session",
+          "description": "2-hour newborn photography session",
+          "price": 350.0,
+          "category": "Portraits",
+          "points": 3500
+        },
+        {
+          "id": "ms019",
+          "name": "Headshots",
+          "description": "Professional headshots with 5 final edits",
+          "price": 150.0,
+          "category": "Commercial",
+          "points": 1500
+        },
+        {
+          "id": "ms020",
+          "name": "Product Photography",
+          "description": "E-commerce product photo session",
+          "price": 299.0,
+          "category": "Commercial",
+          "points": 2990
+        }
+      ]
+    },
+    {
+      "id": "s051",
+      "name": "Markham Pierogi House",
+      "category": "Food",
+      "description": "Family-run Eastern European restaurant serving handmade pierogis, cabbage rolls, and borscht",
+      "location": "6990 Warden Ave, Markham, ON",
+      "latitude": 43.847,
+      "longitude": -79.349,
+      "rating": 4.4,
+      "reviewCount": 6,
+      "icon": "🥟",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms021",
+          "name": "Classic Cheddar Pierogis (12pc)",
+          "description": "Potato and cheddar filled dumplings",
+          "price": 14.99,
+          "category": "Pierogis",
+          "points": 150
+        },
+        {
+          "id": "ms022",
+          "name": "Bacon & Sour Cream Pierogis (12pc)",
+          "description": "Fried pierogis with toppings",
+          "price": 16.99,
+          "category": "Pierogis",
+          "points": 170
+        },
+        {
+          "id": "ms023",
+          "name": "Beet Borscht",
+          "description": "Traditional Ukrainian beet soup",
+          "price": 8.99,
+          "category": "Soups",
+          "points": 90
+        },
+        {
+          "id": "ms024",
+          "name": "Cabbage Rolls (4pc)",
+          "description": "Stuffed cabbage in tomato sauce",
+          "price": 17.99,
+          "category": "Mains",
+          "points": 180
+        }
+      ]
+    },
+    {
+      "id": "s052",
+      "name": "Markham 3D Print Lab",
+      "category": "Technology",
+      "description": "On-demand 3D printing service for prototypes, custom parts, figurines, and engineering models",
+      "location": "3100 Steeles Ave E, Markham, ON",
+      "latitude": 43.8235,
+      "longitude": -79.281,
+      "rating": 4.5,
+      "reviewCount": 5,
+      "icon": "🖨️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms025",
+          "name": "Custom Print (Small)",
+          "description": "Up to 10cm print in PLA or PETG",
+          "price": 25.0,
+          "category": "Printing",
+          "points": 250
+        },
+        {
+          "id": "ms026",
+          "name": "Custom Print (Large)",
+          "description": "Up to 30cm print with support structures",
+          "price": 75.0,
+          "category": "Printing",
+          "points": 750
+        },
+        {
+          "id": "ms027",
+          "name": "Resin Print",
+          "description": "High-detail resin print for figurines",
+          "price": 45.0,
+          "category": "Printing",
+          "points": 450
+        },
+        {
+          "id": "ms028",
+          "name": "Design Consultation",
+          "description": "1-hour CAD design and print consultation",
+          "price": 60.0,
+          "category": "Services",
+          "points": 600
+        }
+      ]
+    },
+    {
+      "id": "s053",
+      "name": "Markham Plant & Nursery",
+      "category": "Retail",
+      "description": "Full-service plant nursery with indoor tropicals, succulents, rare aroids, and landscape plants",
+      "location": "9350 Kennedy Rd, Markham, ON",
+      "latitude": 43.889,
+      "longitude": -79.262,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🌿",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms029",
+          "name": "Monstera Deliciosa",
+          "description": "Large Swiss cheese plant in 6\" pot",
+          "price": 35.0,
+          "category": "Tropicals",
+          "points": 350
+        },
+        {
+          "id": "ms030",
+          "name": "Succulent Collection (6pc)",
+          "description": "Assorted succulents in terracotta pots",
+          "price": 28.0,
+          "category": "Succulents",
+          "points": 280
+        },
+        {
+          "id": "ms031",
+          "name": "Rare Aroid",
+          "description": "Rotating rare aroid selection",
+          "price": 85.0,
+          "category": "Rare Plants",
+          "points": 850
+        },
+        {
+          "id": "ms032",
+          "name": "Plant Care Workshop",
+          "description": "2-hour indoor plant care class",
+          "price": 45.0,
+          "category": "Workshops",
+          "points": 450
+        }
+      ]
+    },
+    {
+      "id": "s054",
+      "name": "Kensington Kombucha Co.",
+      "category": "Food",
+      "description": "Small-batch live-culture kombucha brewery and taproom in Kensington Market",
+      "location": "204 Augusta Ave, Toronto, ON",
+      "latitude": 43.6543,
+      "longitude": -79.4009,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🫙",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms033",
+          "name": "Classic Ginger Lemon",
+          "description": "Lively ginger and citrus kombucha",
+          "price": 6.5,
+          "category": "Kombucha",
+          "points": 65
+        },
+        {
+          "id": "ms034",
+          "name": "Raspberry Rose",
+          "description": "Floral fruity second ferment",
+          "price": 7.0,
+          "category": "Kombucha",
+          "points": 70
+        },
+        {
+          "id": "ms035",
+          "name": "Growler Fill (1L)",
+          "description": "Refillable growler of any flavour",
+          "price": 14.0,
+          "category": "Growlers",
+          "points": 140
+        },
+        {
+          "id": "ms036",
+          "name": "Tasting Flight (5 x 60ml)",
+          "description": "Sample 5 rotating seasonal flavours",
+          "price": 12.0,
+          "category": "Flights",
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "s055",
+      "name": "Parkdale Natural Wine Bar",
+      "category": "Food",
+      "description": "Intimate natural wine bar pouring low-intervention wines from small producers worldwide",
+      "location": "1430 Queen St W, Toronto, ON",
+      "latitude": 43.6412,
+      "longitude": -79.4366,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🍾",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms037",
+          "name": "Glass of Natural Wine",
+          "description": "Rotating selection of natural wines by the glass",
+          "price": 15.0,
+          "category": "Wine",
+          "points": 150
+        },
+        {
+          "id": "ms038",
+          "name": "Bottle (Producer Selection)",
+          "description": "Curated bottle from our cellar",
+          "price": 65.0,
+          "category": "Wine",
+          "points": 650
+        },
+        {
+          "id": "ms039",
+          "name": "Cheese & Honey Plate",
+          "description": "3 natural cheeses with honeycomb",
+          "price": 22.0,
+          "category": "Snacks",
+          "points": 220
+        },
+        {
+          "id": "ms040",
+          "name": "Wine Education Tasting",
+          "description": "Guided Saturday tasting with 4 pours",
+          "price": 45.0,
+          "category": "Events",
+          "points": 450
+        }
+      ]
+    },
+    {
+      "id": "s056",
+      "name": "Leslieville Candle Studio",
+      "category": "Retail",
+      "description": "Handpoured soy candle studio with customizable scents and candle-making workshops",
+      "location": "901 Queen St E, Toronto, ON",
+      "latitude": 43.6584,
+      "longitude": -79.3464,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🕯️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms041",
+          "name": "Small Soy Candle (100g)",
+          "description": "Hand-poured with your scent choice",
+          "price": 18.0,
+          "category": "Candles",
+          "points": 180
+        },
+        {
+          "id": "ms042",
+          "name": "Large Soy Candle (300g)",
+          "description": "Long-burn signature candle",
+          "price": 38.0,
+          "category": "Candles",
+          "points": 380
+        },
+        {
+          "id": "ms043",
+          "name": "Candle Making Workshop",
+          "description": "2-hour workshop, take home 2 candles",
+          "price": 65.0,
+          "category": "Workshops",
+          "points": 650
+        },
+        {
+          "id": "ms044",
+          "name": "Gift Set (3 Candles)",
+          "description": "Three curated scent candle gift box",
+          "price": 75.0,
+          "category": "Gifts",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s057",
+      "name": "Annex Bicycle Repair & Café",
+      "category": "Services",
+      "description": "Neighbourhood bike shop and espresso bar — get your bike fixed while you sip a latte",
+      "location": "351 Bloor St W, Toronto, ON",
+      "latitude": 43.6662,
+      "longitude": -79.4098,
+      "rating": 4.5,
+      "reviewCount": 7,
+      "icon": "🚲",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms045",
+          "name": "Basic Tune-Up",
+          "description": "Brakes, gears, and tires checked",
+          "price": 75.0,
+          "category": "Repair",
+          "points": 750
+        },
+        {
+          "id": "ms046",
+          "name": "Full Service",
+          "description": "Complete overhaul with bearing service",
+          "price": 150.0,
+          "category": "Repair",
+          "points": 1500
+        },
+        {
+          "id": "ms047",
+          "name": "Flat Tire Fix",
+          "description": "Tube replacement while you wait",
+          "price": 25.0,
+          "category": "Repair",
+          "points": 250
+        },
+        {
+          "id": "ms048",
+          "name": "Espresso & Pastry",
+          "description": "Single shot espresso with croissant",
+          "price": 8.0,
+          "category": "Café",
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "s058",
+      "name": "Greektown Mezze Bar",
+      "category": "Food",
+      "description": "Authentic Greek mezze restaurant on the Danforth with wood-fired meats and homemade dips",
+      "location": "548 Danforth Ave, Toronto, ON",
+      "latitude": 43.6784,
+      "longitude": -79.3529,
+      "rating": 4.6,
+      "reviewCount": 8,
+      "icon": "🫒",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms049",
+          "name": "Mezze Platter for 2",
+          "description": "Hummus, tzatziki, dolmades, pita",
+          "price": 28.0,
+          "category": "Starters",
+          "points": 280
+        },
+        {
+          "id": "ms050",
+          "name": "Lamb Souvlaki",
+          "description": "Grilled lamb skewers with pita and salad",
+          "price": 26.0,
+          "category": "Mains",
+          "points": 260
+        },
+        {
+          "id": "ms051",
+          "name": "Spanakopita",
+          "description": "Flaky spinach and feta pastry",
+          "price": 13.0,
+          "category": "Starters",
+          "points": 130
+        },
+        {
+          "id": "ms052",
+          "name": "Galaktoboureko",
+          "description": "Semolina custard in phyllo with syrup",
+          "price": 9.0,
+          "category": "Desserts",
+          "points": 90
+        }
+      ]
+    },
+    {
+      "id": "s059",
+      "name": "Roncesvalles Polish Deli",
+      "category": "Food",
+      "description": "Traditional Polish deli and kitchen serving homemade kielbasa, żurek, and imported goods",
+      "location": "175 Roncesvalles Ave, Toronto, ON",
+      "latitude": 43.6466,
+      "longitude": -79.4503,
+      "rating": 4.5,
+      "reviewCount": 6,
+      "icon": "🥩",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms053",
+          "name": "Smoked Kielbasa (500g)",
+          "description": "House-smoked traditional Polish sausage",
+          "price": 14.99,
+          "category": "Meats",
+          "points": 150
+        },
+        {
+          "id": "ms054",
+          "name": "Żurek Soup",
+          "description": "Sour rye soup with egg and sausage",
+          "price": 9.99,
+          "category": "Soups",
+          "points": 100
+        },
+        {
+          "id": "ms055",
+          "name": "Bigos (Hunter's Stew)",
+          "description": "Pork and sauerkraut stew, slow-cooked",
+          "price": 14.99,
+          "category": "Mains",
+          "points": 150
+        },
+        {
+          "id": "ms056",
+          "name": "Imported Polish Goods Box",
+          "description": "Assorted Polish pantry items gift box",
+          "price": 35.0,
+          "category": "Gifts",
+          "points": 350
+        }
+      ]
+    },
+    {
+      "id": "s060",
+      "name": "Liberty Village Rooftop Fitness",
+      "category": "Services",
+      "description": "Outdoor rooftop fitness studio offering HIIT, bootcamp, and yoga with panoramic city views",
+      "location": "150 East Liberty St, Toronto, ON",
+      "latitude": 43.6381,
+      "longitude": -79.4185,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🏋️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms057",
+          "name": "Drop-In Class",
+          "description": "Single rooftop fitness class",
+          "price": 25.0,
+          "category": "Classes",
+          "points": 250
+        },
+        {
+          "id": "ms058",
+          "name": "10-Class Pack",
+          "description": "Flexible class pack valid 2 months",
+          "price": 200.0,
+          "category": "Packs",
+          "points": 2000
+        },
+        {
+          "id": "ms059",
+          "name": "Monthly Unlimited",
+          "description": "Unlimited rooftop classes all month",
+          "price": 110.0,
+          "category": "Memberships",
+          "points": 1100
+        },
+        {
+          "id": "ms060",
+          "name": "Private Training Session",
+          "description": "60-min one-on-one with a trainer",
+          "price": 95.0,
+          "category": "Private",
+          "points": 950
+        }
+      ]
+    },
+    {
+      "id": "s061",
+      "name": "Chinatown Hot Pot",
+      "category": "Food",
+      "description": "Sichuan-style hot pot restaurant on Spadina with premium broths and a vast ingredient bar",
+      "location": "396 Spadina Ave, Toronto, ON",
+      "latitude": 43.6551,
+      "longitude": -79.3978,
+      "rating": 4.5,
+      "reviewCount": 8,
+      "icon": "🫕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms061",
+          "name": "Spicy Mala Broth",
+          "description": "Numbing Sichuan peppercorn broth",
+          "price": 12.0,
+          "category": "Broths",
+          "points": 120
+        },
+        {
+          "id": "ms062",
+          "name": "Premium Beef Slices",
+          "description": "Paper-thin wagyu-style beef",
+          "price": 18.0,
+          "category": "Proteins",
+          "points": 180
+        },
+        {
+          "id": "ms063",
+          "name": "Seafood Platter",
+          "description": "Shrimp, scallop, fish tofu selection",
+          "price": 22.0,
+          "category": "Proteins",
+          "points": 220
+        },
+        {
+          "id": "ms064",
+          "name": "House Sesame Dipping Sauce",
+          "description": "House-made sesame paste dip",
+          "price": 4.0,
+          "category": "Sauces",
+          "points": 40
+        }
+      ]
+    },
+    {
+      "id": "s062",
+      "name": "The Junction Vinyl & Coffee",
+      "category": "Food",
+      "description": "Record store and café hybrid in The Junction — flip through vinyl while sipping specialty coffee",
+      "location": "2898 Dundas St W, Toronto, ON",
+      "latitude": 43.665,
+      "longitude": -79.471,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🎶",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms065",
+          "name": "Pour Over Coffee",
+          "description": "Single-origin pour over, beans rotate weekly",
+          "price": 6.0,
+          "category": "Coffee",
+          "points": 60
+        },
+        {
+          "id": "ms066",
+          "name": "Used Vinyl LP",
+          "description": "Curated used records across all genres",
+          "price": 12.0,
+          "category": "Vinyl",
+          "points": 120
+        },
+        {
+          "id": "ms067",
+          "name": "New Release LP",
+          "description": "Latest new pressings",
+          "price": 38.0,
+          "category": "Vinyl",
+          "points": 380
+        },
+        {
+          "id": "ms068",
+          "name": "Coffee + Record Pairing",
+          "description": "Staff-curated coffee and album experience",
+          "price": 22.0,
+          "category": "Experiences",
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "s063",
+      "name": "Glebe Kitchen Provisions",
+      "category": "Food",
+      "description": "Gourmet food shop in the Glebe featuring artisan cheeses, charcuterie, and specialty pantry items",
+      "location": "813 Bank St, Ottawa, ON",
+      "latitude": 45.4041,
+      "longitude": -75.6888,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🧀",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms069",
+          "name": "Cheese Tasting Board",
+          "description": "5 Ontario and Quebec cheeses with accompaniments",
+          "price": 32.0,
+          "category": "Boards",
+          "points": 320
+        },
+        {
+          "id": "ms070",
+          "name": "Artisan Cheese (per 100g)",
+          "description": "Selection from our rotating cheese wall",
+          "price": 5.5,
+          "category": "Cheese",
+          "points": 55
+        },
+        {
+          "id": "ms071",
+          "name": "Charcuterie Selection",
+          "description": "Curated cured meats from Quebec and Europe",
+          "price": 28.0,
+          "category": "Charcuterie",
+          "points": 280
+        },
+        {
+          "id": "ms072",
+          "name": "Pantry Gift Basket",
+          "description": "Curated specialty pantry items in a basket",
+          "price": 65.0,
+          "category": "Gifts",
+          "points": 650
+        }
+      ]
+    },
+    {
+      "id": "s064",
+      "name": "Ottawa Paddle & SUP Co.",
+      "category": "Services",
+      "description": "Stand-up paddleboard and kayak rentals on the Rideau River with guided tours",
+      "location": "1001 Queen Elizabeth Driveway, Ottawa, ON",
+      "latitude": 45.4054,
+      "longitude": -75.6995,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🏄",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms073",
+          "name": "SUP Rental (2 Hours)",
+          "description": "2-hour stand-up paddleboard rental",
+          "price": 45.0,
+          "category": "Rentals",
+          "points": 450
+        },
+        {
+          "id": "ms074",
+          "name": "Kayak Rental (Half Day)",
+          "description": "4-hour single kayak rental on Rideau",
+          "price": 55.0,
+          "category": "Rentals",
+          "points": 550
+        },
+        {
+          "id": "ms075",
+          "name": "Sunset Guided Tour",
+          "description": "90-minute guided SUP sunset tour",
+          "price": 65.0,
+          "category": "Tours",
+          "points": 650
+        },
+        {
+          "id": "ms076",
+          "name": "SUP Yoga Class",
+          "description": "60-minute yoga on the water",
+          "price": 40.0,
+          "category": "Classes",
+          "points": 400
+        }
+      ]
+    },
+    {
+      "id": "s065",
+      "name": "Westboro Sourdough & Wine",
+      "category": "Food",
+      "description": "Artisan bakery and wine shop pairing freshly baked loaves with natural wine in Westboro",
+      "location": "389 Richmond Rd, Ottawa, ON",
+      "latitude": 45.3942,
+      "longitude": -75.745,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🥖",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms077",
+          "name": "Country Sourdough Loaf",
+          "description": "48-hour fermented whole wheat loaf",
+          "price": 12.0,
+          "category": "Bread",
+          "points": 120
+        },
+        {
+          "id": "ms078",
+          "name": "Pain au Levain",
+          "description": "Classic French sourdough loaf",
+          "price": 11.0,
+          "category": "Bread",
+          "points": 110
+        },
+        {
+          "id": "ms079",
+          "name": "Natural Wine (Glass)",
+          "description": "Rotating natural wine by the glass",
+          "price": 14.0,
+          "category": "Wine",
+          "points": 140
+        },
+        {
+          "id": "ms080",
+          "name": "Bread & Wine Pairing",
+          "description": "3 bread slices with 2 paired wine pours",
+          "price": 28.0,
+          "category": "Pairings",
+          "points": 280
+        }
+      ]
+    },
+    {
+      "id": "s066",
+      "name": "Ottawa Tech Repair Hub",
+      "category": "Technology",
+      "description": "Fast and affordable repair shop for phones, laptops, tablets, and game consoles in Ottawa",
+      "location": "240 Sparks St, Ottawa, ON",
+      "latitude": 45.4235,
+      "longitude": -75.696,
+      "rating": 4.4,
+      "reviewCount": 7,
+      "icon": "🔧",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms081",
+          "name": "Phone Screen Replacement",
+          "description": "Same-day screen repair for most models",
+          "price": 89.99,
+          "category": "Phone",
+          "points": 900
+        },
+        {
+          "id": "ms082",
+          "name": "Laptop Battery Replacement",
+          "description": "Battery swap with OEM-grade battery",
+          "price": 79.99,
+          "category": "Laptop",
+          "points": 800
+        },
+        {
+          "id": "ms083",
+          "name": "Console Controller Repair",
+          "description": "Fix stick drift, buttons, and triggers",
+          "price": 45.0,
+          "category": "Gaming",
+          "points": 450
+        },
+        {
+          "id": "ms084",
+          "name": "Data Recovery",
+          "description": "Professional data recovery service",
+          "price": 149.99,
+          "category": "Recovery",
+          "points": 1500
+        }
+      ]
+    },
+    {
+      "id": "s067",
+      "name": "Hamilton Escarpment Brewing",
+      "category": "Food",
+      "description": "Craft brewery inspired by the Niagara Escarpment with nature-themed ales and lagers",
+      "location": "178 James St S, Hamilton, ON",
+      "latitude": 43.2555,
+      "longitude": -79.8702,
+      "rating": 4.8,
+      "reviewCount": 8,
+      "icon": "🍺",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms085",
+          "name": "Escarpment Pale Ale",
+          "description": "Bright, hoppy pale ale with tropical notes",
+          "price": 7.5,
+          "category": "Beer",
+          "points": 75
+        },
+        {
+          "id": "ms086",
+          "name": "Waterfall Wheat",
+          "description": "Light and refreshing wheat ale",
+          "price": 6.5,
+          "category": "Beer",
+          "points": 65
+        },
+        {
+          "id": "ms087",
+          "name": "Dark Trail Porter",
+          "description": "Rich chocolate and toffee porter",
+          "price": 7.0,
+          "category": "Beer",
+          "points": 70
+        },
+        {
+          "id": "ms088",
+          "name": "6-Pack Assorted",
+          "description": "Take-home 6-pack of mixed beers",
+          "price": 22.0,
+          "category": "Retail",
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "s068",
+      "name": "Locke Street Ceramics Studio",
+      "category": "Services",
+      "description": "Community pottery studio on Locke Street offering wheel throwing, hand building, and kiln firing",
+      "location": "321 Locke St S, Hamilton, ON",
+      "latitude": 43.2525,
+      "longitude": -79.8901,
+      "rating": 4.7,
+      "reviewCount": 6,
+      "icon": "🏺",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms089",
+          "name": "Intro Wheel Throwing Class",
+          "description": "2-hour beginner wheel class with clay",
+          "price": 65.0,
+          "category": "Classes",
+          "points": 650
+        },
+        {
+          "id": "ms090",
+          "name": "Open Studio (Monthly)",
+          "description": "Unlimited studio access for members",
+          "price": 90.0,
+          "category": "Memberships",
+          "points": 900
+        },
+        {
+          "id": "ms091",
+          "name": "6-Week Course",
+          "description": "Beginner pottery series with kiln firing",
+          "price": 220.0,
+          "category": "Courses",
+          "points": 2200
+        },
+        {
+          "id": "ms092",
+          "name": "Date Night Pottery",
+          "description": "2-hour couples pottery experience",
+          "price": 120.0,
+          "category": "Events",
+          "points": 1200
+        }
+      ]
+    },
+    {
+      "id": "s069",
+      "name": "Hamilton Vintage Clothing Co.",
+      "category": "Retail",
+      "description": "Curated vintage and secondhand clothing boutique specializing in 70s, 80s, and 90s fashion",
+      "location": "253 King St E, Hamilton, ON",
+      "latitude": 43.258,
+      "longitude": -79.8645,
+      "rating": 4.5,
+      "reviewCount": 7,
+      "icon": "👕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms093",
+          "name": "Vintage Denim Jacket",
+          "description": "Curated vintage denim from the 80s/90s",
+          "price": 65.0,
+          "category": "Outerwear",
+          "points": 650
+        },
+        {
+          "id": "ms094",
+          "name": "Band T-Shirt",
+          "description": "Authentic vintage band tees",
+          "price": 35.0,
+          "category": "Tops",
+          "points": 350
+        },
+        {
+          "id": "ms095",
+          "name": "Vintage Dress",
+          "description": "Curated 70s/80s vintage dresses",
+          "price": 55.0,
+          "category": "Dresses",
+          "points": 550
+        },
+        {
+          "id": "ms096",
+          "name": "Mystery Bundle (5 items)",
+          "description": "Curated size-matched mystery bundle",
+          "price": 75.0,
+          "category": "Bundles",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s070",
+      "name": "Oakville Pottery & Paint Studio",
+      "category": "Services",
+      "description": "Paint-your-own pottery and acrylic pouring studio for all ages in Oakville",
+      "location": "240 Lakeshore Rd E, Oakville, ON",
+      "latitude": 43.4473,
+      "longitude": -79.6657,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🎨",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms097",
+          "name": "Paint-Your-Own Mug",
+          "description": "Ceramic mug to paint and glaze",
+          "price": 28.0,
+          "category": "Pottery",
+          "points": 280
+        },
+        {
+          "id": "ms098",
+          "name": "Paint-Your-Own Bowl",
+          "description": "Large ceramic bowl to decorate",
+          "price": 35.0,
+          "category": "Pottery",
+          "points": 350
+        },
+        {
+          "id": "ms099",
+          "name": "Acrylic Pour Canvas",
+          "description": "Guided fluid art pour on 8x10 canvas",
+          "price": 45.0,
+          "category": "Painting",
+          "points": 450
+        },
+        {
+          "id": "ms100",
+          "name": "Kids Party Package",
+          "description": "Party for up to 12 kids with pottery",
+          "price": 280.0,
+          "category": "Events",
+          "points": 2800
+        }
+      ]
+    },
+    {
+      "id": "s071",
+      "name": "Mississauga Ethiopian Kitchen",
+      "category": "Food",
+      "description": "Authentic Ethiopian restaurant with injera, tibs, and vegetarian feasts",
+      "location": "3024 Hurontario St, Mississauga, ON",
+      "latitude": 43.573,
+      "longitude": -79.628,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🍽️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms101",
+          "name": "Combination Platter (2 persons)",
+          "description": "Assorted meat and vegetarian dishes on injera",
+          "price": 38.0,
+          "category": "Platters",
+          "points": 380
+        },
+        {
+          "id": "ms102",
+          "name": "Beef Tibs",
+          "description": "Sautéed beef with berbere and rosemary",
+          "price": 19.99,
+          "category": "Mains",
+          "points": 200
+        },
+        {
+          "id": "ms103",
+          "name": "Vegetarian Platter",
+          "description": "8 vegetarian dishes on injera",
+          "price": 29.99,
+          "category": "Platters",
+          "points": 300
+        },
+        {
+          "id": "ms104",
+          "name": "Ethiopian Coffee Ceremony",
+          "description": "Traditional 3-round coffee service",
+          "price": 14.99,
+          "category": "Drinks",
+          "points": 150
+        }
+      ]
+    },
+    {
+      "id": "s072",
+      "name": "Brampton Escape Wellness",
+      "category": "Services",
+      "description": "Infrared sauna and float tank wellness center in Brampton",
+      "location": "8 Gillingham Dr, Brampton, ON",
+      "latitude": 43.682,
+      "longitude": -79.759,
+      "rating": 4.5,
+      "reviewCount": 6,
+      "icon": "🛁",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms105",
+          "name": "Float Tank Session (60 min)",
+          "description": "Sensory deprivation float tank experience",
+          "price": 75.0,
+          "category": "Float",
+          "points": 750
+        },
+        {
+          "id": "ms106",
+          "name": "Infrared Sauna (45 min)",
+          "description": "Private infrared sauna session",
+          "price": 45.0,
+          "category": "Sauna",
+          "points": 450
+        },
+        {
+          "id": "ms107",
+          "name": "Combo Package",
+          "description": "Float + sauna + cold plunge",
+          "price": 110.0,
+          "category": "Combos",
+          "points": 1100
+        },
+        {
+          "id": "ms108",
+          "name": "Monthly Wellness Pass",
+          "description": "4 floats + 4 saunas per month",
+          "price": 180.0,
+          "category": "Memberships",
+          "points": 1800
+        }
+      ]
+    },
+    {
+      "id": "s073",
+      "name": "Oakville Cheese Cave",
+      "category": "Food",
+      "description": "Specialty cheese shop and cave-aged imports from France, Italy, Spain, and Ontario",
+      "location": "185 Church St, Oakville, ON",
+      "latitude": 43.447,
+      "longitude": -79.668,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "🧀",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms109",
+          "name": "Cave-Aged Gruyère (100g)",
+          "description": "18-month cave-aged Swiss Gruyère",
+          "price": 8.5,
+          "category": "Hard Cheese",
+          "points": 85
+        },
+        {
+          "id": "ms110",
+          "name": "Ontario Gouda (100g)",
+          "description": "Local aged Gouda from Grey County",
+          "price": 6.5,
+          "category": "Hard Cheese",
+          "points": 65
+        },
+        {
+          "id": "ms111",
+          "name": "Brie de Meaux (100g)",
+          "description": "Authentic AOC French brie",
+          "price": 9.0,
+          "category": "Soft Cheese",
+          "points": 90
+        },
+        {
+          "id": "ms112",
+          "name": "Cheese Flight Board",
+          "description": "5 curated cheeses with wine pairings",
+          "price": 38.0,
+          "category": "Boards",
+          "points": 380
+        }
+      ]
+    },
+    {
+      "id": "s074",
+      "name": "Niagara Lavender Farm",
+      "category": "Retail",
+      "description": "Working lavender farm near Niagara-on-the-Lake with lavender products and agri-tourism",
+      "location": "1474 Niagara Stone Rd, Niagara-on-the-Lake, ON",
+      "latitude": 43.225,
+      "longitude": -79.132,
+      "rating": 4.9,
+      "reviewCount": 8,
+      "icon": "💜",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms113",
+          "name": "Lavender Essential Oil (15ml)",
+          "description": "Steam-distilled pure lavender oil",
+          "price": 24.0,
+          "category": "Oils",
+          "points": 240
+        },
+        {
+          "id": "ms114",
+          "name": "Lavender Honey (250g)",
+          "description": "Raw honey infused with lavender",
+          "price": 16.0,
+          "category": "Food",
+          "points": 160
+        },
+        {
+          "id": "ms115",
+          "name": "Lavender Sachets (3pc)",
+          "description": "Dried lavender sachets for home",
+          "price": 14.0,
+          "category": "Home",
+          "points": 140
+        },
+        {
+          "id": "ms116",
+          "name": "Farm Tour & Harvest Experience",
+          "description": "Guided tour and lavender bundle",
+          "price": 35.0,
+          "category": "Experiences",
+          "points": 350
+        }
+      ]
+    },
+    {
+      "id": "s075",
+      "name": "NOTL Heritage Winery",
+      "category": "Food",
+      "description": "Boutique Niagara-on-the-Lake winery producing award-winning Pinot Noir and Chardonnay",
+      "location": "1616 Niagara Pkwy, Niagara-on-the-Lake, ON",
+      "latitude": 43.233,
+      "longitude": -79.07,
+      "rating": 4.8,
+      "reviewCount": 9,
+      "icon": "🍷",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms117",
+          "name": "Pinot Noir (Bottle)",
+          "description": "Estate Pinot Noir, Niagara Peninsula",
+          "price": 42.0,
+          "category": "Red Wine",
+          "points": 420
+        },
+        {
+          "id": "ms118",
+          "name": "Chardonnay (Bottle)",
+          "description": "Barrel-fermented Chardonnay",
+          "price": 38.0,
+          "category": "White Wine",
+          "points": 380
+        },
+        {
+          "id": "ms119",
+          "name": "Icewine (375ml)",
+          "description": "Award-winning Vidal Icewine",
+          "price": 55.0,
+          "category": "Icewine",
+          "points": 550
+        },
+        {
+          "id": "ms120",
+          "name": "Wine & Cheese Tasting",
+          "description": "4 wines paired with local cheeses",
+          "price": 48.0,
+          "category": "Tastings",
+          "points": 480
+        }
+      ]
+    },
+    {
+      "id": "s076",
+      "name": "St. Catharines Botanical Spa",
+      "category": "Services",
+      "description": "Botanical-inspired spa using plant-based treatments and locally sourced herbs",
+      "location": "42 Ontario St, St. Catharines, ON",
+      "latitude": 43.1594,
+      "longitude": -79.2469,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🌸",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms121",
+          "name": "Herbal Body Wrap",
+          "description": "90-min botanical body wrap treatment",
+          "price": 130.0,
+          "category": "Body",
+          "points": 1300
+        },
+        {
+          "id": "ms122",
+          "name": "Rose Hip Facial",
+          "description": "Anti-aging facial with rose hip serum",
+          "price": 105.0,
+          "category": "Facial",
+          "points": 1050
+        },
+        {
+          "id": "ms123",
+          "name": "Hot Stone Massage",
+          "description": "60-min hot stone relaxation massage",
+          "price": 115.0,
+          "category": "Massage",
+          "points": 1150
+        },
+        {
+          "id": "ms124",
+          "name": "Spa Day Package",
+          "description": "Facial + massage + wrap + tea",
+          "price": 280.0,
+          "category": "Packages",
+          "points": 2800
+        }
+      ]
+    },
+    {
+      "id": "s077",
+      "name": "London Farmers' Market Co-op",
+      "category": "Retail",
+      "description": "Year-round indoor farmers market featuring 60+ local producers in London's historic market",
+      "location": "130 King St, London, ON",
+      "latitude": 42.9837,
+      "longitude": -81.2468,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🥕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms125",
+          "name": "Seasonal Veggie Box",
+          "description": "Weekly curated local vegetable box",
+          "price": 35.0,
+          "category": "Produce",
+          "points": 350
+        },
+        {
+          "id": "ms126",
+          "name": "Local Honey (500g)",
+          "description": "Raw honey from Middlesex County",
+          "price": 16.0,
+          "category": "Honey",
+          "points": 160
+        },
+        {
+          "id": "ms127",
+          "name": "Artisan Cheese Board",
+          "description": "Curated local Ontario cheese selection",
+          "price": 28.0,
+          "category": "Cheese",
+          "points": 280
+        },
+        {
+          "id": "ms128",
+          "name": "Fresh Herb Bundle",
+          "description": "Seasonal herb bundle from local farms",
+          "price": 8.0,
+          "category": "Herbs",
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "s078",
+      "name": "Windsor Detroit Crossroads Diner",
+      "category": "Food",
+      "description": "A Windsor institution serving hearty diner classics with both Canadian and Detroit influences",
+      "location": "310 Pelissier St, Windsor, ON",
+      "latitude": 42.3167,
+      "longitude": -83.0412,
+      "rating": 4.4,
+      "reviewCount": 6,
+      "icon": "🍳",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms129",
+          "name": "Windsor Poutine",
+          "description": "Fries with pulled pork and house gravy",
+          "price": 15.99,
+          "category": "Mains",
+          "points": 160
+        },
+        {
+          "id": "ms130",
+          "name": "Double Smash Burger",
+          "description": "Two smash patties with all the fixings",
+          "price": 17.99,
+          "category": "Burgers",
+          "points": 180
+        },
+        {
+          "id": "ms131",
+          "name": "Pancake Stack (3pc)",
+          "description": "Buttermilk pancakes with maple and butter",
+          "price": 12.99,
+          "category": "Breakfast",
+          "points": 130
+        },
+        {
+          "id": "ms132",
+          "name": "Peameal Bacon Sandwich",
+          "description": "Ontario peameal bacon on a kaiser roll",
+          "price": 11.99,
+          "category": "Sandwiches",
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "s079",
+      "name": "Stratford Artisan Soap Co.",
+      "category": "Retail",
+      "description": "Cold-process artisan soap and body care products handmade in Stratford, Ontario",
+      "location": "55 Downie St, Stratford, ON",
+      "latitude": 43.3706,
+      "longitude": -80.9822,
+      "rating": 4.7,
+      "reviewCount": 5,
+      "icon": "🧼",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms133",
+          "name": "Cold Process Soap Bar",
+          "description": "Handmade soap with natural botanicals",
+          "price": 9.0,
+          "category": "Soap",
+          "points": 90
+        },
+        {
+          "id": "ms134",
+          "name": "Body Butter (120ml)",
+          "description": "Whipped shea and coconut body butter",
+          "price": 18.0,
+          "category": "Skincare",
+          "points": 180
+        },
+        {
+          "id": "ms135",
+          "name": "Soap Gift Set (4 bars)",
+          "description": "Four assorted soap bars in gift box",
+          "price": 32.0,
+          "category": "Gifts",
+          "points": 320
+        },
+        {
+          "id": "ms136",
+          "name": "Soap Making Workshop",
+          "description": "3-hour cold-process soap class",
+          "price": 85.0,
+          "category": "Workshops",
+          "points": 850
+        }
+      ]
+    },
+    {
+      "id": "s080",
+      "name": "Guelph Micro Roastery",
+      "category": "Food",
+      "description": "Specialty micro-roastery in Guelph sourcing direct-trade beans and roasting in small batches",
+      "location": "50 Macdonell St, Guelph, ON",
+      "latitude": 43.5447,
+      "longitude": -80.2487,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "☕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms137",
+          "name": "Single Origin (250g)",
+          "description": "Rotating single-origin whole bean coffee",
+          "price": 22.0,
+          "category": "Coffee Beans",
+          "points": 220
+        },
+        {
+          "id": "ms138",
+          "name": "Espresso Blend (250g)",
+          "description": "House espresso blend, medium roast",
+          "price": 19.0,
+          "category": "Coffee Beans",
+          "points": 190
+        },
+        {
+          "id": "ms139",
+          "name": "Cupping Session",
+          "description": "Guided coffee cupping with 4 origins",
+          "price": 35.0,
+          "category": "Events",
+          "points": 350
+        },
+        {
+          "id": "ms140",
+          "name": "Monthly Coffee Subscription",
+          "description": "250g of seasonal bean, auto-shipped",
+          "price": 24.0,
+          "category": "Subscriptions",
+          "points": 240
+        }
+      ]
+    },
+    {
+      "id": "s081",
+      "name": "Peterborough Canoe Museum Shop",
+      "category": "Retail",
+      "description": "Gift shop at Canada's Canoe Museum featuring paddling gear, books, and Indigenous-made crafts",
+      "location": "910 Monaghan Rd, Peterborough, ON",
+      "latitude": 44.3201,
+      "longitude": -78.3432,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🛶",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms141",
+          "name": "Canoe Museum Guidebook",
+          "description": "Illustrated guide to Canadian canoe heritage",
+          "price": 24.99,
+          "category": "Books",
+          "points": 250
+        },
+        {
+          "id": "ms142",
+          "name": "Paddle Ornament",
+          "description": "Hand-carved cedar paddle ornament",
+          "price": 18.0,
+          "category": "Crafts",
+          "points": 180
+        },
+        {
+          "id": "ms143",
+          "name": "Museum Tote Bag",
+          "description": "Canvas tote with canoe illustration",
+          "price": 22.0,
+          "category": "Merchandise",
+          "points": 220
+        },
+        {
+          "id": "ms144",
+          "name": "Indigenous Beaded Keychain",
+          "description": "Handmade beaded keychain by local artist",
+          "price": 28.0,
+          "category": "Indigenous Art",
+          "points": 280
+        }
+      ]
+    },
+    {
+      "id": "s082",
+      "name": "Kingston Limestone Architecture Tours",
+      "category": "Services",
+      "description": "Walking tours through Kingston's stunning limestone heritage buildings and waterfront",
+      "location": "1 King St, Kingston, ON",
+      "latitude": 44.2311,
+      "longitude": -76.4849,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "🏛️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms145",
+          "name": "Heritage Walking Tour (2hr)",
+          "description": "Guided tour of Kingston's limestone buildings",
+          "price": 22.0,
+          "category": "Tours",
+          "points": 220
+        },
+        {
+          "id": "ms146",
+          "name": "Ghost & History Tour",
+          "description": "Evening ghost walk through old Kingston",
+          "price": 28.0,
+          "category": "Tours",
+          "points": 280
+        },
+        {
+          "id": "ms147",
+          "name": "Waterfront & Fort Tour",
+          "description": "Fort Henry and waterfront 3-hour tour",
+          "price": 38.0,
+          "category": "Tours",
+          "points": 380
+        },
+        {
+          "id": "ms148",
+          "name": "Private Group Tour",
+          "description": "Custom tour for groups up to 15",
+          "price": 250.0,
+          "category": "Private",
+          "points": 2500
+        }
+      ]
+    },
+    {
+      "id": "s083",
+      "name": "Thousand Islands Kayak Tours",
+      "category": "Services",
+      "description": "Guided kayak tours through the Thousand Islands with overnight camping options",
+      "location": "1 King St E, Gananoque, ON",
+      "latitude": 44.3281,
+      "longitude": -76.1638,
+      "rating": 4.9,
+      "reviewCount": 8,
+      "icon": "🏝️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms149",
+          "name": "Half-Day Island Tour",
+          "description": "4-hour guided kayak tour through islands",
+          "price": 89.0,
+          "category": "Tours",
+          "points": 890
+        },
+        {
+          "id": "ms150",
+          "name": "Full-Day Paddle",
+          "description": "8-hour tour with lunch on a private island",
+          "price": 149.0,
+          "category": "Tours",
+          "points": 1490
+        },
+        {
+          "id": "ms151",
+          "name": "2-Day Overnight",
+          "description": "Kayak camping on island with gear",
+          "price": 299.0,
+          "category": "Multi-Day",
+          "points": 2990
+        },
+        {
+          "id": "ms152",
+          "name": "Sunset Tour",
+          "description": "2-hour guided sunset paddle",
+          "price": 55.0,
+          "category": "Tours",
+          "points": 550
+        }
+      ]
+    },
+    {
+      "id": "s084",
+      "name": "Huntsville Artisan Maple Syrup",
+      "category": "Food",
+      "description": "Family maple syrup operation in Huntsville producing organic certified maple products",
+      "location": "295 Main St E, Huntsville, ON",
+      "latitude": 45.332,
+      "longitude": -79.2148,
+      "rating": 4.9,
+      "reviewCount": 6,
+      "icon": "🍁",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms153",
+          "name": "Pure Maple Syrup - Amber (500ml)",
+          "description": "Rich amber grade Ontario maple syrup",
+          "price": 18.0,
+          "category": "Syrup",
+          "points": 180
+        },
+        {
+          "id": "ms154",
+          "name": "Maple Cream (250g)",
+          "description": "Whipped spreadable maple cream",
+          "price": 14.0,
+          "category": "Spreads",
+          "points": 140
+        },
+        {
+          "id": "ms155",
+          "name": "Maple Sugar (200g)",
+          "description": "Granulated pure maple sugar",
+          "price": 12.0,
+          "category": "Sugar",
+          "points": 120
+        },
+        {
+          "id": "ms156",
+          "name": "Maple Gift Box",
+          "description": "Syrup, cream, sugar, and candy set",
+          "price": 45.0,
+          "category": "Gifts",
+          "points": 450
+        }
+      ]
+    },
+    {
+      "id": "s085",
+      "name": "Muskoka Roasthouse Café",
+      "category": "Food",
+      "description": "Lakeside café and roasthouse in Bracebridge serving wood-fired meats and cottage-country fare",
+      "location": "1 Manitoba St, Bracebridge, ON",
+      "latitude": 45.0381,
+      "longitude": -79.3057,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🔥",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms157",
+          "name": "Wood-Fired Brisket Sandwich",
+          "description": "Slow-smoked brisket on brioche",
+          "price": 18.99,
+          "category": "Sandwiches",
+          "points": 190
+        },
+        {
+          "id": "ms158",
+          "name": "Muskoka Fish Tacos",
+          "description": "Crispy walleye with slaw and chipotle",
+          "price": 16.99,
+          "category": "Mains",
+          "points": 170
+        },
+        {
+          "id": "ms159",
+          "name": "Blueberry Pancakes",
+          "description": "Wild Muskoka blueberry pancakes",
+          "price": 13.99,
+          "category": "Breakfast",
+          "points": 140
+        },
+        {
+          "id": "ms160",
+          "name": "Locally Roasted Coffee",
+          "description": "House-roasted Muskoka blend",
+          "price": 5.0,
+          "category": "Coffee",
+          "points": 50
+        }
+      ]
+    },
+    {
+      "id": "s086",
+      "name": "Parry Sound Outfitters & Guide",
+      "category": "Services",
+      "description": "Full-service backcountry outfitter and guide service for Killarney and Georgian Bay adventures",
+      "location": "43 James St, Parry Sound, ON",
+      "latitude": 45.3432,
+      "longitude": -80.0352,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🎒",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms161",
+          "name": "Georgian Bay Kayak Expedition",
+          "description": "3-day guided kayak on Georgian Bay",
+          "price": 450.0,
+          "category": "Expeditions",
+          "points": 4500
+        },
+        {
+          "id": "ms162",
+          "name": "Killarney Canoe Trip",
+          "description": "5-day Killarney Provincial Park trip",
+          "price": 750.0,
+          "category": "Expeditions",
+          "points": 7500
+        },
+        {
+          "id": "ms163",
+          "name": "Equipment Rental Package",
+          "description": "Full backcountry kit rental (5 days)",
+          "price": 180.0,
+          "category": "Rentals",
+          "points": 1800
+        },
+        {
+          "id": "ms164",
+          "name": "Day Guide Service",
+          "description": "Licensed guide for your day paddle",
+          "price": 200.0,
+          "category": "Guides",
+          "points": 2000
+        }
+      ]
+    },
+    {
+      "id": "s087",
+      "name": "Sault Ste. Marie Algoma Arts",
+      "category": "Retail",
+      "description": "Gallery and shop celebrating the Algoma region's artistic heritage including Group of Seven landscapes",
+      "location": "10 East St, Sault Ste. Marie, ON",
+      "latitude": 46.5202,
+      "longitude": -84.3461,
+      "rating": 4.7,
+      "reviewCount": 5,
+      "icon": "🖼️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms165",
+          "name": "Algoma Landscape Print",
+          "description": "Reproduction prints of Algoma region art",
+          "price": 55.0,
+          "category": "Art Prints",
+          "points": 550
+        },
+        {
+          "id": "ms166",
+          "name": "Original Watercolour",
+          "description": "Original works by regional artists",
+          "price": 195.0,
+          "category": "Original Art",
+          "points": 1950
+        },
+        {
+          "id": "ms167",
+          "name": "Artist Sketchbook",
+          "description": "Hand-bound sketchbook with linen cover",
+          "price": 35.0,
+          "category": "Supplies",
+          "points": 350
+        },
+        {
+          "id": "ms168",
+          "name": "Art Tour (Algoma Region)",
+          "description": "Half-day guided art and heritage tour",
+          "price": 75.0,
+          "category": "Tours",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s088",
+      "name": "Thunder Bay Microbrewery & Smokehouse",
+      "category": "Food",
+      "description": "Northwestern Ontario's premier craft brewery paired with a wood-smoke barbecue kitchen",
+      "location": "314 Bay St, Thunder Bay, ON",
+      "latitude": 48.3809,
+      "longitude": -89.2477,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🍖",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms169",
+          "name": "Boreal Blonde Ale",
+          "description": "Light, crisp blonde ale with floral notes",
+          "price": 7.0,
+          "category": "Beer",
+          "points": 70
+        },
+        {
+          "id": "ms170",
+          "name": "Kakabeka Smoked Porter",
+          "description": "Rich smoked porter with chocolate finish",
+          "price": 8.0,
+          "category": "Beer",
+          "points": 80
+        },
+        {
+          "id": "ms171",
+          "name": "BBQ Smoked Brisket Plate",
+          "description": "12-hour smoked brisket with sides",
+          "price": 26.99,
+          "category": "BBQ",
+          "points": 270
+        },
+        {
+          "id": "ms172",
+          "name": "Smoked Ribs Half Rack",
+          "description": "Baby back ribs with house BBQ sauce",
+          "price": 28.99,
+          "category": "BBQ",
+          "points": 290
+        }
+      ]
+    },
+    {
+      "id": "s089",
+      "name": "Timmins Northern Gear & Guide",
+      "category": "Retail",
+      "description": "Hunting, fishing, and outdoor gear shop serving Timmins and the Northern Ontario wilderness",
+      "location": "680 Algonquin Blvd E, Timmins, ON",
+      "latitude": 48.4758,
+      "longitude": -81.3182,
+      "rating": 4.5,
+      "reviewCount": 5,
+      "icon": "🎣",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms173",
+          "name": "Ice Fishing Starter Kit",
+          "description": "Rod, jig, and tip-up bundle for ice fishing",
+          "price": 89.99,
+          "category": "Fishing",
+          "points": 900
+        },
+        {
+          "id": "ms174",
+          "name": "Hunting License & Tag Combo",
+          "description": "Deer hunting license and tag bundle",
+          "price": 125.0,
+          "category": "Licenses",
+          "points": 1250
+        },
+        {
+          "id": "ms175",
+          "name": "Guided Ice Fishing Day",
+          "description": "Full day guided ice fishing on local lake",
+          "price": 185.0,
+          "category": "Guides",
+          "points": 1850
+        },
+        {
+          "id": "ms176",
+          "name": "Survival Skills Course",
+          "description": "Full-day Northern Ontario wilderness survival",
+          "price": 150.0,
+          "category": "Courses",
+          "points": 1500
+        }
+      ]
+    },
+    {
+      "id": "s090",
+      "name": "North Bay Indigenous Artisan Market",
+      "category": "Retail",
+      "description": "Indigenous-owned market featuring First Nations art, jewelry, clothing, and traditional foods",
+      "location": "101 Worthington St E, North Bay, ON",
+      "latitude": 46.3091,
+      "longitude": -79.4608,
+      "rating": 4.9,
+      "reviewCount": 6,
+      "icon": "🦅",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms177",
+          "name": "Birchbark Basket",
+          "description": "Handwoven Anishinaabe birchbark basket",
+          "price": 75.0,
+          "category": "Crafts",
+          "points": 750
+        },
+        {
+          "id": "ms178",
+          "name": "Beaded Moccasins",
+          "description": "Traditional hand-beaded moose hide moccasins",
+          "price": 165.0,
+          "category": "Clothing",
+          "points": 1650
+        },
+        {
+          "id": "ms179",
+          "name": "Dreamcatcher",
+          "description": "Handmade dreamcatcher with feathers and beads",
+          "price": 45.0,
+          "category": "Crafts",
+          "points": 450
+        },
+        {
+          "id": "ms180",
+          "name": "Wild Rice (500g)",
+          "description": "Manoomin wild rice harvested by hand",
+          "price": 18.0,
+          "category": "Traditional Food",
+          "points": 180
+        }
+      ]
+    },
+    {
+      "id": "s091",
+      "name": "Scarborough Persian Kitchen",
+      "category": "Food",
+      "description": "Authentic Persian restaurant serving ghormeh sabzi, kababs, and fragrant rice dishes",
+      "location": "2400 Ellesmere Rd, Scarborough, ON",
+      "latitude": 43.778,
+      "longitude": -79.241,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🌹",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms181",
+          "name": "Ghormeh Sabzi",
+          "description": "Herb and kidney bean stew with lamb",
+          "price": 19.99,
+          "category": "Stews",
+          "points": 200
+        },
+        {
+          "id": "ms182",
+          "name": "Koobideh Kabab",
+          "description": "Ground lamb and beef kabab over saffron rice",
+          "price": 21.99,
+          "category": "Kababs",
+          "points": 220
+        },
+        {
+          "id": "ms183",
+          "name": "Zereshk Polo",
+          "description": "Barberry and saffron rice with chicken",
+          "price": 18.99,
+          "category": "Rice Dishes",
+          "points": 190
+        },
+        {
+          "id": "ms184",
+          "name": "Persian Tea & Baklava",
+          "description": "Cardamom tea with rosewater baklava",
+          "price": 9.99,
+          "category": "Desserts",
+          "points": 100
+        }
+      ]
+    },
+    {
+      "id": "s092",
+      "name": "North York Laser Tag Arena",
+      "category": "Services",
+      "description": "Multi-level laser tag arena with state-of-the-art equipment and themed game modes",
+      "location": "3401 Dufferin St, North York, ON",
+      "latitude": 43.7241,
+      "longitude": -79.4523,
+      "rating": 4.5,
+      "reviewCount": 7,
+      "icon": "🔫",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms185",
+          "name": "Single Game",
+          "description": "20-minute laser tag game session",
+          "price": 14.0,
+          "category": "Games",
+          "points": 140
+        },
+        {
+          "id": "ms186",
+          "name": "3-Game Bundle",
+          "description": "3 game sessions at a discounted rate",
+          "price": 35.0,
+          "category": "Bundles",
+          "points": 350
+        },
+        {
+          "id": "ms187",
+          "name": "Birthday Party Package",
+          "description": "2 games + pizza + private room for 10",
+          "price": 220.0,
+          "category": "Parties",
+          "points": 2200
+        },
+        {
+          "id": "ms188",
+          "name": "Unlimited Weekend Pass",
+          "description": "Unlimited games Saturday or Sunday",
+          "price": 30.0,
+          "category": "Passes",
+          "points": 300
+        }
+      ]
+    },
+    {
+      "id": "s093",
+      "name": "Etobicoke Japanese Knife Shop",
+      "category": "Retail",
+      "description": "Specialty Japanese knife shop with hand-forged knives, sharpening services, and knife skills classes",
+      "location": "2045 The Queensway, Etobicoke, ON",
+      "latitude": 43.6148,
+      "longitude": -79.526,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🔪",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms189",
+          "name": "Santoku Knife (165mm)",
+          "description": "Hand-forged Japanese santoku in VG-10 steel",
+          "price": 195.0,
+          "category": "Knives",
+          "points": 1950
+        },
+        {
+          "id": "ms190",
+          "name": "Gyuto Chef Knife (210mm)",
+          "description": "Professional Japanese chef knife",
+          "price": 245.0,
+          "category": "Knives",
+          "points": 2450
+        },
+        {
+          "id": "ms191",
+          "name": "Knife Sharpening Service",
+          "description": "Hand-sharpened on Japanese whetstones",
+          "price": 18.0,
+          "category": "Services",
+          "points": 180
+        },
+        {
+          "id": "ms192",
+          "name": "Knife Skills Workshop",
+          "description": "2-hour fundamental knife skills class",
+          "price": 75.0,
+          "category": "Workshops",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s094",
+      "name": "Scarborough Trampoline Park",
+      "category": "Services",
+      "description": "Indoor trampoline park with freestyle jumping, foam pits, dodgeball, and ninja courses",
+      "location": "1885 Eglinton Ave E, Scarborough, ON",
+      "latitude": 43.7071,
+      "longitude": -79.2694,
+      "rating": 4.4,
+      "reviewCount": 8,
+      "icon": "🤸",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms193",
+          "name": "60-Minute Jump Pass",
+          "description": "General admission for 60 minutes",
+          "price": 19.0,
+          "category": "Passes",
+          "points": 190
+        },
+        {
+          "id": "ms194",
+          "name": "90-Minute Jump Pass",
+          "description": "Extended 90-minute session",
+          "price": 24.0,
+          "category": "Passes",
+          "points": 240
+        },
+        {
+          "id": "ms195",
+          "name": "Birthday Party (10 kids)",
+          "description": "90-min jump + party room for 10 kids",
+          "price": 250.0,
+          "category": "Parties",
+          "points": 2500
+        },
+        {
+          "id": "ms196",
+          "name": "Toddler Time (Under 6)",
+          "description": "45-min dedicated toddler session",
+          "price": 12.0,
+          "category": "Kids",
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "s095",
+      "name": "Mississauga Indian Street Food",
+      "category": "Food",
+      "description": "Authentic Mumbai-style street food featuring vada pav, pani puri, and bhel puri",
+      "location": "1400 Hurontario St, Mississauga, ON",
+      "latitude": 43.56,
+      "longitude": -79.629,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🌶️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms197",
+          "name": "Vada Pav",
+          "description": "Mumbai's iconic spiced potato slider",
+          "price": 4.99,
+          "category": "Snacks",
+          "points": 50
+        },
+        {
+          "id": "ms198",
+          "name": "Pani Puri (8pc)",
+          "description": "Crispy shells with spiced tamarind water",
+          "price": 8.99,
+          "category": "Snacks",
+          "points": 90
+        },
+        {
+          "id": "ms199",
+          "name": "Bhel Puri",
+          "description": "Puffed rice chaat with tamarind and chutney",
+          "price": 7.99,
+          "category": "Chaat",
+          "points": 80
+        },
+        {
+          "id": "ms200",
+          "name": "Masala Chai",
+          "description": "Authentic spiced milk tea",
+          "price": 3.99,
+          "category": "Drinks",
+          "points": 40
+        }
+      ]
+    },
+    {
+      "id": "s096",
+      "name": "Vaughan Indoor Golf Simulator",
+      "category": "Services",
+      "description": "Premium golf simulator facility with 12 bays, course play on 150+ world courses, and instruction",
+      "location": "9390 Jane St, Vaughan, ON",
+      "latitude": 43.856,
+      "longitude": -79.538,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "⛳",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms201",
+          "name": "Bay Rental (Per Hour)",
+          "description": "1 bay for up to 4 players per hour",
+          "price": 40.0,
+          "category": "Rentals",
+          "points": 400
+        },
+        {
+          "id": "ms202",
+          "name": "Golf Lesson (60 min)",
+          "description": "PGA-certified instructor on simulator",
+          "price": 90.0,
+          "category": "Lessons",
+          "points": 900
+        },
+        {
+          "id": "ms203",
+          "name": "Corporate Event Package",
+          "description": "3-hour event package for up to 24",
+          "price": 650.0,
+          "category": "Events",
+          "points": 6500
+        },
+        {
+          "id": "ms204",
+          "name": "Monthly Membership",
+          "description": "10 hours of bay time per month",
+          "price": 199.0,
+          "category": "Memberships",
+          "points": 1990
+        }
+      ]
+    },
+    {
+      "id": "s097",
+      "name": "Ajax Axe Throwing Lounge",
+      "category": "Services",
+      "description": "Urban axe throwing lounge with leagues, walk-ins, and private event packages in Ajax",
+      "location": "280 Bayly St W, Ajax, ON",
+      "latitude": 43.846,
+      "longitude": -79.034,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🪓",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms205",
+          "name": "Walk-In Session (90 min)",
+          "description": "Coached axe throwing for 1-6 people",
+          "price": 29.0,
+          "category": "Sessions",
+          "points": 290
+        },
+        {
+          "id": "ms206",
+          "name": "Corporate Event (2hr)",
+          "description": "Private venue for up to 20 people",
+          "price": 499.0,
+          "category": "Events",
+          "points": 4990
+        },
+        {
+          "id": "ms207",
+          "name": "Bachelor Party Package",
+          "description": "3 hours, unlimited throwing + drinks",
+          "price": 349.0,
+          "category": "Packages",
+          "points": 3490
+        },
+        {
+          "id": "ms208",
+          "name": "League Night Entry",
+          "description": "Weekly competitive league session",
+          "price": 22.0,
+          "category": "Leagues",
+          "points": 220
+        }
+      ]
+    },
+    {
+      "id": "s098",
+      "name": "Whitby Holistic Nutrition Studio",
+      "category": "Services",
+      "description": "Registered holistic nutritionists offering meal planning, consultations, and wellness coaching",
+      "location": "1615 Dundas St E, Whitby, ON",
+      "latitude": 43.8762,
+      "longitude": -78.934,
+      "rating": 4.7,
+      "reviewCount": 6,
+      "icon": "🥗",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms209",
+          "name": "Initial Nutrition Consultation",
+          "description": "75-minute comprehensive nutrition assessment",
+          "price": 140.0,
+          "category": "Consultations",
+          "points": 1400
+        },
+        {
+          "id": "ms210",
+          "name": "Follow-Up Session",
+          "description": "45-minute check-in and plan adjustment",
+          "price": 85.0,
+          "category": "Consultations",
+          "points": 850
+        },
+        {
+          "id": "ms211",
+          "name": "Custom Meal Plan",
+          "description": "4-week personalized meal planning package",
+          "price": 180.0,
+          "category": "Plans",
+          "points": 1800
+        },
+        {
+          "id": "ms212",
+          "name": "Group Nutrition Workshop",
+          "description": "2-hour group nutrition education class",
+          "price": 40.0,
+          "category": "Workshops",
+          "points": 400
+        }
+      ]
+    },
+    {
+      "id": "s099",
+      "name": "Oshawa Comic & Collectibles Den",
+      "category": "Retail",
+      "description": "Comics, trading cards, action figures, and collectibles for fans and collectors in Durham Region",
+      "location": "419 King St W, Oshawa, ON",
+      "latitude": 43.897,
+      "longitude": -78.863,
+      "rating": 4.5,
+      "reviewCount": 7,
+      "icon": "🦸",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms213",
+          "name": "Single Issue Comic",
+          "description": "New release or back issue comics",
+          "price": 4.99,
+          "category": "Comics",
+          "points": 50
+        },
+        {
+          "id": "ms214",
+          "name": "Graphic Novel / TPB",
+          "description": "Trade paperback collections",
+          "price": 19.99,
+          "category": "Comics",
+          "points": 200
+        },
+        {
+          "id": "ms215",
+          "name": "Pokémon Booster Pack",
+          "description": "Official sealed Pokémon TCG booster",
+          "price": 7.99,
+          "category": "Trading Cards",
+          "points": 80
+        },
+        {
+          "id": "ms216",
+          "name": "Funko Pop Figure",
+          "description": "Licensed vinyl collectible figures",
+          "price": 14.99,
+          "category": "Collectibles",
+          "points": 150
+        }
+      ]
+    },
+    {
+      "id": "s100",
+      "name": "Burlington Waterfront Yoga",
+      "category": "Services",
+      "description": "Outdoor and studio yoga classes on Burlington's beautiful waterfront and Spencer Smith Park",
+      "location": "1400 Lakeshore Rd, Burlington, ON",
+      "latitude": 43.3187,
+      "longitude": -79.7963,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "🧘",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms217",
+          "name": "Waterfront Drop-In Class",
+          "description": "60-minute outdoor waterfront yoga",
+          "price": 20.0,
+          "category": "Classes",
+          "points": 200
+        },
+        {
+          "id": "ms218",
+          "name": "10-Class Pass",
+          "description": "Flexible class pass for all formats",
+          "price": 165.0,
+          "category": "Passes",
+          "points": 1650
+        },
+        {
+          "id": "ms219",
+          "name": "Sunrise Yoga + Coffee",
+          "description": "7am outdoor class with café partner coffee",
+          "price": 25.0,
+          "category": "Events",
+          "points": 250
+        },
+        {
+          "id": "ms220",
+          "name": "Monthly Unlimited",
+          "description": "All classes indoors and outdoors",
+          "price": 95.0,
+          "category": "Memberships",
+          "points": 950
+        }
+      ]
+    },
+    {
+      "id": "s101",
+      "name": "Hamilton Public Market Café",
+      "category": "Food",
+      "description": "Bustling café inside Hamilton's historic indoor market serving breakfast, lunch, and local baked goods",
+      "location": "35 York Blvd, Hamilton, ON",
+      "latitude": 43.2601,
+      "longitude": -79.865,
+      "rating": 4.5,
+      "reviewCount": 6,
+      "icon": "🥪",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms221",
+          "name": "Market Breakfast Plate",
+          "description": "Eggs, peameal bacon, toast, and potatoes",
+          "price": 13.99,
+          "category": "Breakfast",
+          "points": 140
+        },
+        {
+          "id": "ms222",
+          "name": "Grilled Cheese & Tomato Soup",
+          "description": "Artisan grilled cheese with house soup",
+          "price": 12.99,
+          "category": "Lunch",
+          "points": 130
+        },
+        {
+          "id": "ms223",
+          "name": "Fresh Fruit Danish",
+          "description": "Seasonal fruit danish from the bakery",
+          "price": 4.5,
+          "category": "Pastries",
+          "points": 45
+        },
+        {
+          "id": "ms224",
+          "name": "Locally Sourced Smoothie",
+          "description": "Market-fresh fruit smoothie",
+          "price": 7.99,
+          "category": "Drinks",
+          "points": 80
+        }
+      ]
+    },
+    {
+      "id": "s102",
+      "name": "Guelph Urban Farm & CSA",
+      "category": "Retail",
+      "description": "Urban farm and Community Supported Agriculture delivering fresh local produce boxes in Guelph",
+      "location": "60 Yarmouth St, Guelph, ON",
+      "latitude": 43.548,
+      "longitude": -80.254,
+      "rating": 4.8,
+      "reviewCount": 6,
+      "icon": "🌱",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms225",
+          "name": "Weekly Veggie Box (Small)",
+          "description": "8-10 seasonal vegetables for 1-2 people",
+          "price": 28.0,
+          "category": "CSA",
+          "points": 280
+        },
+        {
+          "id": "ms226",
+          "name": "Weekly Veggie Box (Large)",
+          "description": "12-15 seasonal vegetables for 3-5 people",
+          "price": 42.0,
+          "category": "CSA",
+          "points": 420
+        },
+        {
+          "id": "ms227",
+          "name": "Egg Add-On (12 eggs)",
+          "description": "Farm fresh free-range eggs",
+          "price": 8.0,
+          "category": "Add-Ons",
+          "points": 80
+        },
+        {
+          "id": "ms228",
+          "name": "Farm Tour (Family)",
+          "description": "1-hour guided family farm tour",
+          "price": 20.0,
+          "category": "Experiences",
+          "points": 200
+        }
+      ]
+    },
+    {
+      "id": "s103",
+      "name": "Waterloo Craft Distillery",
+      "category": "Food",
+      "description": "Award-winning craft distillery in Waterloo Region producing whisky, gin, and vodka from local grain",
+      "location": "20 Erb St W, Waterloo, ON",
+      "latitude": 43.4668,
+      "longitude": -80.5228,
+      "rating": 4.7,
+      "reviewCount": 8,
+      "icon": "🥃",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms229",
+          "name": "Canadian Rye Whisky (750ml)",
+          "description": "Aged 4-year Ontario rye whisky",
+          "price": 55.0,
+          "category": "Whisky",
+          "points": 550
+        },
+        {
+          "id": "ms230",
+          "name": "Botanical Gin (750ml)",
+          "description": "Local botanicals dry gin",
+          "price": 48.0,
+          "category": "Gin",
+          "points": 480
+        },
+        {
+          "id": "ms231",
+          "name": "Distillery Tour & Tasting",
+          "description": "45-min tour with 4 spirit tastings",
+          "price": 25.0,
+          "category": "Tours",
+          "points": 250
+        },
+        {
+          "id": "ms232",
+          "name": "Cocktail Making Class",
+          "description": "2-hour cocktail craft class with spirits",
+          "price": 75.0,
+          "category": "Classes",
+          "points": 750
+        }
+      ]
+    },
+    {
+      "id": "s104",
+      "name": "Cambridge Antique Arcade",
+      "category": "Retail",
+      "description": "Multi-dealer antique mall in historic Cambridge with 80+ vendors across two floors",
+      "location": "45 Dickson St, Cambridge, ON",
+      "latitude": 43.36,
+      "longitude": -80.3127,
+      "rating": 4.4,
+      "reviewCount": 6,
+      "icon": "🪑",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms233",
+          "name": "Vintage Furniture Piece",
+          "description": "Curated antique furniture (price varies)",
+          "price": 150.0,
+          "category": "Furniture",
+          "points": 1500
+        },
+        {
+          "id": "ms234",
+          "name": "Antique Jewelry",
+          "description": "Estate jewelry from multiple eras",
+          "price": 65.0,
+          "category": "Jewelry",
+          "points": 650
+        },
+        {
+          "id": "ms235",
+          "name": "Vintage Kitchenware Set",
+          "description": "Retro kitchen items and serving pieces",
+          "price": 35.0,
+          "category": "Kitchen",
+          "points": 350
+        },
+        {
+          "id": "ms236",
+          "name": "Vintage Books (Per Bag)",
+          "description": "Fill a bag with curated vintage books",
+          "price": 20.0,
+          "category": "Books",
+          "points": 200
+        }
+      ]
+    },
+    {
+      "id": "s105",
+      "name": "Collingwood Ski & Board Shop",
+      "category": "Retail",
+      "description": "Full-service ski and snowboard shop with rentals, sales, and expert boot fitting near Blue Mountain",
+      "location": "15 Simcoe St, Collingwood, ON",
+      "latitude": 44.4998,
+      "longitude": -80.2165,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "⛷️",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms237",
+          "name": "Ski Rental Package (Daily)",
+          "description": "Skis, boots, and poles for one day",
+          "price": 55.0,
+          "category": "Rentals",
+          "points": 550
+        },
+        {
+          "id": "ms238",
+          "name": "Snowboard Rental (Daily)",
+          "description": "Board and boots for one day",
+          "price": 55.0,
+          "category": "Rentals",
+          "points": 550
+        },
+        {
+          "id": "ms239",
+          "name": "Expert Boot Fitting",
+          "description": "Professional boot fit with heat molding",
+          "price": 40.0,
+          "category": "Services",
+          "points": 400
+        },
+        {
+          "id": "ms240",
+          "name": "Ski Tune & Wax",
+          "description": "Full ski tune, edge sharpen, and wax",
+          "price": 45.0,
+          "category": "Services",
+          "points": 450
+        }
+      ]
+    },
+    {
+      "id": "s106",
+      "name": "Barrie Climbing & Adventure Center",
+      "category": "Services",
+      "description": "Indoor climbing, aerial adventure, and parkour facility in Barrie serving Georgian Bay area",
+      "location": "180 Dunlop St E, Barrie, ON",
+      "latitude": 44.389,
+      "longitude": -79.678,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "🧗",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms241",
+          "name": "Climb & Adventure Day Pass",
+          "description": "Full access to all facilities",
+          "price": 28.0,
+          "category": "Passes",
+          "points": 280
+        },
+        {
+          "id": "ms242",
+          "name": "Kids Adventure Camp (Day)",
+          "description": "Full-day supervised adventure camp",
+          "price": 65.0,
+          "category": "Camps",
+          "points": 650
+        },
+        {
+          "id": "ms243",
+          "name": "Monthly Membership",
+          "description": "Unlimited access to all facilities",
+          "price": 75.0,
+          "category": "Memberships",
+          "points": 750
+        },
+        {
+          "id": "ms244",
+          "name": "Intro to Climbing Course",
+          "description": "2-hour beginner climbing course",
+          "price": 55.0,
+          "category": "Courses",
+          "points": 550
+        }
+      ]
+    },
+    {
+      "id": "s107",
+      "name": "Midland Georgian Bay Seafood",
+      "category": "Food",
+      "description": "Fresh Georgian Bay fish market and restaurant specializing in local whitefish and pickerel",
+      "location": "280 King St, Midland, ON",
+      "latitude": 44.7497,
+      "longitude": -79.8883,
+      "rating": 4.7,
+      "reviewCount": 6,
+      "icon": "🐟",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms245",
+          "name": "Georgian Bay Pickerel",
+          "description": "Fresh pan-fried pickerel with lemon butter",
+          "price": 22.99,
+          "category": "Fish",
+          "points": 230
+        },
+        {
+          "id": "ms246",
+          "name": "Whitefish Tacos",
+          "description": "Local whitefish tacos with slaw",
+          "price": 16.99,
+          "category": "Tacos",
+          "points": 170
+        },
+        {
+          "id": "ms247",
+          "name": "Fish & Chips",
+          "description": "Beer-battered local fish with fries",
+          "price": 17.99,
+          "category": "Classics",
+          "points": 180
+        },
+        {
+          "id": "ms248",
+          "name": "Smoked Trout Spread",
+          "description": "House-smoked trout on artisan crackers",
+          "price": 12.99,
+          "category": "Starters",
+          "points": 130
+        }
+      ]
+    },
+    {
+      "id": "s108",
+      "name": "Orillia Sugar Shack",
+      "category": "Food",
+      "description": "Traditional maple sugar shack experience with log-cabin dining and live music on weekends",
+      "location": "450 Mississaga St E, Orillia, ON",
+      "latitude": 44.6087,
+      "longitude": -79.4195,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "🍁",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms249",
+          "name": "Sugar Shack Pancake Breakfast",
+          "description": "All-you-can-eat pancakes with fresh maple syrup",
+          "price": 18.99,
+          "category": "Breakfast",
+          "points": 190
+        },
+        {
+          "id": "ms250",
+          "name": "Tire d'érable (Maple Taffy)",
+          "description": "Fresh maple syrup poured on snow",
+          "price": 6.0,
+          "category": "Treats",
+          "points": 60
+        },
+        {
+          "id": "ms251",
+          "name": "Pure Maple Syrup (500ml)",
+          "description": "Freshly tapped Ontario maple syrup",
+          "price": 19.0,
+          "category": "Syrup",
+          "points": 190
+        },
+        {
+          "id": "ms252",
+          "name": "Sugar Shack Tour",
+          "description": "Guided tour of the maple operation",
+          "price": 12.0,
+          "category": "Experiences",
+          "points": 120
+        }
+      ]
+    },
+    {
+      "id": "s109",
+      "name": "Newmarket Artisan Pizza",
+      "category": "Food",
+      "description": "Neapolitan-style wood-fired pizza with stone-milled flour, San Marzano tomatoes, and local toppings",
+      "location": "180 Main St S, Newmarket, ON",
+      "latitude": 44.0569,
+      "longitude": -79.463,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🍕",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms253",
+          "name": "Margherita DOC",
+          "description": "San Marzano tomato, fior di latte, basil",
+          "price": 18.0,
+          "category": "Pizza",
+          "points": 180
+        },
+        {
+          "id": "ms254",
+          "name": "Prosciutto e Rucola",
+          "description": "Prosciutto, arugula, shaved parm",
+          "price": 22.0,
+          "category": "Pizza",
+          "points": 220
+        },
+        {
+          "id": "ms255",
+          "name": "Nduja & Honey",
+          "description": "Spicy nduja sausage with local honey",
+          "price": 23.0,
+          "category": "Pizza",
+          "points": 230
+        },
+        {
+          "id": "ms256",
+          "name": "Burrata Starter",
+          "description": "House burrata with heirloom tomatoes",
+          "price": 15.0,
+          "category": "Starters",
+          "points": 150
+        }
+      ]
+    },
+    {
+      "id": "s110",
+      "name": "Aurora Skin & Laser Clinic",
+      "category": "Services",
+      "description": "Medical aesthetics clinic offering laser treatments, injectables, and advanced skin care in Aurora",
+      "location": "14800 Yonge St, Aurora, ON",
+      "latitude": 43.9984,
+      "longitude": -79.4504,
+      "rating": 4.6,
+      "reviewCount": 6,
+      "icon": "✨",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms257",
+          "name": "Laser Hair Removal (Area)",
+          "description": "Per-session laser hair removal",
+          "price": 125.0,
+          "category": "Laser",
+          "points": 1250
+        },
+        {
+          "id": "ms258",
+          "name": "Hydrafacial",
+          "description": "Medical-grade hydrafacial treatment",
+          "price": 185.0,
+          "category": "Facial",
+          "points": 1850
+        },
+        {
+          "id": "ms259",
+          "name": "Botox Consultation & Treatment",
+          "description": "Per unit Botox by trained injector",
+          "price": 12.0,
+          "category": "Injectables",
+          "points": 120
+        },
+        {
+          "id": "ms260",
+          "name": "Chemical Peel",
+          "description": "Medical-grade exfoliation treatment",
+          "price": 120.0,
+          "category": "Peels",
+          "points": 1200
+        }
+      ]
+    },
+    {
+      "id": "s111",
+      "name": "Richmond Hill Persian Sweets",
+      "category": "Food",
+      "description": "Traditional Persian confectionery and pastry shop with baklava, sohan, and rosewater sweets",
+      "location": "9300 Yonge St, Richmond Hill, ON",
+      "latitude": 43.868,
+      "longitude": -79.437,
+      "rating": 4.7,
+      "reviewCount": 7,
+      "icon": "🌹",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms261",
+          "name": "Baklava Box (12pc)",
+          "description": "Rosewater and pistachio baklava",
+          "price": 18.0,
+          "category": "Pastries",
+          "points": 180
+        },
+        {
+          "id": "ms262",
+          "name": "Sohan (Saffron Brittle)",
+          "description": "Traditional Isfahan saffron brittle",
+          "price": 14.0,
+          "category": "Sweets",
+          "points": 140
+        },
+        {
+          "id": "ms263",
+          "name": "Gaz (Persian Nougat)",
+          "description": "Pistachio nougat with rosewater",
+          "price": 12.0,
+          "category": "Sweets",
+          "points": 120
+        },
+        {
+          "id": "ms264",
+          "name": "Persian Sweets Gift Box",
+          "description": "Assorted premium Persian sweets",
+          "price": 45.0,
+          "category": "Gifts",
+          "points": 450
+        }
+      ]
+    },
+    {
+      "id": "s112",
+      "name": "Thornhill Boba & Matcha",
+      "category": "Food",
+      "description": "Premium Japanese-inspired café serving ceremonial matcha, hojicha lattes, and handmade wagashi",
+      "location": "7700 Yonge St, Thornhill, ON",
+      "latitude": 43.812,
+      "longitude": -79.4241,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🍵",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms265",
+          "name": "Ceremonial Matcha Latte",
+          "description": "Grade A ceremonial matcha with oat milk",
+          "price": 8.5,
+          "category": "Matcha",
+          "points": 85
+        },
+        {
+          "id": "ms266",
+          "name": "Hojicha Soft Serve",
+          "description": "Roasted green tea soft serve cone",
+          "price": 6.5,
+          "category": "Desserts",
+          "points": 65
+        },
+        {
+          "id": "ms267",
+          "name": "Wagashi (3pc)",
+          "description": "Traditional Japanese confections",
+          "price": 12.0,
+          "category": "Sweets",
+          "points": 120
+        },
+        {
+          "id": "ms268",
+          "name": "Matcha Tasting Flight",
+          "description": "Compare 3 grades of Japanese matcha",
+          "price": 18.0,
+          "category": "Tastings",
+          "points": 180
+        }
+      ]
+    },
+    {
+      "id": "s113",
+      "name": "Markham Latin Dance Studio",
+      "category": "Services",
+      "description": "Latin dance studio offering salsa, bachata, merengue, and kizomba classes for all levels",
+      "location": "8 William Roe Blvd, Markham, ON",
+      "latitude": 43.85,
+      "longitude": -79.36,
+      "rating": 4.8,
+      "reviewCount": 7,
+      "icon": "💃",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms269",
+          "name": "Drop-In Class",
+          "description": "Any Latin dance class drop-in",
+          "price": 20.0,
+          "category": "Classes",
+          "points": 200
+        },
+        {
+          "id": "ms270",
+          "name": "Beginner Salsa Course (8wks)",
+          "description": "Complete beginner salsa program",
+          "price": 140.0,
+          "category": "Courses",
+          "points": 1400
+        },
+        {
+          "id": "ms271",
+          "name": "Couples Private Lesson",
+          "description": "60-min private lesson for couples",
+          "price": 110.0,
+          "category": "Private",
+          "points": 1100
+        },
+        {
+          "id": "ms272",
+          "name": "Social Dance Night Entry",
+          "description": "Saturday social dance night",
+          "price": 15.0,
+          "category": "Events",
+          "points": 150
+        }
+      ]
+    },
+    {
+      "id": "s114",
+      "name": "Markham Board Game Café",
+      "category": "Services",
+      "description": "300+ board games available to play with café food and drinks in a relaxed setting",
+      "location": "5090 Sheppard Ave E, Markham, ON",
+      "latitude": 43.781,
+      "longitude": -79.279,
+      "rating": 4.7,
+      "reviewCount": 8,
+      "icon": "🎲",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms273",
+          "name": "Table Fee (Per Person)",
+          "description": "Unlimited game access per person",
+          "price": 8.0,
+          "category": "Access",
+          "points": 80
+        },
+        {
+          "id": "ms274",
+          "name": "Loaded Nachos",
+          "description": "House nachos with queso and toppings",
+          "price": 16.99,
+          "category": "Food",
+          "points": 170
+        },
+        {
+          "id": "ms275",
+          "name": "Craft Beer Selection",
+          "description": "Rotating local craft beer selection",
+          "price": 8.0,
+          "category": "Drinks",
+          "points": 80
+        },
+        {
+          "id": "ms276",
+          "name": "Private Event (3hr)",
+          "description": "Private room for groups up to 20",
+          "price": 199.0,
+          "category": "Events",
+          "points": 1990
+        }
+      ]
+    },
+    {
+      "id": "s115",
+      "name": "Markham Dim Sum Desserts",
+      "category": "Food",
+      "description": "Specialty Hong Kong dessert café serving tong sui, egg waffles, and mango desserts",
+      "location": "4040 Steeles Ave E, Markham, ON",
+      "latitude": 43.8195,
+      "longitude": -79.29,
+      "rating": 4.6,
+      "reviewCount": 7,
+      "icon": "🍮",
+      "deals": [],
+      "menu": [
+        {
+          "id": "ms277",
+          "name": "Mango Pomelo Sago",
+          "description": "Classic HK mango dessert soup",
+          "price": 9.99,
+          "category": "Tong Sui",
+          "points": 100
+        },
+        {
+          "id": "ms278",
+          "name": "Egg Waffle",
+          "description": "Hong Kong street-style puffy egg waffle",
+          "price": 7.99,
+          "category": "Waffles",
+          "points": 80
+        },
+        {
+          "id": "ms279",
+          "name": "Black Sesame Tang Yuan",
+          "description": "Glutinous rice balls in ginger broth",
+          "price": 8.99,
+          "category": "Tong Sui",
+          "points": 90
+        },
+        {
+          "id": "ms280",
+          "name": "Mango Shaved Ice",
+          "description": "Fluffy shaved milk ice with fresh mango",
+          "price": 11.99,
+          "category": "Ice Desserts",
           "points": 120
         }
       ]
