@@ -99,7 +99,6 @@ class ReviewService {
       _cachedReviews.add(review);
       await _saveUserReviews();
       
-      // Update user statistics
       await AuthService.incrementReviewsPosted();
       
       print('✅ Review added successfully and user stats updated');

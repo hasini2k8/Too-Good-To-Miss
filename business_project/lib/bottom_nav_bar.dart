@@ -46,10 +46,8 @@ class BottomNavBar extends StatelessWidget {
     final isSelected = selectedIndex == index;
     return GestureDetector(
       onTap: () {
-        // Don't navigate if already on the current page
         if (index == selectedIndex) return;
 
-        // Navigate to the appropriate page
         Widget page;
         switch (index) {
           case 0:
@@ -68,7 +66,6 @@ class BottomNavBar extends StatelessWidget {
             return;
         }
 
-        // Use pushReplacement to avoid stacking pages
         Navigator.pushReplacement(
           context,
           PageRouteBuilder(

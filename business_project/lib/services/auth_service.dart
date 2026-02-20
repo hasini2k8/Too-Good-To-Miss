@@ -11,22 +11,17 @@ class AuthService {
   static const String _sessionBoxName = 'session';
   static const String _authTokenKey = 'auth_token';
   
-  // PocketBase instance - replace with your PocketBase URL
   static final PocketBase pb = PocketBase('http://127.0.0.1:8090');
   static const String _usersCollection = 'startupUsers';
   static const String _baseUrl = 'http://127.0.0.1:8090';
 
-  // Initialize Hive and sync with PocketBase
   static Future<void> initialize() async {
-    // Open boxes
     await Hive.openBox<UserModel>(_usersBoxName);
     await Hive.openBox(_sessionBoxName);
 
-    // Try to restore auth from saved token
     await _restoreAuthFromToken();
   }
 
-  // Restore authentication from saved token
   static Future<void> _restoreAuthFromToken() async {
     try {
       final sessionBox = Hive.box(_sessionBoxName);
@@ -61,7 +56,6 @@ class AuthService {
       
       print('Fetched ${records.length} records from PocketBase');
       
-      // Clear existing cache and reload
       await usersBox.clear();
       
       for (var record in records) {
@@ -75,7 +69,6 @@ class AuthService {
       print('Hive box now contains ${usersBox.length} users');
     } catch (e) {
       print('Error syncing users from PocketBase: $e');
-      // If sync fails, try to load from JSON as fallback
       final usersBox = Hive.box<UserModel>(_usersBoxName);
       if (usersBox.isEmpty) {
         await _loadUsersFromJson();
@@ -171,23 +164,19 @@ class AuthService {
   static Future<Map<String, dynamic>?> loginUser({
     required String usernameOrEmail,
     required String password,
-    String? recaptchaToken, // reCAPTCHA token for verification
+    String? recaptchaToken, 
   }) async {
     try {
       print('=== LOGIN ATTEMPT ===');
       print('Input: $usernameOrEmail');
       
-      // TODO: If you want backend verification, send recaptchaToken to your backend here
-      // For now, we'll just log it
       if (recaptchaToken != null) {
         print('reCAPTCHA token received: ${recaptchaToken.substring(0, 20)}...');
-        // In production, verify this token on your backend before proceeding
       }
       
       String emailToUse = usernameOrEmail;
       String? username;
       
-      // If input doesn't contain @, it's a username - we need to get the email
       if (!usernameOrEmail.contains('@')) {
         print('Input is username, looking up email in cache...');
         final usersBox = Hive.box<UserModel>(_usersBoxName);
@@ -208,7 +197,6 @@ class AuthService {
       
       print('Authenticating with email: $emailToUse');
       
-      // Authenticate with PocketBase using EMAIL
       final authData = await pb.collection(_usersCollection).authWithPassword(
         emailToUse,
         password,
@@ -217,15 +205,12 @@ class AuthService {
       if (authData.record != null) {
         print('✓ Authentication SUCCESS');
         
-        // Get username from the record
         final recordUsername = authData.record!.data['username'] ?? username ?? emailToUse;
         
-        // Save auth token for persistence
         final sessionBox = Hive.box(_sessionBoxName);
         await sessionBox.put(_authTokenKey, pb.authStore.token);
         await sessionBox.put(_currentUserKey, recordUsername);
         
-        // Cache user locally
         final user = UserModel.fromJson(authData.record!.toJson());
         final usersBox = Hive.box<UserModel>(_usersBoxName);
         await usersBox.put(recordUsername, user);
@@ -248,13 +233,11 @@ class AuthService {
       final currentUsername = sessionBox.get(_currentUserKey);
       
       if (currentUsername != null && pb.authStore.isValid) {
-        // Try to get fresh data from PocketBase first
         try {
           final record = await pb.collection(_usersCollection).getFirstListItem(
             'username="${currentUsername}"',
           );
           
-          // Update local cache
           final user = UserModel.fromJson(record.toJson());
           final usersBox = Hive.box<UserModel>(_usersBoxName);
           await usersBox.put(currentUsername, user);
@@ -276,7 +259,7 @@ class AuthService {
     }
   }
 
-  // Update user data - IMPROVED WITH BETTER LOGGING
+  // Update user data 
   static Future<bool> updateUser(Map<String, dynamic> updatedUser) async {
     try {
       final userId = updatedUser['id'];
