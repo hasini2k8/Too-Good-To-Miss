@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:url_launcher/url_launcher.dart'; // ADD to pubspec.yaml: url_launcher: ^6.2.0
+import 'package:url_launcher/url_launcher.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:js' as js;
+import 'dart:async';
 import 'dart:ui' as ui;
 import 'dart:convert';
 import '../models/startup.dart';
@@ -14,6 +18,10 @@ import '../services/bookmark_services.dart';
 import '../services/auth_service.dart';
 import '../bottom_nav_bar.dart';
 import '../widgets/puzzle_captcha_widget.dart';
+
+
+const _kElevenLabsApiKey = 'sk_003a81898f04416af221f528385992eea4a41f0e4f9e6e7e';
+
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -37,6 +45,15 @@ class _MapPageState extends State<MapPage> {
   bool _locationPermissionGranted = false;
   String _locationStatus = 'Getting location...';
 
+  // ── Voice search state ──────────────────────
+  html.MediaRecorder? _mediaRecorder;
+  html.MediaStream? _mediaStream;
+  final List<html.Blob> _audioChunks = [];
+  bool _isRecording = false;
+  bool _isProcessingVoice = false;
+  String? _voiceSearchQuery;
+  // ────────────────────────────────────────────
+
   final ReviewService _reviewService = ReviewService();
   final DealService _dealService = DealService();
   final BookmarkService _bookmarkService = BookmarkService();
@@ -48,6 +65,18 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
     _loadData();
+  }
+
+  @override
+  void dispose() {
+    _stopMediaStream();
+    super.dispose();
+  }
+
+  void _stopMediaStream() {
+    _mediaStream?.getTracks().forEach((t) => t.stop());
+    _mediaStream = null;
+    _mediaRecorder = null;
   }
 
   Future<void> _loadData() async {
@@ -133,6 +162,14 @@ class _MapPageState extends State<MapPage> {
   void _applyFiltersAndSort() {
     _filteredStartups = _allStartups.filterByCategory(_selectedCategory);
 
+    // Voice search filter
+    if (_voiceSearchQuery != null && _voiceSearchQuery!.isNotEmpty) {
+      final query = _voiceSearchQuery!.toLowerCase();
+      _filteredStartups = _filteredStartups
+          .where((s) => s.name.toLowerCase().contains(query))
+          .toList();
+    }
+
     if (_selectedRating != 'All') {
       switch (_selectedRating) {
         case '5★':
@@ -166,6 +203,218 @@ class _MapPageState extends State<MapPage> {
         break;
     }
   }
+
+  // ════════════════════════════════════════════
+  //  VOICE SEARCH  –  Web (dart:html + ElevenLabs Scribe)
+  // ════════════════════════════════════════════
+
+  Future<void> _toggleVoiceSearch() async {
+    if (_isRecording) {
+      _stopRecording();
+    } else {
+      await _startRecording();
+    }
+  }
+
+  Future<void> _startRecording() async {
+    try {
+      // Browser prompts user for mic permission automatically
+      final stream = await html.window.navigator.mediaDevices!
+          .getUserMedia({'audio': true, 'video': false});
+      _mediaStream = stream;
+      _audioChunks.clear();
+
+      // Pick the best MIME type this browser supports
+      final mimeType = _getSupportedMimeType();
+      final options = mimeType != null ? {'mimeType': mimeType} : <String, dynamic>{};
+
+      _mediaRecorder = html.MediaRecorder(stream, options);
+
+      _mediaRecorder!.addEventListener('dataavailable', (event) {
+        final blob = (event as html.BlobEvent).data;
+        if (blob != null && blob.size > 0) _audioChunks.add(blob);
+      });
+
+      _mediaRecorder!.addEventListener('stop', (_) async {
+        await _processAudioChunks();
+      });
+
+      _mediaRecorder!.start();
+      setState(() { _isRecording = true; });
+    } catch (e) {
+      _showVoiceSnackbar('Microphone access denied or unavailable', isError: true);
+    }
+  }
+
+  void _stopRecording() {
+    _mediaRecorder?.stop();
+    _stopMediaStream();
+    setState(() {
+      _isRecording = false;
+      _isProcessingVoice = true;
+    });
+  }
+
+  /// Returns the best audio MIME type supported by this browser.
+  String? _getSupportedMimeType() {
+    const candidates = [
+      'audio/webm;codecs=opus',
+      'audio/webm',
+      'audio/ogg;codecs=opus',
+      'audio/mp4',
+    ];
+    for (final type in candidates) {
+      final supported = js.context
+          .callMethod('eval', ['MediaRecorder.isTypeSupported("$type")']) as bool;
+      if (supported) return type;
+    }
+    return null;
+  }
+
+  Future<void> _processAudioChunks() async {
+    if (_audioChunks.isEmpty) {
+      setState(() { _isProcessingVoice = false; });
+      return;
+    }
+
+    try {
+      final blob = html.Blob(_audioChunks);
+      final transcript = await _transcribeWithElevenLabs(blob);
+      if (transcript != null && transcript.isNotEmpty) {
+        _handleVoiceTranscript(transcript);
+      } else {
+        _showVoiceSnackbar("Couldn't understand audio. Please try again.", isError: true);
+      }
+    } catch (e) {
+      _showVoiceSnackbar('Voice search failed: $e', isError: true);
+    } finally {
+      setState(() { _isProcessingVoice = false; });
+      _audioChunks.clear();
+    }
+  }
+
+  /// Sends the audio Blob to ElevenLabs Scribe via XHR (CORS-safe from browser).
+  Future<String?> _transcribeWithElevenLabs(html.Blob audioBlob) {
+    final completer = Completer<String?>();
+
+    final formData = html.FormData();
+    formData.appendBlob('file', audioBlob, 'audio.webm');
+    formData.append('model_id', 'scribe_v1');
+
+    final xhr = html.HttpRequest();
+    xhr.open('POST', 'https://api.elevenlabs.io/v1/speech-to-text');
+    xhr.setRequestHeader('xi-api-key', _kElevenLabsApiKey);
+
+    xhr.onLoad.listen((_) {
+      if (xhr.status == 200) {
+        final data = json.decode(xhr.responseText!) as Map<String, dynamic>;
+        completer.complete((data['text'] as String?)?.trim());
+      } else {
+        print('ElevenLabs STT error ${xhr.status}: ${xhr.responseText}');
+        completer.completeError('ElevenLabs API error ${xhr.status}');
+      }
+    });
+
+    xhr.onError.listen((_) {
+      completer.completeError('Network error contacting ElevenLabs');
+    });
+
+    xhr.send(formData);
+    return completer.future;
+  }
+
+  /// Strips command words from the transcript and finds the best startup match.
+  void _handleVoiceTranscript(String transcript) {
+    final lower = transcript.toLowerCase().trim();
+    print('🎤 Transcript: $transcript');
+
+    const prefixes = [
+      'where is ', "where's ", 'show me ', 'find ',
+      'search for ', 'search ', 'look for ', 'navigate to ',
+      'take me to ', 'locate ', 'open ',
+    ];
+
+    String extracted = lower;
+    for (final prefix in prefixes) {
+      if (lower.startsWith(prefix)) {
+        extracted = lower.substring(prefix.length).trim();
+        break;
+      }
+    }
+    extracted = extracted.replaceAll(RegExp(r'[.?!,]+$'), '').trim();
+
+    if (extracted.isEmpty) {
+      _showVoiceSnackbar('No startup name detected. Try: "show me <name>"', isError: true);
+      return;
+    }
+
+    final match = _findBestMatch(extracted);
+    if (match == null) {
+      _showVoiceSnackbar('No startup found matching "$extracted"', isError: true);
+      return;
+    }
+
+    setState(() {
+      _voiceSearchQuery = match.name;
+      _selectedCategory = 'All';
+    });
+    _applyFiltersAndSort();
+    _createMarkers();
+
+    // Zoom to the matched startup
+    _mapController?.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(match.latitude, match.longitude), zoom: 16),
+      ),
+    );
+
+    // Open its details sheet automatically
+    _showStartupDetails(match);
+    _showVoiceSnackbar('Showing: ${match.name}');
+  }
+
+  /// Priority: exact → starts-with → contains → all words match → any word matches.
+  Startup? _findBestMatch(String query) {
+    final q = query.toLowerCase();
+    for (final s in _allStartups) {
+      if (s.name.toLowerCase() == q) return s;
+    }
+    for (final s in _allStartups) {
+      if (s.name.toLowerCase().startsWith(q)) return s;
+    }
+    for (final s in _allStartups) {
+      if (s.name.toLowerCase().contains(q)) return s;
+    }
+    final queryWords = q.split(RegExp(r'\s+'));
+    for (final s in _allStartups) {
+      final nameLower = s.name.toLowerCase();
+      if (queryWords.every((w) => nameLower.contains(w))) return s;
+    }
+    for (final s in _allStartups) {
+      final nameWords = s.name.toLowerCase().split(RegExp(r'\s+'));
+      if (nameWords.any((w) => w.length > 2 && q.contains(w))) return s;
+    }
+    return null;
+  }
+
+  void _clearVoiceSearch() {
+    setState(() { _voiceSearchQuery = null; });
+    _applyFiltersAndSort();
+    _createMarkers();
+  }
+
+  void _showVoiceSnackbar(String message, {bool isError = false}) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: isError ? Colors.red[700] : Colors.green[700],
+      duration: const Duration(seconds: 3),
+    ));
+  }
+
+  // ════════════════════════════════════════════
+  //  END VOICE SEARCH
+  // ════════════════════════════════════════════
 
   Future<void> _createMarkers() async {
     final Set<Marker> markers = {};
@@ -353,9 +602,52 @@ class _MapPageState extends State<MapPage> {
             zoomControlsEnabled: false,
           ),
 
-          // Top bar with filters
+          // ── Active voice-filter banner ──────────────────────────────────
+          if (_voiceSearchQuery != null)
+            Positioned(
+              top: 0, left: 0, right: 0,
+              child: SafeArea(
+                bottom: false,
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1565C0),
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.15), blurRadius: 6)],
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.mic, color: Colors.white, size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Showing: "$_voiceSearchQuery"',
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: _clearVoiceSearch,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.close, color: Colors.white, size: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+          // ── Top filter card ────────────────────────────────────────────
           Positioned(
-            top: 0, left: 0, right: 0,
+            top: _voiceSearchQuery != null ? 50 : 0,
+            left: 0, right: 0,
             child: SafeArea(
               child: Container(
                 margin: const EdgeInsets.all(16),
@@ -432,7 +724,6 @@ class _MapPageState extends State<MapPage> {
                             ),
                           ),
                         ),
-                        // Sort dropdown removed per request (defaults to `_sortBy` = 'Name')
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -475,6 +766,7 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
 
+          // ── My Location FAB ────────────────────────────────────────────
           Positioned(
             right: 16, bottom: 180,
             child: FloatingActionButton(
@@ -488,6 +780,7 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
 
+          // ── Bookmarks FAB ──────────────────────────────────────────────
           Positioned(
             right: 16, bottom: 100,
             child: FloatingActionButton(
@@ -498,6 +791,13 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
 
+          // ── 🎤 Voice Search FAB ────────────────────────────────────────
+          Positioned(
+            right: 16, bottom: 260,
+            child: _buildVoiceFab(),
+          ),
+
+          // ── Legend ─────────────────────────────────────────────────────
           Positioned(
             left: 16, bottom: 100,
             child: Container(
@@ -528,6 +828,34 @@ class _MapPageState extends State<MapPage> {
         ],
       ),
       bottomNavigationBar: const BottomNavBar(selectedIndex: 1),
+    );
+  }
+
+  Widget _buildVoiceFab() {
+    if (_isProcessingVoice) {
+      return FloatingActionButton(
+        heroTag: 'voiceSearch',
+        onPressed: null,
+        backgroundColor: Colors.grey[300],
+        tooltip: 'Processing audio…',
+        child: const SizedBox(
+          width: 24, height: 24,
+          child: CircularProgressIndicator(strokeWidth: 2.5, color: Color(0xFF1565C0)),
+        ),
+      );
+    }
+    if (_isRecording) {
+      return _PulsingFab(onTap: _toggleVoiceSearch);
+    }
+    return FloatingActionButton(
+      heroTag: 'voiceSearch',
+      onPressed: _toggleVoiceSearch,
+      backgroundColor: _voiceSearchQuery != null ? const Color(0xFF1565C0) : Colors.white,
+      tooltip: 'Voice search a startup',
+      child: Icon(
+        _voiceSearchQuery != null ? Icons.mic : Icons.mic_none,
+        color: _voiceSearchQuery != null ? Colors.white : const Color(0xFF1565C0),
+      ),
     );
   }
 
@@ -593,8 +921,57 @@ class _MapPageState extends State<MapPage> {
   }
 }
 
-class RouteHelper {
+// ════════════════════════════════════════════════════════════════════════════
+//  Pulsing recording FAB
+// ════════════════════════════════════════════════════════════════════════════
 
+class _PulsingFab extends StatefulWidget {
+  final VoidCallback onTap;
+  const _PulsingFab({required this.onTap});
+
+  @override
+  State<_PulsingFab> createState() => _PulsingFabState();
+}
+
+class _PulsingFabState extends State<_PulsingFab> with SingleTickerProviderStateMixin {
+  late AnimationController _ctrl;
+  late Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 700))
+      ..repeat(reverse: true);
+    _scale = Tween<double>(begin: 1.0, end: 1.18)
+        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: _scale,
+      child: FloatingActionButton(
+        heroTag: 'voiceSearch',
+        onPressed: widget.onTap,
+        backgroundColor: Colors.red,
+        tooltip: 'Tap to stop recording',
+        child: const Icon(Icons.mic, color: Colors.white),
+      ),
+    );
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+//  Unchanged classes below
+// ════════════════════════════════════════════════════════════════════════════
+
+class RouteHelper {
   static Map<String, String> estimateTravelTimes({
     required double fromLat,
     required double fromLon,
@@ -630,7 +1007,7 @@ class RouteHelper {
     required double fromLon,
     required double toLat,
     required double toLon,
-    required String travelMode, 
+    required String travelMode,
   }) async {
     final nativeUri = Uri.parse(
       'comgooglemaps://?saddr=$fromLat,$fromLon&daddr=$toLat,$toLon&directionsmode=$travelMode',
@@ -649,7 +1026,6 @@ class RouteHelper {
     }
   }
 }
-
 
 class RouteOptionsSheet extends StatefulWidget {
   final Startup startup;
@@ -672,10 +1048,10 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
   late Map<String, String> _times;
 
   static const _modes = [
-    {'key': 'driving',   'label': 'Drive',    'icon': Icons.directions_car,   'gmaps': 'driving'},
-    {'key': 'transit',   'label': 'Transit',  'icon': Icons.directions_transit,'gmaps': 'transit'},
-    {'key': 'walking',   'label': 'Walk',     'icon': Icons.directions_walk,  'gmaps': 'walking'},
-    {'key': 'cycling',   'label': 'Cycle',    'icon': Icons.directions_bike,  'gmaps': 'bicycling'},
+    {'key': 'driving',  'label': 'Drive',   'icon': Icons.directions_car,     'gmaps': 'driving'},
+    {'key': 'transit',  'label': 'Transit', 'icon': Icons.directions_transit,  'gmaps': 'transit'},
+    {'key': 'walking',  'label': 'Walk',    'icon': Icons.directions_walk,    'gmaps': 'walking'},
+    {'key': 'cycling',  'label': 'Cycle',   'icon': Icons.directions_bike,    'gmaps': 'bicycling'},
   ];
 
   @override
@@ -721,7 +1097,6 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
               decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
             ),
           ),
-
           Row(
             children: [
               Container(
@@ -746,21 +1121,16 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(20),
-                ),
+                decoration: BoxDecoration(color: Colors.grey[100], borderRadius: BorderRadius.circular(20)),
                 child: Text('$distanceKm km',
                   style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
               ),
             ],
           ),
-
           const SizedBox(height: 20),
           const Text('Choose travel mode',
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black54)),
           const SizedBox(height: 12),
-
           Row(
             children: _modes.map((mode) {
               final key = mode['key'] as String;
@@ -792,18 +1162,12 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
                           color: isSelected ? Colors.white : Colors.grey[600], size: 26),
                         const SizedBox(height: 6),
                         Text(mode['label'] as String,
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: isSelected ? Colors.white : Colors.grey[700],
-                          )),
+                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600,
+                            color: isSelected ? Colors.white : Colors.grey[700])),
                         const SizedBox(height: 4),
                         Text(time,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: isSelected ? Colors.white.withOpacity(0.9) : const Color(0xFF1565C0),
-                          )),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold,
+                            color: isSelected ? Colors.white.withOpacity(0.9) : const Color(0xFF1565C0))),
                       ],
                     ),
                   ),
@@ -811,9 +1175,7 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
               );
             }).toList(),
           ),
-
           const SizedBox(height: 16),
-
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
@@ -834,18 +1196,14 @@ class _RouteOptionsSheetState extends State<RouteOptionsSheet> {
               ],
             ),
           ),
-
           const SizedBox(height: 20),
-
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: _launch,
               icon: const Text('🗺️', style: TextStyle(fontSize: 18)),
-              label: const Text(
-                'Open in Google Maps',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
+              label: const Text('Open in Google Maps',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF1565C0),
                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -969,14 +1327,11 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
           ),
           child: Column(
             children: [
-              // Handle
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 12),
                 width: 40, height: 4,
                 decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
               ),
-
-              // Header
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -1021,9 +1376,7 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 12),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
@@ -1031,10 +1384,8 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                   child: ElevatedButton.icon(
                     onPressed: _showRouteOptions,
                     icon: const Icon(Icons.directions, color: Colors.white, size: 20),
-                    label: const Text(
-                      'Get Directions',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15),
-                    ),
+                    label: const Text('Get Directions',
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF1E88E5),
                       padding: const EdgeInsets.symmetric(vertical: 12),
@@ -1044,9 +1395,7 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 12),
-
               Container(
                 height: 50,
                 decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey[300]!))),
@@ -1058,7 +1407,6 @@ class _StartupDetailsSheetState extends State<StartupDetailsSheet> {
                   ],
                 ),
               ),
-
               Expanded(
                 child: ListView(
                   controller: scrollController,

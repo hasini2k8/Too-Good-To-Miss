@@ -15,18 +15,22 @@ class PixelPetWidget extends StatefulWidget {
 }
 
 class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStateMixin {
+  // User stats
   int userPoints = 0;
   
+  // Pet stats
   int petHunger = 50;
   int petHappiness = 50;
   int petEnergy = 50;
   String petName = 'Rex';
   
+  // Accessories (owned items)
   Set<String> ownedAccessories = {};
   String? equippedHat;
   String? equippedCollar;
   String? equippedToy;
   
+  // Animation controllers
   late AnimationController _tailWagController;
   late AnimationController _jumpController;
   late AnimationController _heartController;
@@ -38,8 +42,10 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
   bool _isLoading = true;
   Timer? _degradationTimer;
   
+  // Current tab (0: Food, 1: Accessories)
   int _currentTab = 0;
   
+  // Food items
   final List<Map<String, dynamic>> foodItems = [
     {
       'id': 'bone',
@@ -79,6 +85,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
     },
   ];
   
+  // Accessories
   final List<Map<String, dynamic>> accessories = [
     {
       'id': 'hat_party',
@@ -149,6 +156,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
   void initState() {
     super.initState();
     
+    // Setup animations
     _tailWagController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -183,6 +191,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
       }
     });
     
+    // Start tail wag loop
     _tailWagController.repeat(reverse: true);
     
     _loadGameData();
@@ -378,6 +387,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
                 ),
               ),
               
+              // Header
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -440,10 +450,12 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
                 ),
                 child: Column(
                   children: [
+                    // Pet character with accessories
                     Stack(
                       alignment: Alignment.center,
                       clipBehavior: Clip.none,
                       children: [
+                        // Hearts animation
                         if (_showHearts)
                           Positioned(
                             top: -40,
@@ -461,6 +473,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
                             ),
                           ),
                         
+                        // Pet with jump animation
                         AnimatedBuilder(
                           animation: _jumpAnimation,
                           builder: (context, child) {
@@ -481,6 +494,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
                             ),
                           ),
                         
+                        // Equipped toy
                         if (equippedToy != null)
                           Positioned(
                             right: -20,
@@ -495,6 +509,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
                     
                     const SizedBox(height: 20),
                     
+                    // Stats
                     _buildStatBar('Hunger', petHunger, '🍖'),
                     const SizedBox(height: 8),
                     _buildStatBar('Happy', petHappiness, '😊'),
@@ -506,6 +521,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
               
               const SizedBox(height: 16),
               
+              // Tabs
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -523,6 +539,7 @@ class _PixelPetWidgetState extends State<PixelPetWidget> with TickerProviderStat
               
               const SizedBox(height: 16),
               
+              // Content
               Expanded(
                 child: _currentTab == 0
                     ? _buildFoodShop(scrollController)
@@ -994,7 +1011,7 @@ class PixelDogPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     
     final lightBodyPaint = Paint()
-      ..color = const Color(0xFFF4A460) // Sandy brown 
+      ..color = const Color(0xFFF4A460) // Sandy brown (highlights)
       ..style = PaintingStyle.fill;
     
     final nosePaint = Paint()
@@ -1022,7 +1039,7 @@ class PixelDogPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     
     final bellyPaint = Paint()
-      ..color = const Color(0xFFFFE4B5)
+      ..color = const Color(0xFFFFE4B5) // Moccasin (belly)
       ..style = PaintingStyle.fill;
     
     // Helper to draw pixel
@@ -1202,7 +1219,7 @@ class PixelDogPainter extends CustomPainter {
     drawPixel(11, 14, darkBodyPaint);
     drawPixel(12, 14, darkBodyPaint);
     
-    // TAIL 
+    // ==== TAIL ====
     drawPixel(13, 10, darkBodyPaint);
     drawPixel(14, 9, darkBodyPaint);
     drawPixel(14, 8, darkBodyPaint);

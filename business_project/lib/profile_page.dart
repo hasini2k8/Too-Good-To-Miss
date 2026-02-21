@@ -62,7 +62,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         placesVisited = user['placesVisited'] ?? 0;
         favorites = user['favorites'] ?? 0;
 
-        // Format member since date
         try {
           final dateTime = DateTime.parse(user['memberSince']);
           final months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -84,7 +83,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
   }
 
   Future<void> _refreshUserData() async {
-    // Refresh stats from AuthService
     final stats = await AuthService.getUserStats();
     final user = await AuthService.getCurrentUser();
 
@@ -97,7 +95,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         placesVisited = stats['placesVisited'] ?? 0;
         favorites = stats['favorites'] ?? 0;
 
-        // Format member since date
         try {
           final dateTime = DateTime.parse(user['memberSince']);
           final months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -142,7 +139,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
               physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
-                  // Header with gradient
                   Container(
                     width: double.infinity,
                     decoration: const BoxDecoration(
@@ -163,7 +159,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                       children: [
                         const SizedBox(height: 20),
 
-                        // Refresh button
                         Align(
                           alignment: Alignment.topRight,
                           child: Padding(
@@ -176,7 +171,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
                           ),
                         ),
 
-                        // Profile Picture
                         _buildProfilePicture(),
 
                         const SizedBox(height: 16),
@@ -336,7 +330,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Outer glow ring
           Container(
             width: 140,
             height: 140,
@@ -348,7 +341,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
               ),
             ),
           ),
-          // Profile circle
           Container(
             width: 120,
             height: 120,
@@ -376,7 +368,6 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
               color: Colors.white,
             ),
           ),
-          // Edit badge
           Positioned(
             bottom: 0,
             right: 0,
