@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'services/auth_service.dart';
+import '../services/auth_service.dart';
 
 class PixelPetWidget extends StatefulWidget {
   final VoidCallback? onPointsChanged;

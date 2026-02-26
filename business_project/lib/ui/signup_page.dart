@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'services/auth_service.dart';
+import '../services/auth_service.dart';
 import 'customer_home_page.dart';
 import 'business_registration_page.dart';
-import 'widgets/puzzle_captcha_widget.dart';
+import '../widgets/puzzle_captcha_widget.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

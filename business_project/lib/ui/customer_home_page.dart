@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'dart:math' show cos, sqrt, asin;
-import 'models/startup.dart';
+import '../models/startup.dart';
 import 'bottom_nav_bar.dart';
-import 'services/auth_service.dart';
+import '../services/auth_service.dart';
 import 'startup_detail_page.dart';
 
 class CustomerHomePage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/startup.dart';
+import '../models/startup.dart';
 import 'bottom_nav_bar.dart';
 
 class StartupDetailPage extends StatelessWidget {

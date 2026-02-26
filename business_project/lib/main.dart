@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'models/user_model.dart';
 import 'services/auth_service.dart';
-import 'login_page.dart';
-import 'splash_screen.dart';
+import 'ui/login_page.dart';
+import 'ui/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

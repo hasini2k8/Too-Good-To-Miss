@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'signup_page.dart';
-import 'services/auth_service.dart';
+import '../services/auth_service.dart';
 import 'customer_home_page.dart';
 import 'business_dashboard_page.dart';
-import 'widgets/puzzle_captcha_widget.dart';
+import '../widgets/puzzle_captcha_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

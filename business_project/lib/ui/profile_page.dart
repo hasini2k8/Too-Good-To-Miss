@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
-import 'services/auth_service.dart';
-import 'settings/edit_profile_page.dart';
-import 'settings/notifications_page.dart';
-import 'settings/privacy_security_page.dart';
-import 'settings/help_support_page.dart';
-import 'settings/about_page.dart';
+import '../services/auth_service.dart';
+import '../settings/edit_profile_page.dart';
+import '../settings/notifications_page.dart';
+import '../settings/privacy_security_page.dart';
+import '../settings/help_support_page.dart';
+import '../settings/about_page.dart';
 import 'bottom_nav_bar.dart';
 import 'pixel_pet_widget.dart';
 

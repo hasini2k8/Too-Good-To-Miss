@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
-// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'dart:js' as js;
 import 'dart:async';
@@ -16,7 +15,7 @@ import '../services/review_service.dart';
 import '../services/deal_service.dart';
 import '../services/bookmark_services.dart';
 import '../services/auth_service.dart';
-import '../bottom_nav_bar.dart';
+import 'bottom_nav_bar.dart';
 import '../widgets/puzzle_captcha_widget.dart';
 
 
